@@ -1,3 +1,27 @@
+let Exercise = require('../models/exercise.model')
+
 module.exports.index = (req, res, next) => {
-    res.send('Đây là trang exercise');
+    Exercise.find()
+            .then(exercise => res.json(exercise))
+            .catch(err => res.status(400).json('Error: '+ err));
 }
+
+module.exports.add = (req, res, next) => {
+    const username = req.body.username;
+    const description = req.body.description;
+    const duration = Number(req.body.duration);
+    const date = Date.parse(req.body.date);
+
+    const newExercise = new Exercise({
+        username,
+        description,
+        duration,
+        date
+    });
+    newExercise.save()
+            .then(() => res.json('Exercise add!'))
+            .catch(err => res.status(400).json('Error: '+ err))
+            
+
+}
+

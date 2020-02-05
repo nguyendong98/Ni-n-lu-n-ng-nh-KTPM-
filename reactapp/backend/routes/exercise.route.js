@@ -4,6 +4,7 @@ const exerciseController = require('../controllers/exercise.controller');
 
 
 route.get('/', exerciseController.index)
+route.post('/add', exerciseController.add)
 
 
 module.exports = route;
