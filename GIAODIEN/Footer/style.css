@@ -1,0 +1,114 @@
+/* IMPORT GOOGLE FONT  */
+@import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz&display=swap');
+/* RESET CSS  */
+*{padding: 0; margin: 0; box-sizing: border-box;}
+a{text-decoration: none; color: black}
+a:hover{text-decoration: none;}
+li{list-style: none;}
+/* END RESET CSS  */
+
+/* START FOOTER CSS  */
+Footer{
+    height: 300px;
+    background: #fbfbfb;
+    text-align: center;
+    padding-top: 45px;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    
+}
+.footer-title{
+    font-size: 20px;
+    color: #8b6b58;
+    margin-bottom: 22px;    
+}
+.footer-address{
+    font-size: 20px;
+    color: #797775;
+    margin-bottom: 2px;
+}
+.footer-tag{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 20px;
+    color: #d2dae4;
+}
+.footer-tag a{
+    font-size: 18px;
+    color: #626D71;
+}
+.footer-phone{
+    display: flex;
+    justify-content: flex-start;    
+}
+.footer-phone a{
+    font-size: 18px;
+    color: #626D71;
+    letter-spacing: 1.5px;
+}
+.footer-phone::before{
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: #d2dae4;    
+    left: -4px;
+    top: 12px;
+    border-radius: 50%;
+}
+.footer-social{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.footer-social a{
+    padding: 6px 12px;    
+    display: flex;
+    align-items: center;
+}
+.footer-social i{
+    font-size: 20px;
+    color: #8b6b58;
+    text-align: center;
+
+}
+.footer-social a:nth-child(1):hover{
+    background-color: #4D648D;    
+}
+.footer-social a:hover i{
+    color: white;    
+}
+.footer-social a:nth-child(2):hover{
+    background-color: #92AAC7;    
+}
+.footer-social a:nth-child(3):hover{
+    background-color: #4D648D;    
+}
+.footer-social a:nth-child(4):hover{
+    background-color: red;    
+}
+.footer-end{
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    flex-wrap: wrap;
+    flex: 25%;
+}
+.footer-end a{
+    padding:0px 18px;
+    font-size: 20px;
+    color: #626D71;
+    position: relative;
+    
+}
+.footer-a::after{
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 7px;
+    height: 50%;
+    width: 1px;
+    background-color: #626D71;
+}
+
+
+/* END FOOTER CSS  */
