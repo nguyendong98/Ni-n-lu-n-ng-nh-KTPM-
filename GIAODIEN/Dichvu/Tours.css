@@ -1,0 +1,56 @@
+/* IMPORT GOOGLE FONT  */
+@import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz&display=swap');
+/* RESET CSS  */
+*{padding: 0; margin: 0; box-sizing: border-box;}
+a{text-decoration: none; color: black}
+a:hover{text-decoration: none;}
+li{list-style: none;}
+/* END RESET CSS  */
+
+/* START TOURS CSS  */
+.Tours{
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+.Tour-banner{
+    background: url('Tour.jpg');
+    width: 100%;
+    height: 350px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Tour-banner-context{
+    position: relative;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 60px;
+    color: white;
+    font-weight: 900;
+}
+.Tour-banner-context::after{
+    content: '';
+    position: absolute;
+    top: -15%;
+    left: 20%;
+    width: 60%;
+    height: 5px;
+    background-color: white;
+}
+.Tour-container{
+    background: #e8e1d9;
+    margin: 0;
+}
+.card-title{
+    font-weight: bold;
+    font-size: 22px;
+    letter-spacing: 1.5px;
+
+}
+.card-link{
+    font-size: 18px;
+    font-weight: bold;
+
+}
+/* END TOURS CSS  */
