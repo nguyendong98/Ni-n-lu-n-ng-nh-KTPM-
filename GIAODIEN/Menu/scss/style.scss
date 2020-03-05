@@ -1,0 +1,107 @@
+@import "color";
+@import "reset";
+@import "mixin";
+$opacity: 0.9;
+
+.header{
+    .head__title{
+        border-bottom: $secondary-color solid 1px;
+        padding: 0;
+        .container{
+            position: relative;
+            a{
+                font-size: 9pt;
+            }
+    
+            .head__title-left{
+                #a-phone, #a-mail{
+                    font-family:cursive ;
+                    color: $primary-color;
+                }
+                a{
+                    margin: 5px;
+                    padding: 0;
+                }
+                i{
+                    padding-right: 5px;
+                }
+            }
+            .head__title-right{
+                position: absolute;
+                right: 2%;
+                a{
+                    font-size: 12pt;
+                    font-weight: bold;
+                    border: $secondary-color solid 1px ;
+                    border-top: none;
+                    border-bottom: none;
+                    margin: 0;
+                    padding: 0 7px;
+
+                    &:hover{
+                        color: $primary-color;
+                    }
+                }
+            }
+        } 
+    }
+    .main-menu{
+        padding: 2%;
+        font-family: monospace;
+        i{
+            font-size: 20pt;
+            padding-right: 10px;
+            &:hover{
+                color: $primary-color;
+            }
+        }
+    }
+
+    .slide-bar{
+        img{
+            height: 500px;
+        }
+    }
+}
+
+.check{
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px;
+    position: relative;
+    top: -110px;
+    background: rgba($color: $secondary-color, $alpha: $opacity);
+    .check-content{
+        padding: 1px;
+        .check-title{
+            color: $primary-color;
+        }
+        .btn-success{
+            @include btn;
+        }
+    }
+    
+}
+
+.about{
+    .container{
+        margin-top: 0;
+        padding-top: 0;
+        .about-benefit{
+            ul{
+                li{
+                    @include li-prop;
+                    i{
+                        @include i-prop;
+                    }
+                }
+            }
+        }
+        .penefit-title{
+            @include title;
+        }
+        .about-benefit{
+            margin-top: 20px;
+        }
+    }
+}

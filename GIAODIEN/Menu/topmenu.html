@@ -8,21 +8,21 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
   </head>
   <body>
     <section class="header">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light head-menu">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light head__title">
         <div class="container">
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup text-center">
-            <div class="navbar-nav top-left">
+            <div class="navbar-nav head__title-left">
               <a class="nav-item nav-link" href="#">Niên luận</a>
               <a class="nav-item nav-link" href="#" id="a-phone"><i class="fa fa-phone" aria-hidden="true"></i>0783.777.999</a>
               <a class="nav-item nav-link" href="#" id="a-mail"><i class="fa fa-envelope-o" aria-hidden="true"></i>nlnhom3@gmail.com</a>
             </div>
-            <div class="navbar-nav text-center top-right">
+            <div class="navbar-nav text-center head__title-right">
               <a class="nav-item nav-link" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
               <a class="nav-item nav-link" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
               <a class="nav-item nav-link" href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
@@ -97,7 +97,7 @@
           <div class="col-12 col-lg-6">
             <div class="row">
               <div class="col-12 col-lg-6">
-                <h6 class="text-secondary">Check-in</h6>
+                <h6 class="check-title">Check-in</h6>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><i class="fa fa-calendar" aria-hidden="true"></i></span>
@@ -107,7 +107,7 @@
               </div>
 
                 <div class="col-12 col-lg-6">
-                  <h6 class="text-secondary">Check-out</h6>
+                  <h6 class=" check-title">Check-out</h6>
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="basic-addon1"><i class="fa fa-calendar" aria-hidden="true"></i></span>
@@ -121,7 +121,7 @@
           <div class="col-12 col-lg-6">
             <div class="row">
               <div class="col-12 col-lg-4">
-                <h6 class="text-secondary">Child</h6>
+                <h6 class=" check-title">Child</h6>
                 <div class="input-group mb-3">
                   <select class="custom-select" id="inputGroupSelect01">
                     <option selected>0</option>
@@ -132,7 +132,7 @@
                 </div>
               </div>
               <div class="col-12 col-lg-4">
-                <h6 class="text-secondary">Adult</h6>
+                <h6 class=" check-title">Adult</h6>
                 <div class="input-group mb-3">
                   <select class="custom-select" id="inputGroupSelect01">
                     <option selected>0</option>
@@ -143,16 +143,55 @@
                 </div>
               </div>
               <div class="col-12 col-lg-4">
+                <h6 class=" check-title" style="visibility: hidden;">.</h6>
                 <button type="button" class="btn btn-success">Book now</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="form-check form-check-inline">
-        <label class="form-check-label">
-          <input class="form-check-input" type="checkbox" name="" id="" value="checkedValue"> Display value
-        </label>
+    </section>
+    
+    <section class="about">
+      <div class="container">
+        <span class="penefit-title">WHY MANOIR DES ARTS ?</span>
+        <div class="row">
+          <div class="col-12 col-lg-3 about-benefit">
+            <ul>
+              <li><i class="fa fa-check-square-o" aria-hidden="true"></i>Privileged location in Hai phong</li>
+              <li><i class="fa fa-check-square-o" aria-hidden="true"></i>Professional staffs, management</li>
+              <li><i class="fa fa-check-square-o" aria-hidden="true"></i>High standard service</li>
+            </ul>
+          </div>
+          <div class="col-12 col-lg-3 about-benefit">
+            <ul>
+              <li><i class="fa fa-check-square-o" aria-hidden="true"></i>Bar & coffee : Absorb in every sip</li>
+              <li><i class="fa fa-check-square-o" aria-hidden="true"></i>Delicious breakfast, fine dinning restaurant: Joy in every bite.</li>
+            </ul>
+          </div>
+          <div class="col-12 col-lg-3 about-benefit">
+            <ul>
+              <li><i class="fa fa-check-square-o" aria-hidden="true"></i> Outside swimming pool & garden</li>
+              <li><i class="fa fa-check-square-o" aria-hidden="true"></i>Old world charm</li>
+              <li><i class="fa fa-check-square-o" aria-hidden="true"></i> Modern comfort</li>
+            </ul>
+          </div>
+          <div class="col-12 col-lg-3 about-benefit">
+            <ul>
+              <li><i class="fa fa-check-square-o" aria-hidden="true"></i>On-site parking</li>
+              <li><i class="fa fa-check-square-o" aria-hidden="true"></i>Free Wifi</li>
+            </ul>
+          </div>
+        </div>
+      </div> 
+
+      <div class="about-image">
+        <span class="welcom">Welcome to ...</span>
+        <p>Spring Hotel is a hotel located in the west of Hanoi capital, surrounded by palm trees and lush greenery. Spring Hotel is a great destination and gives you the most enjoyable experience when you come to us.</p>
+        <p>Come to Spring Hotel, you will be immersed in fresh nature, to participate in leisure activities, relax to take away the sorrows and chaos of life.
+          Luxurious resort with all kinds of amenities and modern bungalows combined traditional style, Jacuzzi pool system with restaurant system, conference room, play area, restaurants  ...</p>
+        <p>Spring Hotel with fully furnished rooms and villas, interior space is decorated in luxurious style mixed with traditional Vietnamese and modern Western. We have well trained, professional and professional staff, dedicated service.s</p>  
+          <div class="btn btn-success">See more</div>
       </div>
     </section>
       

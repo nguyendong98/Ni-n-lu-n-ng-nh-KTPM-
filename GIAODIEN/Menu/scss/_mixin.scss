@@ -1,0 +1,30 @@
+@import "color";
+@mixin a-prop{
+    text-decoration: none;
+    color: black;
+}
+
+@mixin li-prop {
+    list-style: none;
+    color:darken($color: gray, $amount: 5) ;
+}
+
+@mixin i-prop{
+    padding-right: 5px;
+    color: $primary-color;
+}
+
+@mixin title{
+    font-weight: 500;
+    font-size: 25px;
+    color: #4c4c4c;
+}
+
+@mixin btn {
+    background: $primary-color;
+            border: none;
+            transition: 0.5s;
+            &:hover{
+                font-size: 15pt;
+            }
+}
