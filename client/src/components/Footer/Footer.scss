@@ -5,6 +5,8 @@
 $bg-footer : #fbfbfb;
 $color-footer-title: #8b6b58;
 $color-footer-address: #797775;
+
+
 .footer{
     width: 100%;
     height: 30rem;
@@ -23,12 +25,16 @@ $color-footer-address: #797775;
         margin-bottom: 2px;
     }
     &__contact{
-        @include flex;       
+        @include flex;   
+        color: #d2dae4;    
         &-tag{
             display: flex;
             justify-content: flex-end;
             font-size: 2rem;
-            color: #d2dae4;
+            .footer-info{
+                color: #626D71;
+            }
+            
         }
         &-phone{
             display: flex;
@@ -45,6 +51,9 @@ $color-footer-address: #797775;
                 left: -0.4rem;
                 top: 1.2rem;
                 border-radius: 50%;
+            }
+            .footer-info{
+                color: #626D71;
             }
         }        
     }

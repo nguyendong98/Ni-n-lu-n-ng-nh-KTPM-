@@ -12,7 +12,7 @@ export default function Footer() {
                     <a href="#/" className="footer-info">info@webhotel.vn</a>
                 </div>
                 <div className="footer__contact-phone col-6">
-                    <a href="#/" className="phone-info">(035)486010 </a>
+                    <a href="#/" className="footer-info">(035)486010 </a>
                 </div>
             </div>
             <div className="row footer__social">

@@ -1,0 +1,47 @@
+@import './../../App.scss';
+
+
+//variable
+$bg-Spa: url(./../../images/Spa.jpg);
+
+
+.Spa{
+    &__banner{
+        @include flex;
+        @include banner;
+        background: $bg-Spa;
+        &-context{
+            position: relative;
+            font-family: 'Yanone Kaffeesatz', sans-serif;
+            font-size: 60px;
+            color: white;
+            font-weight: 900;
+            letter-spacing: 1.5;
+            font: {
+                family: 'Yanone Kaffeesatz', sans-serif;
+                size: 6rem;
+                weight: 900;
+            }
+            &::after{
+                content: '';
+                position: absolute;
+                top: -15%;
+                left: 30%;
+                width: 30%;
+                height: 0.5rem;
+                background-color: $myWhite;
+            }
+        }
+    }
+    &__container{
+        font-family: 'Montserrat', sans-serif;
+        h2{            
+            letter-spacing: 0.2rem;            
+            font: {
+                size: 3.5rem;
+                weight: 700;
+                family: 'Yanone Kaffeesatz', sans-serif;                
+            }
+        }
+    }
+}
