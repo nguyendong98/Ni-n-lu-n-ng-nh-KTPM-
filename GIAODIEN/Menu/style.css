@@ -1,0 +1,74 @@
+.container{
+    position: relative;
+}
+
+.head-menu{
+    border-top: #F5DEB3 solid 1px;
+    border-bottom: 	#F5DEB3 solid 1px;
+    padding: 0;
+}
+
+.head-menu a{
+    font-size: 9pt;
+}
+
+.top-left a{
+    margin: 5px;
+    padding: 0;
+}
+
+.top-left i{
+    padding-right: 5px;
+}
+
+.top-right{
+    position: absolute;
+    right: 2%;
+}
+.top-right a{
+    font-size: 12pt;
+    font-weight: bold;
+    border: #F5DEB3 solid 1px ;
+    margin: 0;
+    padding: 0;
+}
+
+#a-phone{
+    border-left: #F5DEB3 solid 1px ;
+    border-right: #F5DEB3 solid 1px ;
+}
+
+#a-phone, #a-mail{
+    color: #8B4513;
+    font-family:cursive ;
+}
+
+.main-menu{
+    padding: 2%;
+    font-family: monospace;
+}
+
+.main-menu i{
+    font-size: 20pt;
+    padding-right: 10px;
+}
+
+.choice{
+    padding-right: 100px;
+}
+
+.slide-bar img{
+    height: 500px;
+}
+.check {
+    height: 100px;
+    background-color: silver;
+    position: relative;
+    top: -100px;
+    opacity: 0.9;
+    
+}
+
+.check-content{
+    padding: 1%;
+}
