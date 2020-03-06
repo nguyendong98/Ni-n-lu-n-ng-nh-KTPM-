@@ -1,7 +1,11 @@
 var express = require('express');
 const connectDB = require('./config/db')
+const bodyParser = require('body-parser')
 var app = express();
-
+app.use(bodyParser.urlencoded({ extended: false }))
+ 
+// parse application/json
+app.use(bodyParser.json())
 //Connect database 
 connectDB();
 

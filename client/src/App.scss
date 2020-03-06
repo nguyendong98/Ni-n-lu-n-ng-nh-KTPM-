@@ -38,8 +38,47 @@ body{
         size: cover;
     };
 }
+@mixin a-prop{
+    text-decoration: none;
+    color: black;
+}
+
+@mixin li-prop {
+    list-style: none;
+    color:darken($color: gray, $amount: 5) ;
+}
+
+@mixin i-prop{
+    padding-right: 5px;
+    color: $primary-color;
+}
+
+@mixin title{
+    font-weight: 500;
+    font-size: 25px;
+    color: #4c4c4c;
+}
+
+@mixin btn {
+    background: $primary-color;
+            border: none;
+            transition: 0.5s;
+            &:hover{
+                font-size: 15pt;
+            }
+}
+
+@mixin about-background{
+    background-image: url("../img/img.jpg");
+    background-size: cover;
+    text-align: center;
+    
+}
 
 //variable
 $myWhite : #fff;
 $myDark: #444;
 $myBlack: #000;
+$primary-color: #8B6B43;
+$secondary-color: #B9B9B9;
+$opacity: 0.9;

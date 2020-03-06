@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class ListTour extends Component {
     render() {
         return (
-            <div className="col-lg-4 col-12">
+            <div className="col-lg-4 col-12 pb-5">
                 <div className="card p-1">
                     <img src="http://springhotel.webhotel.vn/files/images/tours/Tour%20%C4%90%C3%A0%20l%E1%BA%A1t%20-%201.jpg" className="card-img-top" alt="..." />
                     <div className="card-body">

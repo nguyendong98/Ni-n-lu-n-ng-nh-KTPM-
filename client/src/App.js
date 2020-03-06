@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 import routes from './route';
 import Footer from './components/Footer/Footer';
+import Menu from './components/Menu/Menu';
+import TopMenu from './components/TopMenu/TopMenu';
 
 class App extends Component {
   showRoute = (routes) => {
@@ -29,6 +31,8 @@ class App extends Component {
     return (
       <Router>
         <div>
+          <TopMenu />
+          <Menu />
           <Switch>
             {this.showRoute(routes)}
           </Switch>

@@ -48,14 +48,14 @@ $opacity: 0.5;
 }
 
 .main-menu{
-    padding: 1%;
+    padding: 2%;
     font-family: monospace;
     position: sticky;
     top: 0;
     z-index: 1;
     background-color: white;
     box-shadow: 0 0 8px 0 #ccc;
-    height: 10vh;
+    height: 14vh;
     a{
         color: $secondary-color;
         font-size: 1.2rem;

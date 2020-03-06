@@ -1,0 +1,27 @@
+@import './../../App.scss';
+
+
+
+.main-menu{
+    // padding-bottom: 7rem;
+    font-family: monospace;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: white;
+    box-shadow: 0 0 8px 0 #ccc;
+    
+    a{
+        color: $secondary-color;
+        font-size: 1.2rem;
+        padding-right: 1rem;
+        padding: 0;
+    }
+    i{
+        font-size: 20pt;
+        padding-right: 10px;
+        &:hover{
+            color: $primary-color;
+        }
+    }
+}
