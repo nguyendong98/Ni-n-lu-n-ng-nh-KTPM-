@@ -10,7 +10,7 @@ class Menu extends Component {
             <section className="main-menu">
                 <div className="container">
                     <nav className="navbar navbar-expand-lg navbar-light ">
-                    <img src="https://previews.123rf.com/images/mehibi/mehibi1508/mehibi150801290/44126325-hotel-logo-template.jpg" style={{width: '6rem', height: '6rem'}} alt="logo"/>
+                    <Link to="/" exact="true"> <img src="https://previews.123rf.com/images/mehibi/mehibi1508/mehibi150801290/44126325-hotel-logo-template.jpg" style={{width: '6rem', height: '6rem'}} alt="logo"/></Link>
                         
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,7 +18,7 @@ class Menu extends Component {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div className="navbar-nav" style={{margin: '0 auto'}}>
-                                <a className="nav-item nav-link " href="#/"><i className="fa fa-home"  />Home</a>
+                                <Link to="/" exact="true" className="nav-item nav-link " href="#/"><i className="fa fa-home"  />Home</Link>
                                 <a className="nav-item nav-link " href="#/"><i className="fa fa-bed"  />Room</a>
                                 <li className="dropdown " id="navbarNavDropdown">
                                     <a className="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"

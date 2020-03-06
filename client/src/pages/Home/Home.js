@@ -13,13 +13,13 @@ class Home extends Component {
                         </ol>
                         <div className="carousel-inner">
                             <div className="carousel-item active">
-                                <img src="img/h1.jpg" className="d-block w-100" alt="..." />
+                                <img src='./../../Spa.jpg' className="d-block w-100"  />
                             </div>
                             <div className="carousel-item">
-                                <img src="img/h2.jpg" className="d-block w-100" alt="..." />
+                                <img src="./../../images/h2.jpg" className="d-block w-100"  />
                             </div>
                             <div className="carousel-item">
-                                <img src="img/h3.jpg" className="d-block w-100" alt="..." />
+                                <img src="./../../../images/h3.jpg" className="d-block w-100"  />
                             </div>
                         </div>
                         <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -159,7 +159,7 @@ class Home extends Component {
                         <div className="row detail">
                             <div className="col-12 col-lg-4">
                                 <div className="card">
-                                    <img src="./img/about-room.jpg" className="card-img-top" alt="..." />
+                                    <img src="./../../images/about-room.jpg" className="card-img-top" alt="..." />
                                     <div className="card-body">
                                         <h5 className="card-title title">DELUXE ROOM</h5>
                                         <p className="card-text detail-text">Deluxe rooms with harmonious design, luxurious interior
@@ -171,7 +171,7 @@ class Home extends Component {
                             </div>
                             <div className="col-12 col-lg-4">
                                 <div className="card">
-                                    <img src="./img/about-room2.jpg" className="card-img-top" alt="..." />
+                                    <img src="./../../images/about-room2.jpg" className="card-img-top" alt="..." />
                                     <div className="card-body">
                                         <h5 className="card-title title">SUPERIOR ROOM</h5>
                                         <p className="card-text detail-text">Standard rooms are about 20m2 are designed in harmony
@@ -183,7 +183,7 @@ class Home extends Component {
                             </div>
                             <div className="col-12 col-lg-4">
                                 <div className="card">
-                                    <img src="./img/about-room3.jpg" className="card-img-top" alt="..." />
+                                    <img src="./../../images/about-room3.jpg" className="card-img-top" alt="..." />
                                     <div className="card-body">
                                         <h5 className="card-title title">PRESIDENT ROOM</h5>
                                         <p className="card-text detail-text">Luxury bungalow with elegant architecture and interior
