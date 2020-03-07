@@ -1,15 +1,13 @@
 @import './../../App.scss';
 
-
-
 .main-menu{
-    // padding-bottom: 7rem;
+    
     font-family: monospace;
     position: sticky;
     top: 0;
     z-index: 1;
     background-color: white;
-    box-shadow: 0 0 8px 0 #ccc;
+    box-shadow: 0 0 6px 0 #ccc;
     
     a{
         color: $secondary-color;

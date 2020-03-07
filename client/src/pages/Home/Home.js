@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
-import './Home.scss';
+import './Home.scss'
+import h1 from './../../images/h1.jpg'
+import h2 from './../../images/h2.jpg'
+import h3 from './../../images/h3.jpg'
+import room1 from './../../images/about-room.jpg'
+import room2 from './../../images/about-room2.jpg'
+import room3 from './../../images/about-room3.jpg'
+
 class Home extends Component {
+    
     render() {
         return (
             <div>
                 <section className="slide-bar">
-                    <div id="carouselExampleIndicators" className="carousel slide slide-bar" data-ride="carousel">
+                    <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
                         <ol className="carousel-indicators">
                             <li data-target="#carouselExampleIndicators" data-slide-to={0} className="active" />
                             <li data-target="#carouselExampleIndicators" data-slide-to={1} />
@@ -13,13 +21,13 @@ class Home extends Component {
                         </ol>
                         <div className="carousel-inner">
                             <div className="carousel-item active">
-                                <img src='./../../Spa.jpg' className="d-block w-100"  />
+                                <img src={h3} className="d-block w-100" alt="..." />
                             </div>
                             <div className="carousel-item">
-                                <img src="./../../images/h2.jpg" className="d-block w-100"  />
+                                <img src={h1} className="d-block w-100" alt="..." />
                             </div>
                             <div className="carousel-item">
-                                <img src="./../../../images/h3.jpg" className="d-block w-100"  />
+                                <img src={h2} className="d-block w-100" alt="..." />
                             </div>
                         </div>
                         <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -56,8 +64,7 @@ class Home extends Component {
                                                 <span className="input-group-text" id="basic-addon1"><i className="fa fa-calendar"
                                                         aria-hidden="true" /></span>
                                             </div>
-                                            <input type="text" className="form-control" placeholder
-                                                aria-describedby="basic-addon1" />
+                                            <input type="text" className="form-control"  aria-describedby="basic-addon1" />
                                         </div>
                                     </div>
                                 </div>
@@ -67,8 +74,8 @@ class Home extends Component {
                                     <div className="col-12 col-lg-4">
                                         <h6 className=" check-title">Child</h6>
                                         <div className="input-group mb-3">
-                                            <select className="custom-select" id="inputGroupSelect01">
-                                                <option selected>0</option>
+                                            <select className="custom-select" id="inputGroupSelect01" defaultValue={0} >
+                                                <option   value={0} >0</option>
                                                 <option value={1}>1</option>
                                                 <option value={2}>2</option>
                                                 <option value={3}>3</option>
@@ -78,8 +85,8 @@ class Home extends Component {
                                     <div className="col-12 col-lg-4">
                                         <h6 className=" check-title">Adult</h6>
                                         <div className="input-group mb-3">
-                                            <select className="custom-select" id="inputGroupSelect01">
-                                                <option selected>0</option>
+                                            <select className="custom-select" id="inputGroupSelect01" defaultValue={0}>
+                                                <option value={0}>0</option>
                                                 <option value={1}>1</option>
                                                 <option value={2}>2</option>
                                                 <option value={3}>3</option>
@@ -159,37 +166,37 @@ class Home extends Component {
                         <div className="row detail">
                             <div className="col-12 col-lg-4">
                                 <div className="card">
-                                    <img src="./../../images/about-room.jpg" className="card-img-top" alt="..." />
+                                    <img src={room1} className="card-img-top" alt="alo" />
                                     <div className="card-body">
                                         <h5 className="card-title title">DELUXE ROOM</h5>
                                         <p className="card-text detail-text">Deluxe rooms with harmonious design, luxurious interior
                                             with full modern facilities. Area of about 60-65m2 each room is equipped with windows
                                             and balcony.</p>
-                                        <a href="#" className="btn btn-success">See more</a>
+                                        <a href="/" className="btn btn-success">See more</a>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-12 col-lg-4">
                                 <div className="card">
-                                    <img src="./../../images/about-room2.jpg" className="card-img-top" alt="..." />
+                                    <img src={room2} className="card-img-top" alt="..." />
                                     <div className="card-body">
                                         <h5 className="card-title title">SUPERIOR ROOM</h5>
                                         <p className="card-text detail-text">Standard rooms are about 20m2 are designed in harmony
                                             with luxury furniture and full of modern facilities and to the comfort and convenience.
                                         </p>
-                                        <a href="#" className="btn btn-success">See more</a>
+                                        <a href="/" className="btn btn-success">See more</a>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-12 col-lg-4">
                                 <div className="card">
-                                    <img src="./../../images/about-room3.jpg" className="card-img-top" alt="..." />
+                                    <img src={room3} className="card-img-top" alt="..." />
                                     <div className="card-body">
                                         <h5 className="card-title title">PRESIDENT ROOM</h5>
                                         <p className="card-text detail-text">Luxury bungalow with elegant architecture and interior
                                             with bright white tone combined with natural space, windswept will bring you a true
                                             holiday..</p>
-                                        <a href="#" className="btn btn-success">See more</a>
+                                        <a href="/" className="btn btn-success">See more</a>
                                     </div>
                                 </div>
                             </div>
@@ -203,6 +210,7 @@ class Home extends Component {
                         </div>
                     </div>
                 </section>
+                
             </div>
         );
     }

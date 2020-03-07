@@ -5,6 +5,7 @@ import Tour from './pages/Tour/Tour';
 import NotFound from './pages/NotFound/NotFound';
 import Home from './pages/Home/Home';
 
+
 const routes = [
     {
         path: '/',
