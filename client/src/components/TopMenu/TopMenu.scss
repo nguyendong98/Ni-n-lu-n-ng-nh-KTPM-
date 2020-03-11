@@ -1,46 +1,59 @@
 @import './../../App.scss';
 
+.header {
+  .head__title {
+    border-bottom: $secondary-color solid 1px;
+    padding: 0;
+    .container {
+      position: relative;
+      a {
+        font-size: 1.2rem;
+      }
 
-.header{
-    .head__title{
-        border-bottom: $secondary-color solid 1px;
-        padding: 0;
-        .container{
-            position: relative;
-            a{
-                font-size: 9pt;
-            }
-    
-            .head__title-left{
-                #a-phone, #a-mail{
-                    font-family:cursive ;
-                    color: $primary-color;
-                }
-                a{
-                    margin: 5px;
-                    padding: 0;
-                }
-                i{
-                    padding-right: 5px;
-                }
-            }
-            .head__title-right{
-                position: absolute;
-                right: 2%;
-                a{
-                    font-size: 12pt;
-                    font-weight: bold;
-                    border: $secondary-color solid 1px ;
-                    border-top: none;
-                    border-bottom: none;
-                    margin: 0;
-                    padding: 0 7px;
+      .head__title-left {
+        #a-phone,
+        #a-mail {
+          font-family: cursive;
+          color: $primary-color;
+        }
+        a {
+          margin: 5px;
+          padding: 0;
+        }
+        i {
+          padding-right: 5px;
+        }
+      }
+      .head__title-right {
+        position: absolute;
+        right: 2%;
+        a {
+          font-size: 1.6rem;
+          font-weight: bold;
+          border: $secondary-color solid 1px;
+          border-top: none;
+          border-bottom: none;
+          margin: 0;
+          padding: 0 7px;
 
-                    &:hover{
-                        color: $primary-color;
-                    }
-                }
-            }
-        } 
+          &:hover {
+            color: $primary-color;
+          }
+        }
+      }
     }
+  }
+  .login {
+    font-size: 1.2rem;
+    padding: 0.5rem 2rem;
+    width: 100%;
+    text-align: right;
+    .login-btn {
+      font-family: cursive;
+      color: $primary-color;
+      &:hover {
+        color: $secondary-color;
+      }
+    }
+  }
 }
