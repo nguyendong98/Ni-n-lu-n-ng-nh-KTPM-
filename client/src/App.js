@@ -1,49 +1,52 @@
-import React, { Component } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import './App.scss';
 import {
   BrowserRouter as Router,
   Switch,
   Route  
 } from "react-router-dom";
-import routes from './route';
 import Footer from './components/Footer/Footer';
 import Menu from './components/Menu/Menu';
 import TopMenu from './components/TopMenu/TopMenu';
-
-class App extends Component {
-  showRoute = (routes) => {
-    var result = null;
-    if(routes.length > 0){
-      result = routes.map((val, index) => {
-        return (
-          <Route 
-             key={index} 
-             path={val.path} 
-             exact={val.exact} 
-             component={val.main}
-          />   
-        )
-      })
+import Spa from './pages/Spa/Spa';
+import Restaurant from './pages/Restaurant/Restaurant';
+import Tour from './pages/Tour/Tour';
+import Home from './pages/Home/Home';
+import NotFound from './pages/NotFound/NotFound';
+import Login from './pages/Login/Login'
+import store from './store';
+import {Provider} from 'react-redux';
+import Register from './pages/Register/Register';
+import setAuthToken from './utils/setAuthToken'
+import {loadUser} from './actions/auth'
+const App = () => {
+  useEffect(() => {
+    if(localStorage.token){
+      setAuthToken(localStorage.token)
+      store.dispatch(loadUser())
     }
-    return result;
-  }
-  render() {
-    return (
+    
+  }, [])
+  return (
+    <Provider store={store}>
       <Router>
-        <div>
+        <Fragment>
           <TopMenu />
           <Menu />
           <Switch>
-            {this.showRoute(routes)}
-          </Switch>
-          
-          <Footer />
-          
-        </div>
+            <Route path="/" exact component={Home} />
+            <Route path="/tours" exact component={Tour} />
+            <Route path="/restaurant" exact component={Restaurant} />
+            <Route path="/spa" exact component={Spa} />
+            <Route path= "/login" exact component ={Login} />
+            <Route path= "/register" exact component ={Register} />
+            <Route path="" exact component={NotFound} />              
+          </Switch>            
+          <Footer />            
+        </Fragment>
       </Router>
-      
-    );
-  }
+    </Provider>
+  )
 }
 
 export default App;
