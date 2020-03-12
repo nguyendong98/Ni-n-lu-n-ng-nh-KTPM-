@@ -1,6 +1,29 @@
 @import './../../App.scss';
 
-.login{
-    
-    padding: 3rem 3rem 3rem 7rem;
+.login {
+  padding: 2rem;
+  &-content {
+    text-align: center;
+    width: 40rem;
+    margin: 0 auto;
+    padding: 5rem;
+    background: $secondary-color;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+    .login-title {
+      h1 {
+        color: $primary-color;
+        font-size: 4rem;
+      }
+      p {
+        color: rgba($color: black, $alpha: 0.5);
+        font-size: 2rem;
+      }
+    }
+    input {
+      width: 100%;
+    }
+    .btn-submit {
+      @include btn;
+    }
+  }
 }
