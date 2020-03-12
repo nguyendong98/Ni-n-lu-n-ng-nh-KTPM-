@@ -142,6 +142,7 @@ class Home extends Component {
         <section className='about'>
           <div className='container'>
             <span className='penefit-title mb-3'>WHY MANOIR DES ARTS ?</span>
+            <hr></hr>
             <div className='row'>
               <div className='col-12 col-lg-3 about-benefit'>
                 <ul>
@@ -235,6 +236,7 @@ class Home extends Component {
         <section className='about-room'>
           <div className='container'>
             <span className='room-title'>ACCOMMODATION</span>
+            <hr></hr>
             <div className='row detail'>
               <div className='col-12 col-lg-4'>
                 <div className='card'>

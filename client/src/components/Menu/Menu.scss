@@ -13,13 +13,14 @@
   margin: 0 auto;
   a {
     color: $secondary-color;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
     font-size: 1.8rem;
-    font-weight: 900;
+    font-weight: 500;
     &:hover {
       color: $primary-color;
     }
     i {
-      font-size: 2rem;
+      font-size: 3rem;
       padding-left: 5rem;
       padding-right: 1rem;
       color: rgba($color: $secondary-color, $alpha: 0.6);
