@@ -1,6 +1,21 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import './TopMenu.scss';
-export default function TopMenu() {
+import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {logout} from './../../actions/auth'
+const TopMenu = ({auth, logout}) => {
+  const authLink = (
+    <div className='login'>
+        <a href="#/" onClick={logout}><i className="fa fa-sign-out" ></i> Logout</a>
+     </div>   
+  )
+  const guestLink = (
+    <div className='login'>
+        <Link to='/login' className='login-btn'>
+          Đăng nhập/đăng ký
+        </Link>
+    </div>
+  )
   return (
     <section className='header'>
       <nav className='navbar navbar-expand-lg navbar-light bg-light head__title'>
@@ -39,11 +54,13 @@ export default function TopMenu() {
           </div>
         </div>
       </nav>
-      <div className='login'>
-        <a href='#' className='login-btn'>
-          Đăng nhập/đăng ký
-        </a>
-      </div>
+      { (<Fragment>{auth.isAuthenticated ? authLink : guestLink}</Fragment>)}
     </section>
   );
 }
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  }
+}
+export default connect(mapStateToProps, {logout})(TopMenu)

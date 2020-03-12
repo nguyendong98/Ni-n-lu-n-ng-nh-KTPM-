@@ -26,11 +26,11 @@ const auth = (state = InitialState, action) => {
              }
         case REGISTER_SUCCESS:
             console.log(action)
-            localStorage.setItem('token', payload.token)
+            // localStorage.setItem('token', payload.token)
             return {
                 ...state,
-                ...payload,
-                isAuthenticated: true,
+                // ...payload,
+                isAuthenticated: false,
                 loading: false
             }
         
