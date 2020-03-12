@@ -68,7 +68,7 @@ const Login = ({ login, isAuthenticated }) => {
               />
             </div>
           </form>
-          <p className='my-1'>
+          <p>
             Don't have an account? <Link to='/register'>Sign Up</Link>
           </p>
         </div>

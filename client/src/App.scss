@@ -63,9 +63,16 @@ body {
   background: $primary-color;
   font-size: 1.6rem;
   border: none;
+  width: 9rem;
   transition: 0.5s;
+  border-radius: 1.5rem;
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
   &:hover {
-    font-size: 15pt;
+    width: 11rem;
   }
 }
 
