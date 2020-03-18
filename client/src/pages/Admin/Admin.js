@@ -7,10 +7,9 @@ const Admin = ({loadUser, auth: {loading, user}}) => {
     useEffect(() => {
         loadUser()
     }, [loadUser])
-    return  loading && user === null ? (<Spinner/>) :
-       ( <Fragment>
-            Chào admin
-        </Fragment> )
+    return  (
+        <div>Trang Admin</div>
+    )
     
 }
 const mapStateToProps = state => {

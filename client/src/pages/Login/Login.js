@@ -24,7 +24,7 @@ const Login = ({ login, isAuthenticated }) => {
     });
   };
   if (isAuthenticated) {
-    return <Redirect to='/admin'></Redirect>;
+    return <Redirect to='/admin' />;
   }
   return (
     <section className='login'>

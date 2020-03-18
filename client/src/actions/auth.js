@@ -79,7 +79,7 @@ export const login = ({email, password}) => async dispatch => {
         })
         // dispatch(setAlert('Login Success', 'success'))
         dispatch(loadUser());
-        window.history.go(-1)
+        
     } catch (error) {
         const errors = error.response.data.errors
         if(errors){

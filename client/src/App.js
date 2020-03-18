@@ -42,7 +42,7 @@ const App = () => {
             <Route path="/spa" exact component={Spa} />
             <Route path= "/login" exact component ={Login} />
             <Route path= "/register" exact component ={Register} />
-            <PrivateRoute path="/admin" exact component={Admin} />
+            <PrivateRoute exact path="/admin"  component={Admin} />
             <Route path="" exact component={NotFound} />              
           </Switch>            
           <Footer />            
