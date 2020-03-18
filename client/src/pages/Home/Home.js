@@ -3,25 +3,31 @@ import './Home.scss';
 import h1 from './../../images/h1.jpg';
 import h2 from './../../images/h2.jpg';
 import h3 from './../../images/h3.jpg';
-import {connect} from 'react-redux'
-import {getAllKindOfRoom} from './../../actions/room'
+import { connect } from 'react-redux';
+import { getAllKindOfRoom } from './../../actions/room';
 import PropTypes from 'prop-types';
 import RoomItem from '../../components/RoomItem/RoomItem';
-import Spinner from './../../components/Spinner/Spinner'
+import Spinner from './../../components/Spinner/Spinner';
 
-
-
-const Home = ({getAllKindOfRoom, room: {rooms, loading}}) => {
+const Home = ({ getAllKindOfRoom, room: { rooms, loading } }) => {
   useEffect(() => {
-    getAllKindOfRoom()
-  }, [getAllKindOfRoom])
- 
+    getAllKindOfRoom();
+  }, [getAllKindOfRoom]);
+
   return (
     <Fragment>
       <section className='slide-bar'>
-        <div id='carouselExampleIndicators' className='carousel slide' data-ride='carousel'>
+        <div
+          id='carouselExampleIndicators'
+          className='carousel slide'
+          data-ride='carousel'
+        >
           <ol className='carousel-indicators'>
-            <li data-target='#carouselExampleIndicators' data-slide-to={0} className='active' />
+            <li
+              data-target='#carouselExampleIndicators'
+              data-slide-to={0}
+              className='active'
+            />
             <li data-target='#carouselExampleIndicators' data-slide-to={1} />
             <li data-target='#carouselExampleIndicators' data-slide-to={2} />
           </ol>
@@ -36,11 +42,21 @@ const Home = ({getAllKindOfRoom, room: {rooms, loading}}) => {
               <img src={h2} className='d-block w-100' alt='...' />
             </div>
           </div>
-          <a className='carousel-control-prev' href='#carouselExampleIndicators' role='button' data-slide='prev'>
+          <a
+            className='carousel-control-prev'
+            href='#carouselExampleIndicators'
+            role='button'
+            data-slide='prev'
+          >
             <span className='carousel-control-prev-icon' aria-hidden='true' />
             <span className='sr-only'>Previous</span>
           </a>
-          <a className='carousel-control-next' href='#carouselExampleIndicators' role='button' data-slide='next'>
+          <a
+            className='carousel-control-next'
+            href='#carouselExampleIndicators'
+            role='button'
+            data-slide='next'
+          >
             <span className='carousel-control-next-icon' aria-hidden='true' />
             <span className='sr-only'>Next</span>
           </a>
@@ -60,8 +76,13 @@ const Home = ({getAllKindOfRoom, room: {rooms, loading}}) => {
                         <i className='fa fa-calendar' aria-hidden='true' />
                       </span>
                     </div>
-                    <input type='text' className='form-control' placeholder='3/2/2020' aria-label='Username'
-                      aria-describedby='basic-addon1' />
+                    <input
+                      type='date'
+                      className='form-control'
+                      placeholder='3/2/2020'
+                      aria-label='Username'
+                      aria-describedby='basic-addon1'
+                    />
                   </div>
                 </div>
                 <div className='col-12 col-lg-6'>
@@ -72,7 +93,11 @@ const Home = ({getAllKindOfRoom, room: {rooms, loading}}) => {
                         <i className='fa fa-calendar' aria-hidden='true' />
                       </span>
                     </div>
-                    <input type='text' className='form-control' aria-describedby='basic-addon1' />
+                    <input
+                      type='date'
+                      className='form-control'
+                      aria-describedby='basic-addon1'
+                    />
                   </div>
                 </div>
               </div>
@@ -82,7 +107,11 @@ const Home = ({getAllKindOfRoom, room: {rooms, loading}}) => {
                 <div className='col-12 col-lg-4'>
                   <h6 className=' check-title'>Child</h6>
                   <div className='input-group mb-3'>
-                    <select className='custom-select' id='inputGroupSelect01' defaultValue={0}>
+                    <select
+                      className='custom-select'
+                      id='inputGroupSelect01'
+                      defaultValue={0}
+                    >
                       <option value={0}>0</option>
                       <option value={1}>1</option>
                       <option value={2}>2</option>
@@ -93,7 +122,11 @@ const Home = ({getAllKindOfRoom, room: {rooms, loading}}) => {
                 <div className='col-12 col-lg-4'>
                   <h6 className=' check-title'>Adult</h6>
                   <div className='input-group mb-3'>
-                    <select className='custom-select' id='inputGroupSelect01' defaultValue={0}>
+                    <select
+                      className='custom-select'
+                      id='inputGroupSelect01'
+                      defaultValue={0}
+                    >
                       <option value={0}>0</option>
                       <option value={1}>1</option>
                       <option value={2}>2</option>
@@ -212,12 +245,13 @@ const Home = ({getAllKindOfRoom, room: {rooms, loading}}) => {
         <div className='container'>
           <span className='room-title'>ACCOMMODATION</span>
           <div className='row detail'>
-            {
-              loading && rooms===null ? <Spinner/> :
+            {loading && rooms === null ? (
+              <Spinner />
+            ) : (
               rooms.map((val, index) => {
-                return <RoomItem key={index} room={val}/>
+                return <RoomItem key={index} room={val} />;
               })
-            }
+            )}
           </div>
         </div>
       </section>
@@ -228,15 +262,14 @@ const Home = ({getAllKindOfRoom, room: {rooms, loading}}) => {
         </div>
       </section>
     </Fragment>
-  )
-}
+  );
+};
 const mapStateToProps = state => {
   return {
     room: state.room
-  }
-}
+  };
+};
 Home.propTypes = {
   getAllKindOfRoom: PropTypes.func.isRequired
 };
-export default connect(mapStateToProps, {getAllKindOfRoom})(Home);
-
+export default connect(mapStateToProps, { getAllKindOfRoom })(Home);
