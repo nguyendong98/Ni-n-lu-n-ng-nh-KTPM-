@@ -10,6 +10,7 @@ import RoomItem from '../../components/RoomItem/RoomItem';
 import Spinner from './../../components/Spinner/Spinner'
 
 
+
 const Home = ({getAllKindOfRoom, room: {rooms, loading}}) => {
   useEffect(() => {
     getAllKindOfRoom()

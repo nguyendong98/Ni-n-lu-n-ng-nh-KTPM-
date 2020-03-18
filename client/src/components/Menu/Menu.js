@@ -30,7 +30,7 @@ class Menu extends Component {
               className='collapse navbar-collapse'
               id='navbarSupportedContent'
             >
-              <div className='navbar-nav' style={{ margin: '0 auto' }}>
+              <div className='navbar-nav navbar-item'>
                 <Link
                   to='/'
                   exact='true'

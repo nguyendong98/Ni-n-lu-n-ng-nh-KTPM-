@@ -30,6 +30,11 @@
   }
 }
 
+hr {
+  width: 15rem;
+  color: $primary-color;
+}
+
 .about {
   position: relative;
   .container {
@@ -92,7 +97,7 @@
       @include title;
     }
     .detail {
-      margin-top: 1rem;
+      margin-top: 3rem;
       .detail-text {
         color: $secondary-color;
       }
