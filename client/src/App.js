@@ -19,6 +19,8 @@ import {Provider} from 'react-redux';
 import Register from './pages/Register/Register';
 import setAuthToken from './utils/setAuthToken'
 import {loadUser} from './actions/auth'
+import PrivateRoute from './components/routing/PrivateRoute';
+import Admin from './pages/Admin/Admin';
 const App = () => {
   useEffect(() => {
     if(localStorage.token){
@@ -40,6 +42,7 @@ const App = () => {
             <Route path="/spa" exact component={Spa} />
             <Route path= "/login" exact component ={Login} />
             <Route path= "/register" exact component ={Register} />
+            <PrivateRoute path="/admin" exact component={Admin} />
             <Route path="" exact component={NotFound} />              
           </Switch>            
           <Footer />            

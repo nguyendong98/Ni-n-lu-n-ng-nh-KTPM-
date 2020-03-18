@@ -6,6 +6,9 @@ import { logout } from './../../actions/auth';
 const TopMenu = ({ auth, logout }) => {
   const authLink = (
     <div className='login'>
+      <Link to="/admin" exact="true"  className='login-btn'>
+        <i className='fa fa-user'></i> Admin
+      </Link>
       <a href='#/' onClick={logout} className='login-btn'>
         <i className='fa fa-sign-out'></i> Logout
       </a>
@@ -14,11 +17,13 @@ const TopMenu = ({ auth, logout }) => {
   const guestLink = (
     <div className='login'>
       <Link to='/login' className='login-btn'>
-        Đăng nhập/đăng ký
+        <i className="fa fa-user" aria-hidden="true"></i>
+        Admin
       </Link>
     </div>
   );
   return (
+    
     <section className='header'>
       <nav className='navbar navbar-expand-lg navbar-light bg-light head__title'>
         <div className='container'>

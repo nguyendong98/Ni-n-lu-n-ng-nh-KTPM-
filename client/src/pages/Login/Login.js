@@ -24,11 +24,11 @@ const Login = ({ login, isAuthenticated }) => {
     });
   };
   if (isAuthenticated) {
-    return <Redirect to='/'></Redirect>;
+    return <Redirect to='/admin'></Redirect>;
   }
   return (
     <section className='login'>
-      <div classname='container'>
+      <div className='container'>
         <div className='login-content'>
           <Alert />
           <div className='login-title'>
@@ -68,7 +68,7 @@ const Login = ({ login, isAuthenticated }) => {
               />
             </div>
           </form>
-          <p className='my-1'>
+          <p >
             Don't have an account? <Link to='/register'>Sign Up</Link>
           </p>
         </div>
