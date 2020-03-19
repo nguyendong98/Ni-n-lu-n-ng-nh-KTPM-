@@ -62,6 +62,7 @@ router.post(
                 text
             })
             await kindofroom.save()
+            
             return res.json(kindofroom)
         } catch (error) {
             console.error(err.message);

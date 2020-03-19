@@ -17,7 +17,7 @@ const auth = (state = InitialState, action) => {
     const {type, payload} = action;
     switch (type) {
         case USER_LOADED: 
-        console.log(action)
+        // console.log(action)
              return {
                  ...state,
                  isAuthenticated: true,

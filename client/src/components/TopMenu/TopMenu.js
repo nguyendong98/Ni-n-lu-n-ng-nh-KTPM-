@@ -6,10 +6,10 @@ import { logout } from './../../actions/auth';
 const TopMenu = ({ auth, logout }) => {
   const authLink = (
     <div className='login'>
-      <Link to="/admin"   className='login-btn'>
+      <Link to="/admin"   className='login-btn mr-3'>
         <i className='fa fa-user'></i> Admin
       </Link>
-      <a href='#/' onClick={logout} className='login-btn'>
+      <a href='/' onClick={logout} className='login-btn'>
         <i className='fa fa-sign-out'></i> Logout
       </a>
     </div>

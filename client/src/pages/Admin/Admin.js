@@ -7,8 +7,10 @@ const Admin = ({loadUser, auth: {loading, user}}) => {
     useEffect(() => {
         loadUser()
     }, [loadUser])
-    return  (
-        <div>Trang Admin</div>
+    return  loading && user === null ? (<Spinner />) : (
+        <Fragment>
+            <h1>Trang của Admin</h1>
+        </Fragment>
     )
     
 }

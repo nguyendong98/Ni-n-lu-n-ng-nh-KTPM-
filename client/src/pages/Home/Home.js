@@ -6,7 +6,7 @@ import h3 from './../../images/h3.jpg';
 import {connect} from 'react-redux'
 import {getAllKindOfRoom} from './../../actions/room'
 import PropTypes from 'prop-types';
-import RoomItem from '../../components/RoomItem/RoomItem';
+import RoomItem from './RoomItem/RoomItem';
 import Spinner from './../../components/Spinner/Spinner'
 
 
