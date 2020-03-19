@@ -41,6 +41,7 @@ const BookNow = ({getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loading},
                                 })}
                             </select>
                         </td>
+                        <td><input type="radio" name="radiocheck"></input></td>
                     </tr>
                 </Fragment>
             )

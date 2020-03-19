@@ -30,7 +30,7 @@ const Login = ({ login, isAuthenticated }) => {
     <section className='login'>
       <div className='container'>
         <div className='login-content'>
-          <Alert />
+          
           <div className='login-title'>
             <h1 className='large'>Sign In</h1>
             <p className='lead'>
@@ -71,6 +71,7 @@ const Login = ({ login, isAuthenticated }) => {
           <p >
             Don't have an account? <Link to='/register'>Sign Up</Link>
           </p>
+          <Alert />
         </div>
       </div>
     </section>

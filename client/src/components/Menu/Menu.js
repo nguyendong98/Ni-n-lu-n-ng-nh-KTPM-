@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './Menu.scss';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 class Menu extends Component {
   render() {
     return (
       <section className='main-menu'>
         <div className='container'>
           <nav className='navbar navbar-expand-lg navbar-light '>
-            <Link to='/' exact='true'>
+            <Link to='/' exact="true">
               <img
                 src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSlKoNFjSRZhti9Mo2F-jeMuYbwp-qROryOF_5T0H242IOloTa6'
                 style={{ width: '7rem', height: '7rem' }}
@@ -31,63 +31,88 @@ class Menu extends Component {
               id='navbarSupportedContent'
             >
               <div className='navbar-nav navbar-item'>
-                <Link
+                <NavLink
                   to='/'
-                  exact='true'
+                  exact={true}
                   className='nav-item nav-link '
-                  href='/'
+                  
+                  activeStyle={{
+                    fontWeight: "bold",
+                    color: "#9DE0AD"
+                  }}
                 >
                   <i className='fa fa-home' aria-hidden='true' />
                   Home
-                </Link>
+                </NavLink>
                 <a className='nav-item nav-link ' href='/'>
                   <i className='fa fa-bed' aria-hidden='true' />
                   Room
                 </a>
                 <li className='dropdown ' id='navbarNavDropdown'>
-                  <a
+                  <NavLink 
                     className='nav-item nav-link dropdown-toggle'
-                    href='/'
+                    to='/Tours'
                     id='navbarDropdownMenuLink'
                     data-toggle='dropdown'
                     aria-haspopup='true'
                     aria-expanded='false'
+                    activeStyle={{
+                      fontWeight: "bold",
+                      color: "#9DE0AD"
+                    }}
                   >
                     <i className='fa fa-glass' aria-hidden='true' />
                     Service
-                  </a>
+                    
+                  </NavLink>
                   <div
                     className='dropdown-menu'
                     aria-labelledby='navbarDropdownMenuLink'
                   >
-                    <Link
+                    <NavLink
                       to='/Tours'
-                      exact='true'
+                      exact={true}
                       className='dropdown-item'
-                      href='/'
+                      
+                      activeStyle={{
+                        fontWeight: "bold",
+                        color: "#9DE0AD"
+                      }}
                     >
                       Tours info
-                    </Link>
-                    <Link to='/Spa' className='dropdown-item' href='/'>
+                    </NavLink>
+                    <NavLink exact={true} to='/Spa' className='dropdown-item' href='/'
+                    activeStyle={{
+                      fontWeight: "bold",
+                      color: "#9DE0AD"
+                    }}>
                       Spa
-                    </Link>
-                    <Link to='Restaurant' className='dropdown-item' href='/'>
+                    </NavLink>
+                    <NavLink exact={true} to='/Restaurant' className='dropdown-item' href='/'
+                    activeStyle={{
+                      fontWeight: "bold",
+                      color: "#9DE0AD"
+                    }}>
                       Restaurant
-                    </Link>
+                    </NavLink>
                   </div>
                 </li>
                 <a className='nav-item nav-link ' href='/'>
-                  <i className='fa fa-camera-retro' aria-hidden='true' />
+                  <i className='fa fa-camera-retro' />
                   Gallery
                 </a>
                 <a className='nav-item nav-link ' href='/'>
-                  <i className='fa fa-gift' aria-hidden='true' />
+                  <i className='fa fa-gift'  />
                   Promotion
                 </a>
-                <Link to="/booknow" exact="true" className='nav-item nav-link ' >
-                  <i className='fa fa-bell' aria-hidden='true' />
+                <NavLink to="/booknow" exact={true} className='nav-item nav-link '
+                  activeStyle={{
+                    fontWeight: "bold",
+                    color: "#9DE0AD"
+                  }} >
+                  <i className='fa fa-bell'   />
                   Book Now
-                </Link>
+                </NavLink>
               </div>
             </div>
           </nav>
