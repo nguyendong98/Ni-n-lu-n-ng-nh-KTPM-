@@ -1,0 +1,32 @@
+
+@import './../../App.scss';
+
+$bg-booknow : url('./../../images/booknew-banner.jpeg');
+
+
+.Booknow{
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    &__banner{
+        background: $bg-booknow ;
+        @include banner;
+        @include flex;
+        &-context{
+            position: relative;            
+            color: white;            
+            font: {
+                family: 'Yanone Kaffeesatz', sans-serif;
+                size: 60px;
+                weight: 900;
+            }
+            &::after{
+                content: '';
+                position: absolute;
+                top: -15%;
+                left: 20%;
+                width: 60%;
+                height: 5px;
+                background-color: white;
+            }
+        }
+    }
+}    

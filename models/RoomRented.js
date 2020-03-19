@@ -30,6 +30,10 @@ const RoomRentedSchema = new mongoose.Schema({
     },
     nationality: {
         type: String
+    },
+    date: {
+        type: Date,
+        default: Date.now 
     }
 
 })

@@ -48,7 +48,7 @@ router.post('/',
             await room.save()
             return res.json(room)
         } catch (error) {
-            console.error();
+            console.error(error.message);
             res.status(500).send('Server error');  
         }
     }
@@ -62,7 +62,7 @@ router.get('/', async (req, res) => {
         const allRoom = await Room.find() 
         res.status(200).json(allRoom)   
     } catch (error) {
-        console.log(error)
+        console.log(error.message)
         res.status(500).send("Server Error")
     }
 })
@@ -82,7 +82,7 @@ router.delete('/:id', auth, async (req, res) => {
         await RoomRented.findOneAndRemove({room: room._id})
         return res.status(200).json({msg : "Room removed"})
     } catch (error) {
-        console.log(error)
+        console.log(error.message)
         res.status.apply(500).send('Server Error')
     }
 })

@@ -152,7 +152,7 @@ const Home = ({ getAllKindOfRoom, room: { rooms, loading } }) => {
         <div className='container'>
           <span className='penefit-title mb-3'>WHY MANOIR DES ARTS ?</span>
           <div className='row'>
-            <div className='col-12 col-lg-3 about-benefit'>
+            <div className='col-12 col-lg-3 about-benefit mb-5'>
               <ul>
                 <li>
                   <i className='fa fa-check-square-o' aria-hidden='true' />
@@ -191,10 +191,7 @@ const Home = ({ getAllKindOfRoom, room: { rooms, loading } }) => {
                   <i className='fa fa-check-square-o' aria-hidden='true' />
                   Old world charm
                 </li>
-                <li>
-                  <i className='fa fa-check-square-o' aria-hidden='true' />{' '}
-                  Modern comfort
-                </li>
+                
               </ul>
             </div>
             <div className='col-12 col-lg-3 about-benefit'>

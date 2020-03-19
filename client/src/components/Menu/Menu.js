@@ -84,10 +84,10 @@ class Menu extends Component {
                   <i className='fa fa-gift' aria-hidden='true' />
                   Promotion
                 </a>
-                <a className='nav-item nav-link ' href='/'>
+                <Link to="/booknow" exact="true" className='nav-item nav-link ' >
                   <i className='fa fa-bell' aria-hidden='true' />
                   Book Now
-                </a>
+                </Link>
               </div>
             </div>
           </nav>

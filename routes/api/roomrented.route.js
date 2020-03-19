@@ -3,6 +3,7 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const Room = require('./../../models/Room')
 const RoomRented = require('./../../models/RoomRented')
+const Customer = require('./../../models/Customer')
 const auth = require('./../../middleware/auth')
 // @route    POST api/roomrents
 // @desc     book room
@@ -45,6 +46,26 @@ router.post('/',
             if(roombook.status === true){
                 return res.status(400).json({msg: 'Room is being booked'})
             }
+            if(datecheckout <= datecheckin){
+                return res.status(400).json({ errors: [{ msg: 'Day checkout can not be less than Day check in' }] });
+            }
+            
+            var customer = await Customer.findOne({identitycard: identitycard});
+            if(customer){
+                customer.count += 1;
+                await customer.save()
+            }
+            else{
+                 customer = new Customer({
+                    name: customername,
+                    phone,
+                    email,
+                    identitycard,
+                    count: 1
+                })
+                await customer.save()
+                
+            }
             let roomrented = new RoomRented({
                 room: roombook,
                 datecheckin,
@@ -59,9 +80,9 @@ router.post('/',
             await roomrented.save()
             roombook.status = true;
             await roombook.save()
-            return res.json(roomrented)
+            return res.json({data: {roomrented, customer}})
         } catch (error) {
-            console.error();
+            console.error(error.message);
             res.status(500).send('Server error');            
         }
     } 
@@ -99,7 +120,7 @@ router.delete('/:id_roomrented', auth , async (req, res) => {
         await room.save()
         return res.status(200).json({msg : 'Roomrented removed!'})
     } catch (error) {
-        console.log(error)
+        console.log(error.message)
         res.status(500).send('Server Error')
     }
 } )
