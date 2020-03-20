@@ -8,13 +8,14 @@ import { getAllKindOfRoom } from './../../actions/room';
 import PropTypes from 'prop-types';
 import RoomItem from './RoomItem/RoomItem';
 import Spinner from './../../components/Spinner/Spinner'
+import {Link} from 'react-router-dom'
 
 const Home = ({ getAllKindOfRoom, room: { rooms, loading } }) => {
   useEffect(() => {
     getAllKindOfRoom();
   }, [getAllKindOfRoom]);
 
-  return (
+  return loading  ? (<Spinner/>) : (
     <Fragment>
       <section className='slide-bar'>
         <div
@@ -63,7 +64,7 @@ const Home = ({ getAllKindOfRoom, room: { rooms, loading } }) => {
         </div>
       </section>
       {/* check */}
-      <section className='check'>
+      <form className='check'>
         <div className='container check-content'>
           <div className='row'>
             <div className='col-12 col-lg-6'>
@@ -73,7 +74,7 @@ const Home = ({ getAllKindOfRoom, room: { rooms, loading } }) => {
                   <div className='input-group mb-3'>
                     <div className='input-group-prepend'>
                       <span className='input-group-text' id='basic-addon1'>
-                        <i className='fa fa-calendar' aria-hidden='true' />
+                        <i className='fa fa-calendar'  />
                       </span>
                     </div>
                     <input
@@ -138,15 +139,14 @@ const Home = ({ getAllKindOfRoom, room: { rooms, loading } }) => {
                   <h6 className=' check-title' style={{ visibility: 'hidden' }}>
                     .
                   </h6>
-                  <button type='button' className='btn btn-success'>
-                    Book now
-                  </button>
+                  <Link to="/booknow" exact="true" className='btn btn-success' >Book Now</Link>
+                   
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </form>
       {/* penefit */}
       <section className='about'>
         <div className='container'>
@@ -242,12 +242,10 @@ const Home = ({ getAllKindOfRoom, room: { rooms, loading } }) => {
         <div className='container'>
           <span className='room-title'>ACCOMMODATION</span>
           <div className='row detail'>
-            {loading && rooms === null ? (
-              <Spinner />
-            ) : (
+            {
               rooms.map((val, index) => {
                 return <RoomItem key={index} room={val} />;
-              })
+              }
             )}
           </div>
         </div>

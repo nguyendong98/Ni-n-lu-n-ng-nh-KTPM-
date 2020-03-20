@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { login } from './../../actions/auth';
 import './Login.scss';
 import PropsType from 'prop-types';
-
+import jwtDecode from 'jwt-decode';
 import Alert from '../../components/Alert/Alert';
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -24,7 +24,11 @@ const Login = ({ login, isAuthenticated }) => {
     });
   };
   if (isAuthenticated) {
-    return <Redirect to='/admin' />;
+    const decoded = jwtDecode(localStorage.getItem('token'))
+    console.log(decoded)
+    if(decoded.user.role === "admin")
+    return <Redirect to='/' />;
+    else if(decoded.user.role === "user") return <Redirect to = "/admin" />
   }
   return (
     <section className='login'>
