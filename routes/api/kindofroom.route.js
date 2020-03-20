@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     try {
         const kindofroom = await KindOfRoom.find()
         
-        res.json(kindofroom)
+        res.status(200).json(kindofroom)
 
     } catch (error) {
         console.error(err.message);

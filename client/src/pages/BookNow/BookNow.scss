@@ -29,4 +29,18 @@ $bg-booknow : url('https://thumbs.dreamstime.com/b/check-hotel-young-couple-suit
             }
         }
     }
+    &__container{
+        &-form{
+            border: 0.5px solid #7B68EE;
+            border-radius: 4px; 
+            .form-title{
+                background: $myBlue;
+                padding: 0  15px;
+                margin: 0 -15px;
+                border-radius: 4px;
+                font-size: 2rem;
+            }           
+        }
+        
+    }
 }    
