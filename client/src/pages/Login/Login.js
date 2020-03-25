@@ -25,10 +25,10 @@ const Login = ({ login, isAuthenticated }) => {
   };
   if (isAuthenticated) {
     const decoded = jwtDecode(localStorage.getItem('token'))
-    console.log(decoded)
+    // console.log(decoded)
     if(decoded.user.role === "admin")
-    return <Redirect to='/' />;
-    else if(decoded.user.role === "user") return <Redirect to = "/admin" />
+    return <Redirect to='/admin' />;
+    else if(decoded.user.role === "user") return <Redirect to = "/" />
   }
   return (
     <section className='login'>

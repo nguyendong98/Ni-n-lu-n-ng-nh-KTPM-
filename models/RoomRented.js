@@ -4,6 +4,10 @@ const RoomRentedSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'room'
     },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'users'
+    },
     datecheckin: {
         type: Date,
         required: true
@@ -11,11 +15,7 @@ const RoomRentedSchema = new mongoose.Schema({
     datecheckout: {
         type: Date,
         required:true
-    },
-    customername: {
-        type: String,
-        required: true
-    },    
+    },       
     identitycard: {
         type: String,
         required: true
@@ -24,10 +24,7 @@ const RoomRentedSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    email: {
-        type: String,
-        required: true
-    },
+    
     nationality: {
         type: String
     },

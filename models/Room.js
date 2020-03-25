@@ -10,7 +10,13 @@ const RoomSchema = new mongoose.Schema({
         ref: 'kindofroom'
     },
     status: {
-        type: Boolean
+        type: Boolean,
+        default: false
+    },
+    date: {
+        type: Date,
+        default: Date.now
+
     }
 })
 module.exports = Room = mongoose.model('room', RoomSchema)

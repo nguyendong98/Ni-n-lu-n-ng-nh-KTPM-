@@ -16,8 +16,15 @@ module.exports = function(req, res, next){
         const decoded = jwt.verify(token, config.get('jwtSecret'));
         // console.log(decoded)
         req.user = decoded.user;
-        // console.log(decoded.user)
-        next();
+        if(req.user.role !== 'admin'){
+            return res.status(401).json({msg: 'The token does not have sufficient permissions to access it'})
+        }
+        else{
+            // console.log(decoded.user)
+            next();
+        }
+        
+       
         
     }
     catch(err) {

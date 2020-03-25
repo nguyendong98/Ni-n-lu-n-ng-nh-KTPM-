@@ -1,5 +1,6 @@
 import React, {useState, useEffect, Fragment} from 'react'
 import PropTypes from 'prop-types'
+import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {getAllKindOfRoom, bookRoom} from './../../actions/room'
 import Alert from './../../components/Alert/Alert'
@@ -7,22 +8,24 @@ import Spinner from './../../components/Spinner/Spinner'
 import './BookNow.scss'
 
 
-const BookNow = ({getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loading}, bookRoom}) => {
+const BookNow = ({auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loading}, bookRoom}) => {
+    
     useEffect(() => {
         getAllKindOfRoom();
         
     }, [getAllKindOfRoom, getAllRoom])
+    
     const [formData, setFormData] = useState({
         roomname: '',
         datecheckin: '',
-        datecheckout: '',
-        customername: '',
+        datecheckout: '',       
         identitycard: '',
         phone: '',
-        email: ''
+        nationality: ''
+       
 
     })
-    const {roomname, datecheckin, datecheckout, customername, identitycard, phone, email} = formData
+    const {roomname, datecheckin, datecheckout, identitycard, phone, nationality} = formData
     const showSelectRoomItem = () => {
       return  rooms.map((room, index) => {
             const roombykind = allroom.filter(val => val.kind === room._id && val.status === false)
@@ -53,6 +56,11 @@ const BookNow = ({getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loading},
     const onSubmit = (e) => {
         e.preventDefault()
         bookRoom(formData)
+    }
+    if(auth.isAuthenticated ===null){
+        alert('Please Login if you want to book room')
+        return <Redirect to="/login" exact />
+        
     }
     return loading ? (<Spinner/>) :
     (
@@ -92,15 +100,15 @@ const BookNow = ({getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loading},
                                         <div className="row">
                                             <div className="col-lg-6 col-md-12">
                                                 <p>Full name*</p>
-                                                <input type="text" name="customername" style={{width: '100%'}} value={customername} onChange={e => onChange(e)} />
+                                                <input type="text" name="customername" style={{width: '100%'}} value={auth.user.name} disabled />
                                             </div>
                                             <div className="col-lg-6 col-md-12">
                                                 <p>Phone*</p>
                                                 <input type="text" name="phone" style={{width: '100%'}} value={phone} onChange={e => onChange(e)} />
                                             </div>
                                             <div className="col-lg-6 col-md-12">
-                                                <p>Email*</p>
-                                                <input type="email" name="email" style={{width: '100%'}} value={email} onChange={e => onChange(e)} />
+                                                <p>Nationality*</p>
+                                                <input type="text" name="nationality" style={{width: '100%'}} value={nationality} onChange={e => onChange(e)} />
                                             </div>
                                             <div className="col-lg-6 col-md-12">
                                                 <p>Identity card*</p>
@@ -152,14 +160,16 @@ const BookNow = ({getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loading},
 }
 const mapStateToProps = state => {
     return {
-        room: state.room
+        room: state.room,
+        auth: state.auth
     }
 }
 
 
 BookNow.propTypes = {
     room: PropTypes.object.isRequired,
-    getAllKindOfRoom: PropTypes.func.isRequired
+    getAllKindOfRoom: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
 }
 
 export default connect(mapStateToProps, {getAllKindOfRoom, bookRoom})(BookNow)

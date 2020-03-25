@@ -4,6 +4,7 @@ const { check, validationResult } = require('express-validator');
 const Room = require('../../models/Room')
 const KindOfRoom = require('../../models/KindOfRoom')
 const auth = require('../../middleware/auth');
+const admin = require('./../../middleware/admin')
 const RoomRented = require('./../../models/RoomRented')
 
 
@@ -14,6 +15,7 @@ const RoomRented = require('./../../models/RoomRented')
 router.post('/', 
     [
         auth,
+        admin,
         [
             check('kindofroom', 'Kind of room is required')
                 .not()
@@ -28,7 +30,7 @@ router.post('/',
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-        const {kindofroom, name, status} = req.body
+        const {kindofroom, name} = req.body
         try {
             const nameroom = await Room.findOne({name})
             
@@ -41,8 +43,7 @@ router.post('/',
             
             let room = new Room({
                 kind,
-                name,
-                status
+                name
             })
            
             await room.save()
@@ -72,10 +73,10 @@ router.get('/', async (req, res) => {
 // @desc     dete Room by id
 // @access   private
 // xóa phòng theo id
-router.delete('/:id', auth, async (req, res) => {
+router.delete('/:id', auth, admin, async (req, res) => {
     try {
         const room = await Room.findById(req.params.id)
-        if (!req.params.id.match(/^[0-9a-fA-F]{24}$/) || !room){
+        if (!req.params.id.match(/^[0-9a-fA-F]{24}$/) || !room._id){
             return res.status(404).json('Room not found')
         }
         await room.remove()

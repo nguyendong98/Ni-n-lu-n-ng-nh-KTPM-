@@ -35,7 +35,7 @@ export const loadUser = () => async dispatch => {
 
 
 //Regiter User
-export const register = ({name, email, password}) => async dispatch => {
+export const register = ({name, email, password, history}) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
@@ -48,9 +48,9 @@ export const register = ({name, email, password}) => async dispatch => {
             type: REGISTER_SUCCESS,
             payload: res.data
         })
-        // dispatch(setAlert('Register Success', 'success'))
-        // dispatch(loadUser());
-        window.history.go(-1)
+        dispatch(setAlert('Register Success', 'success'))
+        history.push('/login')
+        // window.history.go(-1)
     } catch (error) {
         const errors = error.response.data.errors
         if(errors){

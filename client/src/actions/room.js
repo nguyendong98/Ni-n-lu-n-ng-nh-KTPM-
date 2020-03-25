@@ -26,10 +26,10 @@ export const bookRoom = (formData) => async dispatch => {
             'Content-Type': 'application/json'
         }        
     }
-    
+    const body = JSON.stringify(formData)
     if (window.confirm('Are you sure? This can NOT be undone!')) {
         try {
-            const res = await axios.post('/api/roomrented', formData, config)
+            const res = await axios.post('/api/roomrented', body, config)
             dispatch({
                 type: BOOK_ROOM,
                 payload: res.data

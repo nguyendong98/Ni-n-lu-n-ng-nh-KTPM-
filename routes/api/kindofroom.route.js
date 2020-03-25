@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const KindOfRoom = require('../../models/KindOfRoom')
-const auth = require('../../middleware/auth');
+const auth = require('./../../middleware/auth')
+const admin = require('../../middleware/admin');
 
 // @route    GET api/kindofrooms
 // @desc     get all kindofroom
@@ -28,6 +29,7 @@ router.post(
     '/',
     [
         auth,
+        admin,
         [
             check('name', 'Name is required')
             .not()
@@ -65,7 +67,7 @@ router.post(
             
             return res.json(kindofroom)
         } catch (error) {
-            console.error(err.message);
+            // console.error(error.message);
             res.status(500).send('Server Error')   
         }
     }

@@ -3,6 +3,9 @@ import './TopMenu.scss';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from './../../actions/auth';
+import jwtDecode from 'jwt-decode';
+
+
 const TopMenu = ({ auth, logout }) => {
   const authLink = (
     <div className='login'>
@@ -18,10 +21,36 @@ const TopMenu = ({ auth, logout }) => {
     <div className='login'>
       <Link to='/login' className='login-btn'>
         <i className="fa fa-user" aria-hidden="true"></i>
-        Admin
+        Login/Register
       </Link>
     </div>
   );
+  const userLink = (
+    <div className='login'>
+      <Link to="/"   className='login-btn mr-3'>
+        <i className='fa fa-user'></i> User
+      </Link>
+      <a href='/' onClick={logout} className='login-btn'>
+        <i className='fa fa-sign-out'></i> Logout
+      </a>
+    </div>
+  )
+  const showLink = () => {
+    if(auth.isAuthenticated === null){
+      return guestLink;
+    }
+    if(auth.isAuthenticated){
+      const decoded = jwtDecode(localStorage.getItem('token'))
+    
+      if(decoded.user.role === "user"){
+        return userLink;
+      }
+      else if(decoded.user.role ==="admin"){
+        return authLink;
+      }
+    }
+    
+  }
   return (
     
     <section className='header'>
@@ -61,7 +90,7 @@ const TopMenu = ({ auth, logout }) => {
           </div>
         </div>
       </nav>
-      {<Fragment>{auth.isAuthenticated ? authLink : guestLink}</Fragment>}
+      {<Fragment>{showLink()}</Fragment>}
     </section>
   );
 };

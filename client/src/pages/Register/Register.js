@@ -23,7 +23,7 @@ const Register = ({ setAlert, register, isAuthenticated, history }) => {
     if (password !== password2) {
       setAlert('Passwords do not match', 'danger');
     } else {
-      register({ name, email, password });
+      register({ name, email, password, history });
     }
   };
   if (isAuthenticated) {
@@ -33,7 +33,7 @@ const Register = ({ setAlert, register, isAuthenticated, history }) => {
     <section className='register'>
       <div className='container'>
         <div className='register-content'>
-          <Alert></Alert>
+          
           <div className='register-title'>
             <h1 className='large'>Sign Up</h1>
             <p className='lead'>
@@ -90,6 +90,7 @@ const Register = ({ setAlert, register, isAuthenticated, history }) => {
           <p className='my-1'>
             Already have an account? <Link to='/login'>Sign In</Link>
           </p>
+          <Alert></Alert>
         </div>
       </div>
     </section>

@@ -1,4 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://admin:admin@mongo-of-dong-xyphl.mongodb.net/soicals?retryWrites=true&w=majority",
+    "mongoURI": "mongodb+srv://admin:admin@mongo-of-dong-xyphl.mongodb.net/hotels?retryWrites=true&w=majority",
     "jwtSecret": "nguyenhophudong"
 }

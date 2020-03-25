@@ -4,13 +4,18 @@ const { check, validationResult } = require('express-validator');
 const Room = require('./../../models/Room')
 const RoomRented = require('./../../models/RoomRented')
 const Customer = require('./../../models/Customer')
+const User = require('./../../models/User')
 const auth = require('./../../middleware/auth')
+const admin = require('./../../middleware/admin')
 // @route    POST api/roomrents
 // @desc     book room
 // @access   Public
 // Đặt phòng
 router.post('/', 
+
     [
+        auth,
+        [
         check('roomname', 'Room name is required')
             .not()
             .isEmpty(),
@@ -20,25 +25,24 @@ router.post('/',
         check('datecheckout', 'Date check out is required')
             .not()
             .isEmpty(),
-        check('customername', 'customer name check out is required')
-            .not()
-            .isEmpty(),
+        
         check('identitycard', 'Identitycard  is required')
             .not()
             .isEmpty(),
         check('phone', 'Phone  is required')
             .not()
             .isEmpty(),
-        check('email', 'Invalid email')            
-            .isEmail(),                
+        ]    
+                      
     ],
     async (req, res) => {
         const errors = validationResult(req);
         if(!errors.isEmpty()){
             return res.status(400).json({errors: errors.array()})
         }
-        const { roomname, datecheckin, datecheckout, customername, identitycard, phone, email, nationality } = req.body
+        const { roomname, datecheckin, datecheckout, identitycard, phone,  nationality } = req.body
         try {
+            const user = await User.findById(req.user.id).select('-password');
             const roombook = await Room.findOne({name: roomname}).populate("room", ['name', 'price'])
             if(!roombook){
                 return res.status(404).json({msg: 'Room not found'})                
@@ -50,17 +54,17 @@ router.post('/',
                 return res.status(400).json({ errors: [{ msg: 'Day checkout can not be less than Day check in' }] });
             }
             
-            var customer = await Customer.findOne({identitycard: identitycard});
+            var customer = await Customer.findOne({user: req.user.id});
             if(customer){
                 customer.count += 1;
                 await customer.save()
             }
             else{
                  customer = new Customer({
-                    name: customername,
-                    phone,
-                    email,
+                    user,
+                    phone,                    
                     identitycard,
+                    nationality,
                     count: 1
                 })
                 await customer.save()
@@ -68,12 +72,13 @@ router.post('/',
             }
             let roomrented = new RoomRented({
                 room: roombook,
+                user,
                 datecheckin,
                 datecheckout,
-                customername,
+                
                 identitycard,
                 phone,
-                email,
+               
                 nationality
                 
             })
