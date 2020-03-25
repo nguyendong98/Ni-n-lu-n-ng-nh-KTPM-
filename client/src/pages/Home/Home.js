@@ -6,7 +6,7 @@ import h3 from './../../images/h3.jpg';
 import { connect } from 'react-redux';
 import { getAllKindOfRoom } from './../../actions/room';
 import PropTypes from 'prop-types';
-import RoomItem from './RoomItem/RoomItem';
+import RoomItem from './RoomItem';
 import Spinner from './../../components/Spinner/Spinner'
 import {Link} from 'react-router-dom'
 
@@ -251,10 +251,81 @@ const Home = ({ getAllKindOfRoom, room: { rooms, loading } }) => {
         </div>
       </section>
       {/* partner */}
-      <section className='partner'>
-        <div className='row'>
-          <div className='col-12 col-lg-3'></div>
+      <section className='feedback my-5 pb-5'>
+        <div className='feedback__title'>
+          <h5>TESTIMONIALS</h5>
+          <h2>What Customers Say?</h2>
         </div>
+        <div className="row">
+          <div className="col-lg-8 offset-lg-2">
+            <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+              <div className="carousel-inner">
+                <div className="carousel-item active">
+                  <p className="feedback__text px-5">After a construction project took longer than expected, my husband, my daughter and I
+                  needed a place to stay for a few nights. As a Chicago resident, we know a lot about our
+                  city, neighborhood and the types of housing options available and absolutely love our
+                  vacation at Sona Hotel.</p>
+                  <div className="feedback__author">
+                        <span><i className="fa fa-star" aria-hidden="true"></i></span>
+                        <span><i className="fa fa-star" aria-hidden="true"></i></span>
+                        <span><i className="fa fa-star" aria-hidden="true"></i></span>
+                        <span><i className="fa fa-star" aria-hidden="true"></i></span>
+                        <span><i className="fa fa-star" aria-hidden="true"></i></span>
+                        <span> - Nguyễn Hoàng Đông</span>
+                  </div>
+                  <div className="feedback__img">
+                    <img  src="https://colorlib.com/preview/theme/sona/img/testimonial-logo.png" alt="author"/>
+                  </div>
+                </div>
+                <div className="carousel-item ">
+                  <p className="feedback__text px-5">After a construction project took longer than expected, my husband, my daughter and I
+                  needed a place to stay for a few nights. As a Chicago resident, we know a lot about our
+                  city, neighborhood and the types of housing options available and absolutely love our
+                  vacation at Sona Hotel.</p>
+                  <div className="feedback__author">
+                        <span><i className="fa fa-star" aria-hidden="true"></i></span>
+                        <span><i className="fa fa-star" aria-hidden="true"></i></span>
+                        <span><i className="fa fa-star" aria-hidden="true"></i></span>
+                        <span><i className="fa fa-star" aria-hidden="true"></i></span>
+                        <span><i className="fa fa-star" aria-hidden="true"></i></span>
+                        <span> - Nguyễn Hoàng Đông</span>
+                  </div>
+                  <div className="feedback__img">
+                    <img  src="https://colorlib.com/preview/theme/sona/img/testimonial-logo.png" alt="author"/>
+                  </div>
+                </div>
+                <div className="carousel-item ">
+                  <p className="feedback__text px-5">After a construction project took longer than expected, my husband, my daughter and I
+                  needed a place to stay for a few nights. As a Chicago resident, we know a lot about our
+                  city, neighborhood and the types of housing options available and absolutely love our
+                  vacation at Sona Hotel.</p>
+                  <div className="feedback__author">
+                        <span><i className="fa fa-star" ></i></span>
+                        <span><i className="fa fa-star" ></i></span>
+                        <span><i className="fa fa-star" ></i></span>
+                        <span><i className="fa fa-star" ></i></span>
+                        <span><i className="fa fa-star" ></i></span>
+                        <span> - Nguyễn Hoàng Đông</span>
+                  </div>
+                  <div className="feedback__img">
+                    <img  src="https://colorlib.com/preview/theme/sona/img/testimonial-logo.png" alt="author"/>
+                  </div>
+                  
+                </div>
+              </div>
+              <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span className="sr-only">Previous</span>
+              </a>
+              <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                <span className="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+      
       </section>
     </Fragment>
   );

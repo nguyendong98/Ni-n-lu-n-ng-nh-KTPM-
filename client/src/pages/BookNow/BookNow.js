@@ -153,7 +153,10 @@ const BookNow = ({auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loa
                     </form>
                                                         
                  </div>
-                 <Alert/>
+                 <div className="container">
+                    <Alert/>                                       
+                 </div>
+                 
             </div>
         </section>
     )

@@ -38,7 +38,7 @@ class Menu extends Component {
                   
                   activeStyle={{
                     fontWeight: "bold",
-                    color: "#9DE0AD"
+                    color: "#6b6b6b"
                   }}
                 >
                   <i className='fa fa-home' aria-hidden='true' />
@@ -58,7 +58,7 @@ class Menu extends Component {
                     aria-expanded='false'
                     activeStyle={{
                       fontWeight: "bold",
-                      color: "#9DE0AD"
+                      color: "#6b6b6b"
                     }}
                   >
                     <i className='fa fa-glass' aria-hidden='true' />
@@ -76,7 +76,7 @@ class Menu extends Component {
                       
                       activeStyle={{
                         fontWeight: "bold",
-                        color: "#9DE0AD"
+                        color: "#6b6b6b"
                       }}
                     >
                       Tours info
@@ -84,14 +84,14 @@ class Menu extends Component {
                     <NavLink exact={true} to='/Spa' className='dropdown-item' href='/'
                     activeStyle={{
                       fontWeight: "bold",
-                      color: "#9DE0AD"
+                      color: "#6b6b6b"
                     }}>
                       Spa
                     </NavLink>
                     <NavLink exact={true} to='/Restaurant' className='dropdown-item' href='/'
                     activeStyle={{
                       fontWeight: "bold",
-                      color: "#9DE0AD"
+                      color: "#6b6b6b"
                     }}>
                       Restaurant
                     </NavLink>
@@ -108,7 +108,7 @@ class Menu extends Component {
                 <NavLink to="/booknow" exact={true} className='nav-item nav-link '
                   activeStyle={{
                     fontWeight: "bold",
-                    color: "#9DE0AD"
+                    color: "#6b6b6b"
                   }} >
                   <i className='fa fa-bell'   />
                   Book Now
