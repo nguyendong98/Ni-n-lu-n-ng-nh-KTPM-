@@ -22,6 +22,7 @@ import {loadUser} from './actions/auth'
 import PrivateRoute from './components/routing/PrivateRoute';
 import Admin from './pages/Admin/Admin';
 import BookNow from './pages/BookNow/BookNow';
+import Rooms from './pages/Rooms/Rooms';
 const App = () => {
   useEffect(() => {
     if(localStorage.token){
@@ -44,6 +45,7 @@ const App = () => {
             <Route path= "/login" exact component ={Login} />
             <Route path= "/register" exact component ={Register} />
             <Route path= "/booknow" exact component={BookNow}/>
+            <Route path= "/rooms" exact component={Rooms}/>
             <PrivateRoute exact path="/admin"  component={Admin} />
             <Route path="" exact component={NotFound} />              
           </Switch>            

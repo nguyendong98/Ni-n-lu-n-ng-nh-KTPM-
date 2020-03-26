@@ -44,14 +44,17 @@ class Menu extends Component {
                   <i className='fa fa-home' aria-hidden='true' />
                   Home
                 </NavLink>
-                <a className='nav-item nav-link ' href='/'>
-                  <i className='fa fa-bed' aria-hidden='true' />
-                  Room
-                </a>
+                <NavLink className='nav-item nav-link ' to="/rooms" activeStyle={{
+                      fontWeight: "bold",
+                      color: "#6b6b6b"
+                    }}>
+                  <i className='fa fa-bed'   />
+                  Rooms
+                </NavLink>
                 <li className='dropdown ' id='navbarNavDropdown'>
                   <NavLink 
                     className='nav-item nav-link dropdown-toggle'
-                    to='/Tours'
+                    to='/tours'
                     id='navbarDropdownMenuLink'
                     data-toggle='dropdown'
                     aria-haspopup='true'
@@ -70,7 +73,7 @@ class Menu extends Component {
                     aria-labelledby='navbarDropdownMenuLink'
                   >
                     <NavLink
-                      to='/Tours'
+                      to='/tours'
                       exact={true}
                       className='dropdown-item'
                       
@@ -81,14 +84,14 @@ class Menu extends Component {
                     >
                       Tours info
                     </NavLink>
-                    <NavLink exact={true} to='/Spa' className='dropdown-item' href='/'
+                    <NavLink exact={true} to='/spa' className='dropdown-item' href='/'
                     activeStyle={{
                       fontWeight: "bold",
                       color: "#6b6b6b"
                     }}>
                       Spa
                     </NavLink>
-                    <NavLink exact={true} to='/Restaurant' className='dropdown-item' href='/'
+                    <NavLink exact={true} to='/restaurant' className='dropdown-item' href='/'
                     activeStyle={{
                       fontWeight: "bold",
                       color: "#6b6b6b"
