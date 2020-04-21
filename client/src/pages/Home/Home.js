@@ -14,9 +14,11 @@ const Home = ({ getAllKindOfRoom, room: { rooms, loading } }) => {
   useEffect(() => {
     getAllKindOfRoom();
   }, [getAllKindOfRoom]);
-
+  
   return loading  ? (<Spinner/>) : (
+    
     <Fragment>
+      
       <section className='slide-bar'>
         <div
           id='carouselExampleIndicators'
@@ -83,6 +85,7 @@ const Home = ({ getAllKindOfRoom, room: { rooms, loading } }) => {
                       placeholder='3/2/2020'
                       aria-label='Username'
                       aria-describedby='basic-addon1'
+                      
                     />
                   </div>
                 </div>

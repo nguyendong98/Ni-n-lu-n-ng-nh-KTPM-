@@ -69,7 +69,7 @@ class Menu extends Component {
                     
                   </NavLink>
                   <div
-                    className='dropdown-menu'
+                    className='dropdown-menu navbar-drop'
                     aria-labelledby='navbarDropdownMenuLink'
                   >
                     <NavLink

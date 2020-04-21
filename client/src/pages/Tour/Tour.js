@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Tour.scss'
-import ListTour from './ListTour/ListTour';
+import ListTour from './ListTour';
 class Tour extends Component {
 
     

@@ -16,6 +16,18 @@ const KindOfRoomSchema = new mongoose.Schema({
     image: {
         type: String
     },  
+    size: {
+        type: Number
+    },
+    capacity: {
+        type: Number,
+    },
+    bed: {
+        type: String
+    },
+    services: {
+        type: [String]
+    },
     text: {
         type: String
     },

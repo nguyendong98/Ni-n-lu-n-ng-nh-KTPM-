@@ -47,7 +47,7 @@ router.post(
         if(!errors.isEmpty()){
             return res.status(400).json({errors: errors.array()})
         }
-        const {name,price, quatity, image, text} = req.body
+        var {name,price, quatity, image, size, capacity, bed, services, text} = req.body
         try {
             let room = await KindOfRoom.findOne({ name })
             if(room){
@@ -55,11 +55,17 @@ router.post(
                         .status(400)
                         .json({ errors: [{msg: 'Room already exists'}]});
             }
-
+            if(services){
+                services = services.split(',').map(val => val.trim())
+            }
             let kindofroom = new KindOfRoom({
                 name,
                 price,
                 quatity,
+                size,
+                capacity,
+                bed,
+                services,
                 image,
                 text
             })
@@ -67,7 +73,7 @@ router.post(
             
             return res.json(kindofroom)
         } catch (error) {
-            // console.error(error.message);
+            console.error(error.message);
             res.status(500).send('Server Error')   
         }
     }

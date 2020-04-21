@@ -57,7 +57,7 @@ const BookNow = ({auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loa
         e.preventDefault()
         bookRoom(formData)
     }
-    if(auth.isAuthenticated ===null){
+    if(!auth.isAuthenticated){
         alert('Please Login if you want to book room')
         return <Redirect to="/login" exact />
         

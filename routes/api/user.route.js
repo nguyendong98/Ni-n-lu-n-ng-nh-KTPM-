@@ -5,9 +5,10 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const { check, validationResult } = require('express-validator');
-
+const auth = require('./../../middleware/auth')
+const admin = require('./../../middleware/admin')
 const User = require('../../models/User');
-
+const Customer = require('./../../models/Customer')
 // @route    POST api/users
 // @desc     Register user
 // @access   Public
@@ -82,4 +83,40 @@ router.post(
   }
 );
 
+// @route    GET api/users
+// @desc     GET all user
+// @access   Private
+//Lấy toàn bộ danh sách user
+router.get('/', auth, admin, async (req, res) => {
+  try {
+    const users = await User.find().select("-password");
+    
+    
+    
+    return res.status(200).json(users)
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+})
+
+// @route    DELETE api/users/:id
+// @desc     DELETE user by id
+// @access   Private
+//Xóa user theo id
+router.delete('/:id', auth, admin, async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.params.id)
+    res.status(200).json('Delete User Succesfully!!')
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server error');
+  }
+})
+
+
+
 module.exports = router;
+
+
+

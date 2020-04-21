@@ -9,6 +9,7 @@ import jwtDecode from 'jwt-decode';
 const TopMenu = ({ auth, logout }) => {
   const authLink = (
     <div className='login'>
+      <img className="mr-3 mb-2" src={ auth && auth.user ? auth.user.avatar : ''}  style={{width: '3rem',height: '3rem', borderRadius: '50%' }} alt=""/>
       <Link to="/admin"   className='login-btn mr-3'>
         <i className='fa fa-user'></i> Admin
       </Link>
@@ -27,6 +28,7 @@ const TopMenu = ({ auth, logout }) => {
   );
   const userLink = (
     <div className='login'>
+      <img className="mr-3 mb-2" src={ auth && auth.user ? auth.user.avatar : ''}  style={{width: '3rem',height: '3rem', borderRadius: '50%' }} alt="avatar"/>
       <Link to="/"   className='login-btn mr-3'>
         <i className='fa fa-user'></i> User
       </Link>
@@ -36,7 +38,7 @@ const TopMenu = ({ auth, logout }) => {
     </div>
   )
   const showLink = () => {
-    if(auth.isAuthenticated === null){
+    if(auth.isAuthenticated === false){
       return guestLink;
     }
     if(auth.isAuthenticated){

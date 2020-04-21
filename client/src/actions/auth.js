@@ -8,6 +8,8 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
+    GETALL_USER,
+    DELETE_CUSTOMER,
     
 } from './types'
 import setAuthToken from './../utils/setAuthToken'
@@ -31,6 +33,21 @@ export const loadUser = () => async dispatch => {
     }
   };
 
+  //delete customer
+  export const deleteCustomer = (id) => async dispatch => {
+      if(window.confirm('Are you sure. This can NOT be undone!!')){
+        try {
+            await axios.delete(`/api/users/${id}`)
+            dispatch({
+                type: DELETE_CUSTOMER,
+                payload: id
+            })
+        } catch (error) {
+            console.log(error);
+        }
+      }
+     
+  }
 
 
 
@@ -99,4 +116,18 @@ export const logout = () => dispatch => {
     dispatch({
         type: LOGOUT
     })
+}
+
+//get all user
+export const getAllUser = () => async dispatch => {
+    try {
+        const res = await axios.get('/api/users');
+        dispatch({
+            type: GETALL_USER,
+            payload: res.data
+        })
+    } catch (error) {
+        console.log(error)
+    }
+    
 }
