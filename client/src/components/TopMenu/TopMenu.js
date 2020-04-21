@@ -7,6 +7,8 @@ import jwtDecode from 'jwt-decode';
 
 
 const TopMenu = ({ auth, logout }) => {
+  
+  
   const authLink = (
     <div className='login'>
       <img className="mr-3 mb-2" src={ auth && auth.user ? auth.user.avatar : ''}  style={{width: '3rem',height: '3rem', borderRadius: '50%' }} alt=""/>
@@ -30,7 +32,14 @@ const TopMenu = ({ auth, logout }) => {
     <div className='login'>
       <img className="mr-3 mb-2" src={ auth && auth.user ? auth.user.avatar : ''}  style={{width: '3rem',height: '3rem', borderRadius: '50%' }} alt="avatar"/>
       <Link to="/"   className='login-btn mr-3'>
-        <i className='fa fa-user'></i> User
+        <i className='fa fa-user'></i> {
+          auth && auth.user ? auth.user.name.split(' ').map((val, index) => {
+            if((index === auth.user.name.split(' ').length -2) || (index === auth.user.name.split(' ').length - 1)){
+              return val+ ' '
+            }
+            return ''
+          }) : ''
+        }
       </Link>
       <a href='/' onClick={logout} className='login-btn'>
         <i className='fa fa-sign-out'></i> Logout
