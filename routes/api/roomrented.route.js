@@ -47,7 +47,7 @@ router.post('/',
             if(!roombook){
                 return res.status(404).json({msg: 'Room not found'})                
             }
-            if(roombook.status === true){
+            if(roombook.status === 'Đã được đặt'){
                 return res.status(400).json({msg: 'Room is being booked'})
             }
             if(datecheckout <= datecheckin){
@@ -83,8 +83,7 @@ router.post('/',
                 
             })
             await roomrented.save()
-            roombook.status = true;
-            await roombook.save()
+            
             return res.json({data: {roomrented, customer}})
         } catch (error) {
             console.error(error.message);

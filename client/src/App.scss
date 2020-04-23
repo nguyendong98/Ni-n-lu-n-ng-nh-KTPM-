@@ -10,6 +10,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 html {
   font-size: 62.5%;
 }
@@ -82,16 +83,23 @@ body {
 }
 
 @mixin about-background {
-  background-image: url('./images/img.jpg');
+  background-image : linear-gradient(rgba(0,0,5,0.1), rgba(0,0,5,0.1)), url('./images/img.jpg');
   background: {
     position: center center;
     size: cover;
   }
   text-align: center;
+  font-family: 'Cabin', sans-serif;
+  letter-spacing: 1.5;
+  line-height: 1.5;
+  font-size: 1.8rem;
 
 }
 
 //variable
+$font-small: 1.6rem;
+$font-secondary: 1.8rem;
+$font-button: 2rem;
 $myWhite: #fff;
 $myDark: #444;
 $myBlack: #000;
@@ -105,3 +113,28 @@ $opacity: 0.9;
       @content;
   }
 }
+
+.font-small{
+  font-size: $font-small;
+}
+.font-secondary{
+  font-size: $font-secondary;
+}
+.font-btn{
+  font-size: $font-button;
+}
+.mt-6{
+  margin-top: 6rem !important;
+}
+// ::-webkit-input-placeholder {
+//   color: red;
+// }
+// :-moz-placeholder {
+//   color: red;
+// }
+// ::-moz-placeholder {
+//   color: red;
+// }
+// :-ms-input-placeholder {
+//   color: red;
+// }

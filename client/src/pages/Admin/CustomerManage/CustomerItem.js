@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {deleteCustomer} from './../../actions/auth'
+import {deleteCustomer} from './../../../actions/auth'
 import Moment from 'react-moment'
 const CustomerItem = ({customer, index, deleteCustomer}) => {
     

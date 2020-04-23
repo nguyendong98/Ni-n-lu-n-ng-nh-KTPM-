@@ -10,8 +10,8 @@ const RoomSchema = new mongoose.Schema({
         ref: 'kindofroom'
     },
     status: {
-        type: Boolean,
-        default: false
+        type: String,
+        default: 'Còn trống'
     },
     date: {
         type: Date,

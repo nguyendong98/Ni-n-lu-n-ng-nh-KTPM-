@@ -36,13 +36,13 @@ const Home = ({ getAllKindOfRoom, room: { rooms, loading } }) => {
           </ol>
           <div className='carousel-inner'>
             <div className='carousel-item active'>
-              <img src={h3} className='d-block w-100' alt='...' />
+              <img src={h2} className='d-block w-100' alt='...' />
             </div>
             <div className='carousel-item'>
               <img src={h1} className='d-block w-100' alt='...' />
             </div>
             <div className='carousel-item'>
-              <img src={h2} className='d-block w-100' alt='...' />
+              <img src={h3} className='d-block w-100' alt='...' />
             </div>
           </div>
           <a

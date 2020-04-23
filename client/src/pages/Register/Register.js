@@ -52,6 +52,7 @@ const Register = ({ setAlert, register, isAuthenticated, history }) => {
                 name='name'
                 value={name}
                 onChange={e => onChange(e)}
+                className="form-control font-secondary"
               />
             </div>
             <div className='form-group'>
@@ -61,6 +62,7 @@ const Register = ({ setAlert, register, isAuthenticated, history }) => {
                 name='email'
                 value={email}
                 onChange={e => onChange(e)}
+                className="form-control font-secondary"
               />
               <small className='form-text'>
                 This site uses Gravatar so if you want a profile image, use a
@@ -74,6 +76,7 @@ const Register = ({ setAlert, register, isAuthenticated, history }) => {
                 name='password'
                 value={password}
                 onChange={e => onChange(e)}
+                className="form-control font-secondary"
               />
             </div>
             <div className='form-group'>
@@ -83,9 +86,10 @@ const Register = ({ setAlert, register, isAuthenticated, history }) => {
                 name='password2'
                 value={password2}
                 onChange={e => onChange(e)}
+                className="form-control font-secondary"
               />
             </div>
-            <input type='submit' className='btn btn-submit' value='Register' />
+            <input type='submit' className='btn btn-submit mt-5' value='Register'  />
           </form>
           <p className='my-1'>
             Already have an account? <Link to='/login'>Sign In</Link>

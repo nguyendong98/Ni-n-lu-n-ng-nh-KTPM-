@@ -23,7 +23,7 @@ import PrivateRoute from './components/routing/PrivateRoute';
 import Admin from './pages/Admin/Admin';
 import BookNow from './pages/BookNow/BookNow';
 import Rooms from './pages/Rooms/Rooms';
-import CustomerManage from './pages/CustomerManage/CustomerManage';
+import CustomerManage from './pages/Admin/CustomerManage/CustomerManage';
 const App = () => {
   useEffect(() => {
     if(localStorage.token){

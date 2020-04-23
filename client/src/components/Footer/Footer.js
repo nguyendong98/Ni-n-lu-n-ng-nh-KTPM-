@@ -1,9 +1,9 @@
 import React from 'react'
 import './Footer.scss'
-
-
-export default function Footer() {
-    return (
+import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
+ function Footer({auth, room}) {
+    return  room.loading ? null :  (
         <footer className="container-fluid footer">
             <h3 className="footer__title">SPRING HOTEL</h3>
             <p className="footer__address">Tầng 4, số 132, quận Ninh Kiều, Cần Thơ</p>
@@ -30,4 +30,15 @@ export default function Footer() {
         </footer>
     )
 }
-
+Footer.propTypes = {
+    room: PropTypes.object.isRequired,
+    
+    auth: PropTypes.object.isRequired
+}
+const mapStateToProps = state => {
+    return {
+        auth: state.auth,
+        room: state.room
+    }
+}
+export default connect(mapStateToProps, null)(Footer)

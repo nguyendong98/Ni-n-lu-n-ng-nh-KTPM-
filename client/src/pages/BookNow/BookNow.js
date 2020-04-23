@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {getAllKindOfRoom, bookRoom} from './../../actions/room'
 import Alert from './../../components/Alert/Alert'
 import Spinner from './../../components/Spinner/Spinner'
+import {Link} from 'react-router-dom'
 import './BookNow.scss'
 
 
@@ -44,7 +45,7 @@ const BookNow = ({auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loa
                                 })}
                             </select>
                         </td>
-                        <td><input type="radio" name="radiocheck"></input></td>
+                        
                     </tr>
                 </Fragment>
             )
@@ -64,17 +65,18 @@ const BookNow = ({auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loa
     }
     return loading ? (<Spinner/>) :
     (
-        <section className="Booknow">
-            <div className="Booknow__banner">
-                <div className="Booknow__banner-context">
-                    Book Now !
-                </div>
+        <section className="Booknow">            
+            <h2 className="Booknow__title">Book now</h2>
+            <div className="Booknow__menu">
+                <span><Link to="/" exact="true" style={{color: "black"}}>Home</Link></span>
+                <i className="fa fa-chevron-right" ></i>
+                <span className="Booknow__menu-home">Book now</span>
             </div>
             <div className="Booknow__container p-5">
                 <div className="container">                    
-                    <form >
+                    <form autoComplete="off" >
                         <div className="row">
-                            <div className="col-lg-7 col-md-12 Booknow__container-form">
+                            <div className="col-lg-6 col-md-12 Booknow__container-form">
                                 <div >
                                     <div className="form-title">
                                         <label>Step 1: Check</label>
@@ -82,12 +84,36 @@ const BookNow = ({auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loa
                                     <div className="form-contain">
                                         <div className="row">
                                             <div className="col-lg-6 col-md-12">
-                                                <p>Check In*</p>
-                                                <input type="date" name="datecheckin" style={{width: '100%'}} value={datecheckin} onChange={e => onChange(e)} />
+                                                <p className="px-1 py-1 mt-1">Check In*</p>
+                                                <div className='input-group mb-3'>
+                                                    <div className='input-group-prepend'>
+                                                        <span className='input-group-text' id='basic-addon1'>
+                                                            <i className='fa fa-calendar font-secondary'  />
+                                                        </span>
+                                                    </div>
+                                                    <input type='date' className='form-control font-secondary'
+                                                        value={datecheckin}
+                                                        onChange={e => onChange(e)}
+                                                        name="datecheckin"
+                                                        // style={{width: '100%'}}
+                                                    />
+                                                </div>
                                             </div>
                                             <div className="col-lg-6 col-md-12">
-                                                <p>Check Out*</p>
-                                                <input type="date" name="datecheckout" style={{width: '100%'}} value={datecheckout} onChange={e => onChange(e)} />
+                                                <p className="px-1 py-1 mt-1">Check Out*</p>
+                                                <div className='input-group mb-3'>
+                                                    <div className='input-group-prepend'>
+                                                        <span className='input-group-text' id='basic-addon1'>
+                                                            <i className='fa fa-calendar font-secondary'  />
+                                                        </span>
+                                                    </div>
+                                                    <input type='date' className='form-control font-secondary'
+                                                        value={datecheckout}
+                                                        onChange={e => onChange(e)}
+                                                        name="datecheckout"
+                                                        // style={{width: '100%'}}
+                                                    />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -99,50 +125,63 @@ const BookNow = ({auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loa
                                     <div className="form-contain">
                                         <div className="row">
                                             <div className="col-lg-6 col-md-12">
-                                                <p>Full name*</p>
-                                                <input type="text" name="customername" style={{width: '100%'}} value={auth.user.name} disabled />
+                                                <p className="px-1 py-1 mt-1">Full name*</p>
+                                                <input type="text" name="customername" 
+                                                 className='form-control font-secondary' value={auth.user.name} disabled
+                                                 placeholder="Fill your fullname" />
                                             </div>
                                             <div className="col-lg-6 col-md-12">
-                                                <p>Phone*</p>
-                                                <input type="text" name="phone" style={{width: '100%'}} value={phone} onChange={e => onChange(e)} />
+                                                <p className="px-1 py-1 mt-1">Phone*</p>
+                                                <input type="text" name="phone" className='form-control font-secondary' 
+                                                value={phone} onChange={e => onChange(e)} 
+                                                placeholder="Fill your phone"/>
                                             </div>
                                             <div className="col-lg-6 col-md-12">
-                                                <p>Nationality*</p>
-                                                <input type="text" name="nationality" style={{width: '100%'}} value={nationality} onChange={e => onChange(e)} />
+                                                <p className="mt-2">Nationality*</p>
+                                                <input type="text" name="nationality" className='form-control font-secondary' 
+                                                value={nationality} onChange={e => onChange(e)} 
+                                                placeholder="Fill your nationality"/>
                                             </div>
                                             <div className="col-lg-6 col-md-12">
-                                                <p>Identity card*</p>
-                                                <input type="text" name="identitycard" style={{width: '100%'}} value={identitycard} onChange={e => onChange(e)} />
+                                                <p className="mt-2">Identity card*</p>
+                                                <input type="text" name="identitycard" className='form-control font-secondary' 
+                                                value={identitycard} onChange={e => onChange(e)} 
+                                                placeholder="Fill your Identity card"/>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
         
                             </div>
-                            <div className="col-lg-4 offset-lg-1 col-md-12 Booknow__container-form">
+                            <div className="col-lg-5 offset-lg-1 col-md-12 Booknow__container-form">
                                 <div  className="form-select-room" style={{with: '100%'}}>
                                     <div className="form-title">
                                         <label>Step 3: Select a room</label>
                                     </div>
                                     <div className="form-contain">
-                                        <div className="container">
-                                            <div className="row">
-                                                <table style={{width: '100%'}}>
-                                                    <tbody>
+                                        <div className="container-fluid">
+                                            <div className="row py-5">
+                                                <table style={{width: '100%'}} className="table">
+                                                    <thead className="thead-light">
                                                         <tr>
                                                             <th>Kind of Room</th>
                                                             <th>Price</th>
                                                             <th>Room name</th>
-                                                            <th>Choose</th>
+                                                            
                                                         </tr>
                                                         {
                                                             showSelectRoomItem()
                                                         
                                                         }
         
-                                                    </tbody>
+                                                    </thead>
                                                 </table>
-                                                <input type="submit" value="Submit" onClick={e => onSubmit(e)} />
+                                                <div className="d-flex justify-content-center mt-6 w-100" style={{margin: '0 auto'}}>
+                                                    <input type="submit" className="btn btn-success btn-block w-100 font-btn py-1 px-3 " 
+                                                        value="Submit" onClick={e => onSubmit(e)} 
+                                                        
+                                                    />
+                                                </div>    
                                             </div>
                                         </div>
         

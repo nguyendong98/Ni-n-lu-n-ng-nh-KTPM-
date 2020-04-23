@@ -49,11 +49,13 @@ const Login = ({ login, isAuthenticated }) => {
             <div className='form-group'>
               <input
                 type='email'
-                placeholder='Email Address'
+                placeholder='Email address'
                 onChange={e => onChange(e)}
                 name='email'
                 value={email}
+                className="form-control font-secondary"
               />
+              <small id="emailHelp" className="form-text text-muted text-left">Email addmin: admin@gmail.com</small>
             </div>
             <div className='form-group'>
               <input
@@ -62,13 +64,16 @@ const Login = ({ login, isAuthenticated }) => {
                 onChange={e => onChange(e)}
                 name='password'
                 value={password}
+                className="form-control font-secondary"
               />
+              <small id="emailHelp" className="form-text text-muted text-left">Password addmin: pwadmin@gmail.com</small>
             </div>
             <div className='form-group'>
               <input
                 type='submit'
-                className='btn btn-primary btn-submit'
+                className='btn btn-primary btn-submit font-btn mt-5'
                 value='Login'
+                
               />
             </div>
           </form>
@@ -83,11 +88,13 @@ const Login = ({ login, isAuthenticated }) => {
 };
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    
   };
 };
 Login.PropsType = {
   login: PropsType.func.isRequired,
-  isAuthenticated: PropsType.bool
+  isAuthenticated: PropsType.bool.isRequired
+  
 };
 export default connect(mapStateToProps, { login })(Login);
