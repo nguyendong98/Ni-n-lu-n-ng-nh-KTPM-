@@ -3,6 +3,7 @@ import axios from 'axios'
 import {ROOM_LOADED, ROOM_ERROR, BOOK_ROOM
 } from './types'
 import {setAlert} from './alert'
+import {setNotify} from './notify'
 export const getAllKindOfRoom =  () => async dispatch => {
     try {
         const res = await axios.get('/api/kindofrooms');
@@ -34,7 +35,8 @@ export const bookRoom = (formData) => async dispatch => {
                 type: BOOK_ROOM,
                 payload: res.data
             })
-            dispatch(setAlert('Book Success, See you soonest', 'success'))
+            dispatch(setAlert('Book Success', 'success'))
+            dispatch(setNotify('Book Success, See you soonest'))
         } catch (error) {
             const errors = error.response.data.errors;
 

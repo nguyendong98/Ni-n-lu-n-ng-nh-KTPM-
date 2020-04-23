@@ -24,6 +24,7 @@ import Admin from './pages/Admin/Admin';
 import BookNow from './pages/BookNow/BookNow';
 import Rooms from './pages/Rooms/Rooms';
 import CustomerManage from './pages/Admin/CustomerManage/CustomerManage';
+import Notify from './components/Notify/Notify';
 const App = () => {
   useEffect(() => {
     if(localStorage.token){
@@ -37,6 +38,7 @@ const App = () => {
       <Router>
         <Fragment>
           <TopMenu />
+          <Notify />
           <Menu />
           <Switch>
             <Route path="/" exact component={Home} />

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {setAlert } from './alert'
+import {setNotify} from './notify'
 import {
     REGISTER_SUCCESS,
     REGISTER_FAIL,
@@ -10,6 +11,7 @@ import {
     LOGOUT,
     GETALL_USER,
     DELETE_CUSTOMER,
+
     
 } from './types'
 import setAuthToken from './../utils/setAuthToken'
@@ -94,7 +96,7 @@ export const login = ({email, password}) => async dispatch => {
             type: LOGIN_SUCCESS,
             payload: res.data
         })
-        // dispatch(setAlert('Login Success', 'success'))
+        dispatch(setNotify('Welcome you to Royal Hotel'))
         dispatch(loadUser());
         
     } catch (error) {
@@ -116,6 +118,7 @@ export const logout = () => dispatch => {
     dispatch({
         type: LOGOUT
     })
+    dispatch(setNotify('Bye mày and see mày again!!'))
 }
 
 //get all user

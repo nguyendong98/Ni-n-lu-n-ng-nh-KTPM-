@@ -1,15 +1,16 @@
 import React, {useState, useEffect, Fragment} from 'react'
 import PropTypes from 'prop-types'
-import {Redirect} from 'react-router-dom'
+
 import {connect} from 'react-redux'
 import {getAllKindOfRoom, bookRoom} from './../../actions/room'
 import Alert from './../../components/Alert/Alert'
 import Spinner from './../../components/Spinner/Spinner'
 import {Link} from 'react-router-dom'
+
 import './BookNow.scss'
 
 
-const BookNow = ({auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loading}, bookRoom}) => {
+const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loading}, bookRoom}) => {
     
     useEffect(() => {
         getAllKindOfRoom();
@@ -28,15 +29,15 @@ const BookNow = ({auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loa
     })
     const {roomname, datecheckin, datecheckout, identitycard, phone, nationality} = formData
     const showSelectRoomItem = () => {
-      return  rooms.map((room, index) => {
-            const roombykind = allroom.filter(val => val.kind === room._id && val.status === false)
+      return rooms ?  rooms.map((room, index) => {
+            const roombykind = allroom.filter(val => val.kind === room._id && val.status === 'Còn trống')
             return (
                 <Fragment key={index}>
                     <tr>
                         <td>{room.name.toUpperCase()}</td>
                         <td>{room.price} $</td>
                         <td>
-                            <select name="roomname" value={roomname} onChange={e => onChange(e)}>
+                            <select name="roomname" value={roomname} onChange={e => onChange(e)} className="form-control font-secondary">
                                 <option  >-----Select----</option>
                                 {roombykind.map((val, index) => {
                                 return (
@@ -49,7 +50,7 @@ const BookNow = ({auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loa
                     </tr>
                 </Fragment>
             )
-        })
+        }) : null
     }
     const onChange = (e) => {
         setFormData({...formData, [e.target.name]: e.target.value})
@@ -58,13 +59,10 @@ const BookNow = ({auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loa
         e.preventDefault()
         bookRoom(formData)
     }
-    if(!auth.isAuthenticated){
-        alert('Please Login if you want to book room')
-        return <Redirect to="/login" exact />
-        
-    }
+    
     return loading ? (<Spinner/>) :
     (
+        
         <section className="Booknow">            
             <h2 className="Booknow__title">Book now</h2>
             <div className="Booknow__menu">
@@ -84,7 +82,7 @@ const BookNow = ({auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loa
                                     <div className="form-contain">
                                         <div className="row">
                                             <div className="col-lg-6 col-md-12">
-                                                <p className="px-1 py-1 mt-1">Check In*</p>
+                                                <b><i><p className="px-1 py-1 mt-1">Check In*</p></i></b>
                                                 <div className='input-group mb-3'>
                                                     <div className='input-group-prepend'>
                                                         <span className='input-group-text' id='basic-addon1'>
@@ -100,7 +98,7 @@ const BookNow = ({auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loa
                                                 </div>
                                             </div>
                                             <div className="col-lg-6 col-md-12">
-                                                <p className="px-1 py-1 mt-1">Check Out*</p>
+                                                <b><i><p className="px-1 py-1 mt-1">Check Out*</p></i></b>
                                                 <div className='input-group mb-3'>
                                                     <div className='input-group-prepend'>
                                                         <span className='input-group-text' id='basic-addon1'>
@@ -125,25 +123,25 @@ const BookNow = ({auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loa
                                     <div className="form-contain">
                                         <div className="row">
                                             <div className="col-lg-6 col-md-12">
-                                                <p className="px-1 py-1 mt-1">Full name*</p>
+                                                <b><i><p className="px-1 py-1 mt-1">Full name*</p></i></b>
                                                 <input type="text" name="customername" 
                                                  className='form-control font-secondary' value={auth.user.name} disabled
                                                  placeholder="Fill your fullname" />
                                             </div>
                                             <div className="col-lg-6 col-md-12">
-                                                <p className="px-1 py-1 mt-1">Phone*</p>
+                                                <b><i><p className="px-1 py-1 mt-1">Phone*</p></i></b>
                                                 <input type="text" name="phone" className='form-control font-secondary' 
                                                 value={phone} onChange={e => onChange(e)} 
                                                 placeholder="Fill your phone"/>
                                             </div>
                                             <div className="col-lg-6 col-md-12">
-                                                <p className="mt-2">Nationality*</p>
+                                                <b><i><p className="mt-2">Nationality*</p></i></b>
                                                 <input type="text" name="nationality" className='form-control font-secondary' 
                                                 value={nationality} onChange={e => onChange(e)} 
                                                 placeholder="Fill your nationality"/>
                                             </div>
                                             <div className="col-lg-6 col-md-12">
-                                                <p className="mt-2">Identity card*</p>
+                                                <b><i><p className="mt-2">Identity card*</p></i></b>
                                                 <input type="text" name="identitycard" className='form-control font-secondary' 
                                                 value={identitycard} onChange={e => onChange(e)} 
                                                 placeholder="Fill your Identity card"/>
@@ -176,11 +174,13 @@ const BookNow = ({auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loa
         
                                                     </thead>
                                                 </table>
-                                                <div className="d-flex justify-content-center mt-6 w-100" style={{margin: '0 auto'}}>
-                                                    <input type="submit" className="btn btn-success btn-block w-100 font-btn py-1 px-3 " 
-                                                        value="Submit" onClick={e => onSubmit(e)} 
-                                                        
-                                                    />
+                                                <div className="d-flex justify-content-center mt-4 w-100" style={{margin: '0 auto'}}>
+                                                    <span className="d-inline-block w-100" data-toggle="tooltip" title="Disabled tooltip">
+                                                        <input type="submit" className="btn btn-success btn-block w-100 font-btn py-3 px-3 " 
+                                                            value="Submit" onClick={e => onSubmit(e)} 
+                                                            
+                                                        />
+                                                    </span>    
                                                 </div>    
                                             </div>
                                         </div>
@@ -211,7 +211,8 @@ const mapStateToProps = state => {
 BookNow.propTypes = {
     room: PropTypes.object.isRequired,
     getAllKindOfRoom: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired,
+    
 }
 
 export default connect(mapStateToProps, {getAllKindOfRoom, bookRoom})(BookNow)

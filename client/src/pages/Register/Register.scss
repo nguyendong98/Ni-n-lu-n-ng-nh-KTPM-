@@ -20,12 +20,20 @@
       }
     }
     input {
-      padding: 0 0.5rem;
+      
       width: 100%;
     }
     .btn-submit {
       @include btn;
       color: white;
+    }
+  }
+}
+@include mediaSm{
+  .register{
+    width: 100%;
+    &-content{
+      width: 100%;
     }
   }
 }

@@ -26,6 +26,7 @@ body {
     size: 1.6rem;
   }
   line-height: 1.5;
+  overflow-x: hidden;
 }
 
 //mixin
@@ -123,9 +124,9 @@ $opacity: 0.9;
 .font-btn{
   font-size: $font-button;
 }
-.mt-6{
-  margin-top: 6rem !important;
-}
+// .mt-6{
+//   margin-top: 5.4rem !important;
+// }
 // ::-webkit-input-placeholder {
 //   color: red;
 // }

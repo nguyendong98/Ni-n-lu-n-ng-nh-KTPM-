@@ -1,8 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Menu.scss';
 import { Link, NavLink } from 'react-router-dom';
-class Menu extends Component {
-  render() {
+import {connect} from 'react-redux'
+import {setNotify} from './../../actions/notify'
+import {Redirect} from 'react-router-dom'
+import PropTypes from 'prop-types'
+const Menu = ({setNotify, isAuthenticated}) => {
+  const checkAuth = (e) => {
+    if(!isAuthenticated){
+      e.preventDefault()
+      setNotify('Please login if you want to book now !!!', 1500)
+      return <Redirect to="/login" exact />
+    }
+    else{
+      return <Redirect to="/booknow" exact />
+    }
+  }
+  
     return (
       <section className='main-menu'>
         <div className='container'>
@@ -109,6 +123,7 @@ class Menu extends Component {
                   Promotion
                 </a>
                 <NavLink to="/booknow" exact={true} className='nav-item nav-link '
+                  onClick={(e) => checkAuth(e)}
                   activeStyle={{
                     fontWeight: "bold",
                     color: "#6b6b6b"
@@ -122,7 +137,16 @@ class Menu extends Component {
         </div>
       </section>
     );
+  
+}
+Menu.propTypes = {
+  setNotify: PropTypes.func.isRequired
+  
+}
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+    
   }
 }
-
-export default Menu;
+export default connect(mapStateToProps, {setNotify})(Menu)
