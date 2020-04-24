@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
+import {Link} from 'react-router-dom'
 
 const Room = ({rooms}) => {
     
@@ -36,7 +36,7 @@ const Room = ({rooms}) => {
                         </tbody>
                     </table>
         
-                    <a href="#/" className="card-details">MORE DETAILS</a>
+                    <Link to={`/roomdetail/${rooms._id}`} className="card-details">MORE DETAILS</Link>
                 </div>
             </div>
         </div>
