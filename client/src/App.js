@@ -1,10 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import './App.scss';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route  
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import Menu from './components/Menu/Menu';
 import TopMenu from './components/TopMenu/TopMenu';
@@ -13,26 +9,26 @@ import Restaurant from './pages/Restaurant/Restaurant';
 import Tour from './pages/Tour/Tour';
 import Home from './pages/Home/Home';
 import NotFound from './pages/NotFound/NotFound';
-import Login from './pages/Login/Login'
+import Login from './pages/Login/Login';
 import store from './store';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import Register from './pages/Register/Register';
-import setAuthToken from './utils/setAuthToken'
-import {loadUser} from './actions/auth'
+import setAuthToken from './utils/setAuthToken';
+import { loadUser } from './actions/auth';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Admin from './pages/Admin/Admin';
 import BookNow from './pages/BookNow/BookNow';
 import Rooms from './pages/Rooms/Rooms';
+import RoomDetail from './pages/RoomDetail/RoomDetail';
 import CustomerManage from './pages/Admin/CustomerManage/CustomerManage';
 import Notify from './components/Notify/Notify';
 const App = () => {
   useEffect(() => {
-    if(localStorage.token){
-      setAuthToken(localStorage.token)
-      store.dispatch(loadUser())
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+      store.dispatch(loadUser());
     }
-    
-  }, [])
+  }, []);
   return (
     <Provider store={store}>
       <Router>
@@ -41,24 +37,28 @@ const App = () => {
           <Notify />
           <Menu />
           <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/tours" exact component={Tour} />
-            <Route path="/restaurant" exact component={Restaurant} />
-            <Route path="/spa" exact component={Spa} />
-            <Route path= "/login" exact component ={Login} />
-            <Route path= "/register" exact component ={Register} />
-            <Route path= "/booknow" exact component={BookNow}/>
-            <Route path= "/rooms" exact component={Rooms}/>
-            <PrivateRoute path ="/customermanagement" exact component={CustomerManage} />
-            <PrivateRoute exact path="/admin"  component={Admin} />
-            <Route path="" exact component={NotFound} />              
-          </Switch>            
-          <Footer />            
+            <Route path='/' exact component={Home} />
+            <Route path='/tours' exact component={Tour} />
+            <Route path='/restaurant' exact component={Restaurant} />
+            <Route path='/spa' exact component={Spa} />
+            <Route path='/login' exact component={Login} />
+            <Route path='/register' exact component={Register} />
+            <Route path='/booknow' exact component={BookNow} />
+            <Route path='/rooms' exact component={Rooms} />
+            <Route path='/roomdetail/:id' exact component={RoomDetail} />
+            <PrivateRoute
+              path='/customermanagement'
+              exact
+              component={CustomerManage}
+            />
+            <PrivateRoute exact path='/admin' component={Admin} />
+            <Route path='' exact component={NotFound} />
+          </Switch>
+          <Footer />
         </Fragment>
       </Router>
     </Provider>
-  )
-}
+  );
+};
 
 export default App;
-

@@ -1,0 +1,118 @@
+@import './../../App.scss';
+
+.rooms {
+  padding-bottom: 5rem;
+  &__title {
+    text-align: center;
+    font-size: 4.4rem;
+    color: #19191a;
+    font-family: 'Lora', serif;
+    margin-top: 5rem;
+  }
+  &__menu {
+    text-align: center;
+    margin-top: 1.8rem;
+    margin-bottom: 8rem;
+    font: {
+      family: 'Lora', serif;
+      size: 1.8rem;
+    }
+    span:nth-child(1) {
+      margin-right: 1rem;
+    }
+    i {
+      font-size: 1.5rem;
+      color: #aaaab3;
+    }
+    &-home {
+      margin-left: 1rem;
+      color: #aaaab3;
+    }
+  }
+  .container {
+    .image_roomdetail {
+      img {
+        width: 100%;
+      }
+      margin: 0 0 40px;
+    }
+
+    .room_booking {
+      h3 {
+        font-size: 30px;
+        margin: 0 0 30px;
+        padding: 0 15px;
+        font-family: 'Lora', serif;
+      }
+      font-size: 1.4rem;
+      label {
+        margin: 0 0 10px;
+      }
+      .imput-group {
+        margin-bottom: 15px;
+      }
+      input {
+        font-size: 2rem;
+        padding: 1px 0px 1px 20px;
+      }
+      button {
+        font-size: 1.4rem;
+      }
+    }
+
+    .room_info {
+      h3 {
+        font-size: 30px;
+        font-family: 'Lora', serif;
+      }
+      button {
+        font-size: 1.5rem;
+        color: #fff;
+        font-family: 'cabin', sans-serif;
+        padding: 14px 28px 13px;
+      }
+      .tb_detail {
+        margin: 0 0 20px;
+        h2 {
+          font-family: 'Lora', serif;
+          font-size: 36px;
+          font-weight: 700;
+          color: #dfa974;
+          margin-top: 2rem;
+          margin-bottom: 2rem;
+          span {
+            font: {
+              family: 'Cabin', sans-serif;
+              size: 1.4rem;
+              weight: 400;
+            }
+            color: #19191a;
+          }
+        }
+        .title {
+          font-size: 1.8rem;
+          color: #707079;
+          line-height: 3.6rem;
+          padding: 0 50px 0 0;
+        }
+        .detail {
+          color: #19191a;
+          font-family: 'cabin', sans-serif;
+          font-size: 16px;
+          font-weight: 500;
+          padding: 1px;
+        }
+      }
+    }
+    .info_detail {
+      width: 100%;
+      border-bottom: whitesmoke solid 1px;
+      p {
+        color: #707079;
+        margin: 0 0 15px;
+        font-size: 1.6rem;
+        font-family: 'cabin, sans-serif';
+      }
+    }
+  }
+}
