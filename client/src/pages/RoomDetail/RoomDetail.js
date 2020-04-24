@@ -136,7 +136,13 @@ const RoomDetail = ({
                     </tr>
                     <tr>
                       <td className='title'>Services:</td>
-                      <td className='detail'>{room.sevices}</td>
+                      <td className='detail'>
+                        {room.services.map((val, index) => {
+                          return index === room.services.length - 1
+                            ? val + ',.. '
+                            : val + ', ';
+                        })}
+                      </td>
                     </tr>
                   </tbody>
                 ) : null}
