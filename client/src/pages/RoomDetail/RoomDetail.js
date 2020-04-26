@@ -65,7 +65,7 @@ const RoomDetail = ({
                 <label htmlFor='basic-url'>Guests</label>
                 <div className='input-group mb-3'>
                   <select className='custom-select' id='inputGroupSelect02'>
-                    <option selected>Choose...</option>
+                    <option>Choose...</option>
                     <option value={1}>1</option>
                     <option value={2}>2</option>
                     <option value={3}>3</option>
@@ -81,7 +81,7 @@ const RoomDetail = ({
                 <label htmlFor='basic-url'>Room</label>
                 <div className='input-group mb-3'>
                   <select className='custom-select' id='inputGroupSelect02'>
-                    <option selected>Choose...</option>
+                    <option>Choose...</option>
                     <option value={1}>1</option>
                     <option value={2}>2</option>
                     <option value={3}>3</option>
