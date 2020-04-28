@@ -46,14 +46,21 @@
       }
       font-size: 1.4rem;
       label {
+        color: rgba($color: #000000, $alpha: 0.5);
         margin: 0 0 10px;
       }
-      .imput-group {
-        margin-bottom: 15px;
+      .ip-group {
+        margin: 0 0 20px;
       }
-      input {
-        font-size: 2rem;
-        padding: 1px 0px 1px 20px;
+      .input-group {
+        i {
+          font-size: 1.6rem;
+        }
+      }
+      input,
+      select {
+        font-size: 1.4rem;
+        padding: 5px 0px 5px 20px;
       }
       button {
         font-size: 1.4rem;
@@ -61,6 +68,8 @@
     }
 
     .room_info {
+      margin: 0;
+      padding: 0;
       h3 {
         font-size: 30px;
         font-family: 'Lora', serif;
@@ -72,7 +81,7 @@
         padding: 14px 28px 13px;
       }
       .tb_detail {
-        margin: 0 0 20px;
+        margin: 0 0 40px;
         h2 {
           font-family: 'Lora', serif;
           font-size: 36px;
@@ -105,6 +114,7 @@
       }
     }
     .info_detail {
+      padding: 0;
       width: 100%;
       border-bottom: whitesmoke solid 1px;
       p {

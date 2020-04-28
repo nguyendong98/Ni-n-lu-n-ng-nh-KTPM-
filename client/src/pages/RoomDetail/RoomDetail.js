@@ -39,10 +39,10 @@ const RoomDetail = ({
           <div className='col-12 col-lg-4'>
             <div className='room_booking'>
               <h3>Your Reservation</h3>
-              <div className='col-12'>
+              <div className='col-12 ip-group'>
                 <label htmlFor='basic-url'>Check In</label>
                 <div className='input-group mb-3'>
-                  <input type='text' className='form-control' />
+                  <input type='date' className='form-control' />
                   <div className='input-group-append'>
                     <span className='input-group-text' id='basic-addon2'>
                       <i className='fa fa-calendar' aria-hidden='true' />
@@ -50,10 +50,10 @@ const RoomDetail = ({
                   </div>
                 </div>
               </div>
-              <div className='col-12'>
+              <div className='col-12 ip-group'>
                 <label htmlFor='basic-url'>Check Out</label>
                 <div className='input-group mb-3'>
-                  <input type='text' className='form-control' />
+                  <input type='date' className='form-control' />
                   <div className='input-group-append'>
                     <span className='input-group-text' id='basic-addon2'>
                       <i className='fa fa-calendar' aria-hidden='true' />
@@ -61,29 +61,39 @@ const RoomDetail = ({
                   </div>
                 </div>
               </div>
-              <div className='col-12'>
+              <div className='col-12 ip-group'>
                 <label htmlFor='basic-url'>Guests</label>
                 <div className='input-group mb-3'>
-                  <input type='text' className='form-control' />
+                  <select className='custom-select' id='inputGroupSelect02'>
+                    <option>Choose...</option>
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                  </select>
                   <div className='input-group-append'>
                     <span className='input-group-text' id='basic-addon2'>
-                      <i className='fa fa-calendar' aria-hidden='true' />
+                      <i className='fa fa-user' aria-hidden='true' />
                     </span>
                   </div>
                 </div>
               </div>
-              <div className='col-12'>
+              <div className='col-12 ip-group'>
                 <label htmlFor='basic-url'>Room</label>
                 <div className='input-group mb-3'>
-                  <input type='text' className='form-control' />
+                  <select className='custom-select' id='inputGroupSelect02'>
+                    <option>Choose...</option>
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                  </select>
                   <div className='input-group-append'>
                     <span className='input-group-text' id='basic-addon2'>
-                      <i className='fa fa-calendar' aria-hidden='true' />
+                      <i className='fa fa-bed' aria-hidden='true' />
                     </span>
                   </div>
                 </div>
               </div>
-              <div className='col-12'>
+              <div className='col-12 '>
                 <button
                   type='button'
                   className='btn btn-outline-primary'
@@ -95,7 +105,7 @@ const RoomDetail = ({
             </div>
           </div>
         </div>
-        <div className='col-12 col-lg-8'>
+        <div className='col-12 col-lg-8 ' style={{ padding: '0' }}>
           <div className='room_info'>
             <div className='row'>
               <div className='col-8'>
@@ -111,7 +121,7 @@ const RoomDetail = ({
                 </button>
               </div>
             </div>
-            <div className='col-12'>
+            <div className='col-12' style={{ padding: '0' }}>
               <table className='tb_detail'>
                 {room ? (
                   <tbody>
