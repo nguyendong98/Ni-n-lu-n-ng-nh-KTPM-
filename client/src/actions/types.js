@@ -13,5 +13,5 @@ export const ROOM_LOADED = 'ROOM_LOADED';
 export const ROOM_ERROR = 'ROOM_ERROR';
 export const BOOK_ROOM = 'BOOK_ROOM';
 export const GETALL_USER = 'GETALL_USER';
-export const DELETE_CUSTOMER = 'DELETE_CUSTOMER'
-
+export const DELETE_CUSTOMER = 'DELETE_CUSTOMER';
+export const GET_ROOM_DETAIL = 'GET_ROOM_DETAIL';

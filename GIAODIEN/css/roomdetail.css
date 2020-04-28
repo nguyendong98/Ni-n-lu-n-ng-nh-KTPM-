@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Lora:400,400i,500,500i,600,600i,700,700i&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Cabin:400,400i,500,500i,600,600i,700,700i&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Cabin+Sketch:400,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Spicy+Rice&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+.font-small {
+  font-size: 1.6rem;
+}
+
+.font-secondary {
+  font-size: 1.8rem;
+}
+
+.font-btn {
+  font-size: 2rem;
+}
+
+.rooms {
+  padding-bottom: 5rem;
+}
+.rooms__title {
+  text-align: center;
+  font-size: 4.4rem;
+  color: #19191a;
+  font-family: "Lora", serif;
+  margin-top: 5rem;
+}
+.rooms__menu {
+  text-align: center;
+  margin-top: 1.8rem;
+  margin-bottom: 8rem;
+  font-family: "Lora", serif;
+  font-size: 1.8rem;
+}
+.rooms__menu span:nth-child(1) {
+  margin-right: 1rem;
+}
+.rooms__menu i {
+  font-size: 1.5rem;
+  color: #aaaab3;
+}
+.rooms__menu-home {
+  margin-left: 1rem;
+  color: #aaaab3;
+}
+.rooms .container .image_roomdetail {
+  margin: 0 0 40px;
+}
+.rooms .container .image_roomdetail img {
+  width: 100%;
+}
+.rooms .container .room_booking {
+  font-size: 1.4rem;
+}
+.rooms .container .room_booking h3 {
+  font-size: 30px;
+  margin: 0 0 30px;
+  padding: 0 15px;
+  font-family: "Lora", serif;
+}
+.rooms .container .room_booking label {
+  margin: 0 0 10px;
+}
+.rooms .container .room_booking .imput-group {
+  margin-bottom: 15px;
+}
+.rooms .container .room_booking input {
+  font-size: 2rem;
+  padding: 1px 0px 1px 20px;
+}
+.rooms .container .room_booking button {
+  font-size: 1.4rem;
+}
+.rooms .container .room_info h3 {
+  font-size: 30px;
+  font-family: "Lora", serif;
+}
+.rooms .container .room_info button {
+  font-size: 1.5rem;
+  color: #fff;
+  font-family: "cabin", sans-serif;
+  padding: 14px 28px 13px;
+}
+.rooms .container .room_info .tb_detail h2 {
+  font-family: "Lora", serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: #dfa974;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.rooms .container .room_info .tb_detail h2 span {
+  font-family: "Cabin", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #19191a;
+}
+.rooms .container .room_info .tb_detail .title {
+  font-size: 1.8rem;
+  color: #707079;
+  line-height: 3.6rem;
+  padding: 0 50px 0 0;
+}
+.rooms .container .room_info .tb_detail .detail {
+  color: #19191a;
+  font-family: "cabin", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 1px;
+}
+.rooms .container .info_detail {
+  width: 100%;
+  border-bottom: #707079 solid 1px;
+}
+.rooms .container .info_detail p {
+  color: #707079;
+  margin: 0 0 15px;
+  font-size: 1.6rem;
+  font-family: "cabin, sans-serif";
+}
+
+/*# sourceMappingURL=roomdetail.css.map */
