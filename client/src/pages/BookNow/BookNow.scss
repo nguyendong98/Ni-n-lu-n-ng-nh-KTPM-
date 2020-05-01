@@ -3,9 +3,10 @@
 
 
 .Booknow{
-    // font-family: 'Yanone Kaffeesatz', sans-serif;
+    // font-family: 'Poppins', sans-serif;
     padding-bottom: 8rem;
     &__title{
+        
         text-align: center;
         font-size: 4.4rem;
         color:#19191a;
@@ -39,6 +40,7 @@
             border: 0.5px solid #7B68EE;
             border-radius: 4px; 
             .form-title{
+                font-family: 'Poppins', sans-serif;
                 background: $myBlue;
                 padding: 0  15px;
                 margin: 0 -13px;
@@ -46,7 +48,10 @@
                 font-size: 2rem;
             }           
         }
-        
+        .btn-submit{
+            @include button;
+            font-size: 1.9rem;
+        }
         
     }
 }    

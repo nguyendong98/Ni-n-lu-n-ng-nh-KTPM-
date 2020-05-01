@@ -39,7 +39,7 @@ $myBlue : #d9edf7;
 $primary-color: #8b6b43;
 $secondary-color: #b9b9b9;
 $opacity: 0.9;
-$colorBtn: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+$warning-color: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
 //mixin
 @mixin flex {
   display: flex;
@@ -100,9 +100,8 @@ $colorBtn: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
 	border-radius: 25px;
 	outline: none;
 	border: none;
-	background-image: $colorBtn;
-	background-size: 200%;
-	font-size: 1.2rem;
+	background-image: $warning-color;
+	background-size: 200%;	
 	color: #fff;
 	font-family: 'Poppins', sans-serif;
 	text-transform: uppercase;
@@ -110,7 +109,26 @@ $colorBtn: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
 	cursor: pointer;
 	transition: .5s;
 }
-
+@mixin btn-search{
+  @include button;
+  height: 3.7rem;
+  width: 10rem;
+  border-radius: 8px;
+  font-size: 1.6rem;
+}
+@mixin btn-handle{
+  // display: block;
+	width: 7rem;
+	height: 3.5rem;
+  border-radius: 25px;
+  font-size: 1.3rem;
+	outline: none;
+	border: none;
+  color: #fff;
+	font-family: 'Poppins', sans-serif;	
+  cursor: pointer;
+	transition: .5s;
+}
 @mixin about-background {
   background-image : linear-gradient(rgba(0,0,5,0.1), rgba(0,0,5,0.1)), url('./images/img.jpg');
   background: {
