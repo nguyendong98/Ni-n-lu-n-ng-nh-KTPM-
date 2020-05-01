@@ -8,6 +8,7 @@ const Notify = ({notify}) => (
             {val.msg}
         </div>
         
+        
     ))
 )
     

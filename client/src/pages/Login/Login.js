@@ -71,7 +71,7 @@ const Login = ({ login, isAuthenticated }) => {
             <div className='form-group'>
               <input
                 type='submit'
-                className='btn btn-primary btn-submit font-btn mt-5'
+                className=' btn-submit  mt-5'
                 value='Login'
                 
               />

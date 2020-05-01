@@ -24,7 +24,8 @@
       width: 100%;
     }
     .btn-submit {
-      @include btn;
+      @include button;
+      font-size: 1.9rem;
     }
   }
 }

@@ -89,7 +89,7 @@ const Register = ({ setAlert, register, isAuthenticated, history }) => {
                 className="form-control font-secondary"
               />
             </div>
-            <input type='submit' className='btn btn-submit mt-5' value='Register'  />
+            <input type='submit' className=' btn-submit mt-5' value='Register'  />
           </form>
           <p className='my-1'>
             Already have an account? <Link to='/login'>Sign In</Link>

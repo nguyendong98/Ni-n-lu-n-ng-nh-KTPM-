@@ -14,6 +14,7 @@ const Menu = ({setNotify, isAuthenticated}) => {
     }
     else{
       return <Redirect to="/booknow" exact />
+      
     }
   }
   
@@ -28,7 +29,7 @@ const Menu = ({setNotify, isAuthenticated}) => {
                 alt='logo'
               />
             </Link>
-
+            
             <button
               className='navbar-toggler'
               type='button'

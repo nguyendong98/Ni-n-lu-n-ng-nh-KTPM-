@@ -176,10 +176,10 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, lo
                                                 </table>
                                                 <div className="d-flex justify-content-center mt-4 w-100" style={{margin: '0 auto'}}>
                                                     <span className="d-inline-block w-100" data-toggle="tooltip" title="Disabled tooltip">
-                                                        <input type="submit" className="btn btn-success btn-block w-100 font-btn py-3 px-3 " 
-                                                            value="Submit" onClick={e => onSubmit(e)} 
+                                                        <button type="submit" className=" d-flex justify-content-center align-items-center btn btn-success btn-block w-100 font-btn py-3 px-3 " 
+                                                             onClick={e => onSubmit(e)} 
                                                             
-                                                        />
+                                                        ><span className="spinner-grow spinner-grow-lg"></span>Submit ...</button>
                                                     </span>    
                                                 </div>    
                                             </div>
