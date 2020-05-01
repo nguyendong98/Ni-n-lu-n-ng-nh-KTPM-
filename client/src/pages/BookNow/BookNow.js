@@ -17,6 +17,7 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, lo
         
     }, [getAllKindOfRoom, getAllRoom])
     
+    console.log(auth);
     const [formData, setFormData] = useState({
         roomname: '',
         datecheckin: '',
