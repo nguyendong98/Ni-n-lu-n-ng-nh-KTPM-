@@ -1,6 +1,9 @@
 @import './../../App.scss';
 .register {
   padding: 2rem;
+  &__images{
+    width: 50%;
+  }
   &-content {
     text-align: center;
     width: 40rem;
@@ -36,5 +39,10 @@
     &-content{
       width: 100%;
     }
+  }
+}
+@include mediaMd{
+  .login__images{
+    display: none;
   }
 }

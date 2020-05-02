@@ -35,11 +35,11 @@
         
     }
     &__header{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        
+        
         width: 100%;
         margin-bottom: 3rem;
+        
         &-total{
             font-size: 2.5rem;
             color:#19191a;
@@ -69,8 +69,8 @@
     }
     .btn-handle{
         @include btn-handle;
-        background: red;
-        color: white;
+        background: $danger-color;
+        color: $myWhite;
     }
     .btn-delete{
         background: #000;
@@ -78,6 +78,7 @@
         width: 10rem;
     }
 }
+
 
 //checkbox
 .option-input:checked::after{

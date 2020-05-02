@@ -6,6 +6,7 @@ import { register } from './../../actions/auth';
 import PropsType from 'prop-types';
 import './Register.scss';
 import Alert from '../../components/Alert/Alert';
+import registerImage  from './../../images/register.svg'
 const Register = ({ setAlert, register, isAuthenticated, history }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -31,7 +32,8 @@ const Register = ({ setAlert, register, isAuthenticated, history }) => {
   }
   return (
     <section className='register'>
-      <div className='container'>
+      <div className='container d-flex justify-content-center'>
+        <img src={registerImage} alt="registerImages" className="register__images"></img>
         <div className='register-content'>
           
           <div className='register-title'>

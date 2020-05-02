@@ -2,6 +2,10 @@
 
 .login {
   padding: 2rem;
+  &__images{
+    width: 50%;
+
+  }
   &-content {
     text-align: center;
     width: 40rem;
@@ -29,7 +33,11 @@
     }
   }
 }
-
+@include mediaMd{
+  .login__images{
+    display: none;
+  }
+}
 @include mediaSm{
   .login{
     width: 100%;

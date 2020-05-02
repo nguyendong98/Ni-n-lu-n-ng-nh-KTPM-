@@ -11,7 +11,7 @@ const TopMenu = ({ auth, logout }) => {
   
   const authLink = (
     <div className='login'>
-      <img className="mr-3 mb-2" src={ auth && auth.user ? auth.user.avatar : ''}  style={{width: '3rem',height: '3rem', borderRadius: '50%' }} alt=""/>
+      <Link to ="/admin" exact="true"><img className="mr-3 mb-2" src={ auth && auth.user ? auth.user.avatar : ''}  style={{width: '3rem',height: '3rem', borderRadius: '50%' }} alt=""/></Link>
       <Link to="/admin"   className='login-btn mr-3'>
         <i className='fa fa-user'></i> Admin
       </Link>

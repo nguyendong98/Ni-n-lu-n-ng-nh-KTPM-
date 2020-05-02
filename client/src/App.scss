@@ -5,12 +5,24 @@
 @import url('https://fonts.googleapis.com/css?family=Cabin:400,400i,500,500i,600,600i,700,700i&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Cabin+Sketch:400,700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Spicy+Rice&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
+::placeholder{
+  font-size: 1.4rem;
+  font-family: 'Roboto', sans-serif;
+}
+::-webkit-input-placeholder{
+  font-size: 1.4rem;
+  font-family: 'Roboto', sans-serif;
+}
+::-moz-placeholder{
+  font-size: 1.4rem;
+  font-family: 'Roboto', sans-serif;
+}
 html {
   font-size: 62.5%;
 }
@@ -38,6 +50,7 @@ $myBlack: #000;
 $myBlue : #d9edf7;
 $primary-color: #8b6b43;
 $secondary-color: #b9b9b9;
+$danger-color: #dc3545;
 $opacity: 0.9;
 $warning-color: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
 //mixin
@@ -142,7 +155,11 @@ $warning-color: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
   font-size: 1.8rem;
 
 }
-
+@mixin mediaMd{
+  @media screen and (max-width: 768px){
+      @content;
+  }
+}
 
 @mixin mediaSm{
   @media screen and (max-width: 500px){

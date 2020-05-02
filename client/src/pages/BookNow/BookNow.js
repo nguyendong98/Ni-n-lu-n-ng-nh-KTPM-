@@ -17,7 +17,7 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, lo
         
     }, [getAllKindOfRoom, getAllRoom])
     
-    console.log(auth);
+    // console.log(auth);
     const [formData, setFormData] = useState({
         roomname: '',
         datecheckin: '',
@@ -39,7 +39,7 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, lo
                         <td>{room.price} $</td>
                         <td>
                             <select name="roomname" value={roomname} onChange={e => onChange(e)} className="form-control font-secondary">
-                                <option  >-----Select----</option>
+                                <option  ></option>
                                 {roombykind.map((val, index) => {
                                 return (
                                     <option key={index} value={val.name}>{val.name}</option>
@@ -176,7 +176,7 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, lo
                                                     </thead>
                                                 </table>
                                                 <div className="d-flex justify-content-center mt-4 w-100" style={{margin: '0 auto'}}>
-                                                    <span className="d-inline-block w-100" data-toggle="tooltip" title="Disabled tooltip">
+                                                    <span className="d-inline-block w-100" data-toggle="tooltip" title="submit now">
                                                         <button type="submit" className=" d-flex justify-content-center align-items-center btn-submit py-3 px-3 " 
                                                              onClick={e => onSubmit(e)} 
                                                             

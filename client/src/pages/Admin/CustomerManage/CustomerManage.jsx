@@ -32,11 +32,14 @@ const CustomerManage = ({getAllUser, auth:{loading, users}}) => {
             </div>
             <div className="container">
                 <div className="row">
-                    <div className="customermnm__header">
-                        <div className="customermnm__header-total">
+                    <div className="customermnm__header d-flex justify-content-between align-items-center">
+                        <div className="customermnm__header-total ">
                             <span>$Total: {totalCustomer}</span>
+                            
                             <button className="btn-handle btn-delete ml-5 ">Delete All</button>
+                            
                         </div>
+                        
                         <form className="form-inline my-2 my-lg-0">
                             <input className="form-control mr-lg-2 input-search" type="search" placeholder="Search" value={filter} onChange={e => onFilter(e)} />
                             <button className="btn-search my-2 my-sm-0" type="submit">Search</button>

@@ -6,6 +6,7 @@ import './Login.scss';
 import PropsType from 'prop-types';
 import jwtDecode from 'jwt-decode';
 import Alert from '../../components/Alert/Alert';
+import loginImages from './../../images/authenticated.svg'
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: '',
@@ -32,7 +33,8 @@ const Login = ({ login, isAuthenticated }) => {
   }
   return (
     <section className='login'>
-      <div className='container'>
+      <div className='container d-flex justify-content-center'>
+        <img src={loginImages} alt="loginImages" className="login__images"></img>
         <div className='login-content'>
           
           <div className='login-title'>
