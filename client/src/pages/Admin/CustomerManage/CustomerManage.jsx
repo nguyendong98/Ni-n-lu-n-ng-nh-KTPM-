@@ -7,7 +7,7 @@ import Spinner from '../../../components/Spinner/Spinner'
 import {Link} from 'react-router-dom'
 import CustomerItem from './CustomerItem'
 
-const CustomerManage = ({getAllUser, auth:{loading, users}}) => {
+const CustomerManage = ({getAllUser, auth:{loading, users}}) => {    
     useEffect(() => {
         getAllUser()
     }, [getAllUser])
@@ -36,13 +36,13 @@ const CustomerManage = ({getAllUser, auth:{loading, users}}) => {
                         <div className="customermnm__header-total ">
                             <span>$Total: {totalCustomer}</span>
                             
-                            <button className="btn-handle btn-delete ml-5 ">Delete All</button>
+                            <button className="btn-handle btn-delete ml-5">Delete All</button>
                             
                         </div>
                         
                         <form className="form-inline my-2 my-lg-0">
                             <input className="form-control mr-lg-2 input-search" type="search" placeholder="Search" value={filter} onChange={e => onFilter(e)} />
-                            <button className="btn-search my-2 my-sm-0" type="submit">Search</button>
+                            <button className="btn-search my-2 my-sm-0" type="submit" >Search</button>
                         </form>
                     </div>
                     <table className="table">
@@ -52,9 +52,9 @@ const CustomerManage = ({getAllUser, auth:{loading, users}}) => {
                                 <th  className="customer-th"  scope="col">#</th>
                                 <th className="customer-th" scope="col">Name</th>
                                 <th className="customer-th" scope="col">Email</th>
-                                <th className="customer-th" scope="col">Avatar</th>
+                                <th className="customer-th " scope="col">Avatar</th>
                                 <th className="customer-th" scope="col">Day created</th>
-                                <th className="customer-th" scope="col">Action</th>
+                                <th className="customer-th " scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
