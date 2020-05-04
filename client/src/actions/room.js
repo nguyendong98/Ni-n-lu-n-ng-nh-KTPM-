@@ -1,6 +1,13 @@
 import axios from 'axios';
 // import {setAlert} from './alert'
-import { ROOM_LOADED, ROOM_ERROR, BOOK_ROOM, GET_ROOM_DETAIL } from './types';
+import {
+  ROOM_LOADED,
+  ROOM_ERROR,
+  BOOK_ROOM,
+  GET_ROOM_DETAIL,
+  GET_ROOM_RENTED,
+  ACCEPT_ORDER_ROOM,
+} from './types';
 import { setAlert } from './alert';
 import { setNotify } from './notify';
 export const getAllKindOfRoom = () => async (dispatch) => {
@@ -58,4 +65,25 @@ export const bookRoom = (formData) => async (dispatch) => {
       }
     }
   }
+};
+
+export const getAllRoomRent = () => async (dispatch) => {
+  try {
+    const res = await axios.get('/api/roomrented');
+    dispatch({
+      type: GET_ROOM_RENTED,
+      payload: res.data,
+    });
+  } catch (error) {}
+};
+
+export const acceptOrderRoom = (id) => async (dispatch) => {
+  try {
+   await axios.put(`api/admin/${id}`);
+    dispatch({
+      type: ACCEPT_ORDER_ROOM,
+      payload: id,
+    });
+    dispatch();
+  } catch (error) {}
 };
