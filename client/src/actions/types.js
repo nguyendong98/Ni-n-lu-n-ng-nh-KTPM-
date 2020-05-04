@@ -15,3 +15,5 @@ export const BOOK_ROOM = 'BOOK_ROOM';
 export const GETALL_USER = 'GETALL_USER';
 export const DELETE_CUSTOMER = 'DELETE_CUSTOMER';
 export const GET_ROOM_DETAIL = 'GET_ROOM_DETAIL';
+export const GET_ROOM_RENTED = 'GET_ROOM_RENTED';
+export const ACCEPT_ORDER_ROOM = 'ACCEPT_ORDER_ROOM';

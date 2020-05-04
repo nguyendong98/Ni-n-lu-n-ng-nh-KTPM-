@@ -10,8 +10,9 @@ const admin = require('./../../middleware/admin');
 router.put('/:id', admin, async (req, res) => {
   try {
     const id = req.params.id;
-    const room = await Room.findById(id);
-    const roomRent = await RoomRented.findOne({ room: id });
+    
+    const roomRent = await RoomRented.findById(id);
+    const room = await Room.findOne(roomRent.room);
     if (!room || !roomRent) {
       return res.status(404).json('Room not found');
     }

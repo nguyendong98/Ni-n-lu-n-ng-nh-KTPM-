@@ -3,6 +3,8 @@ import {
   ROOM_ERROR,
   BOOK_ROOM,
   GET_ROOM_DETAIL,
+  GET_ROOM_RENTED,
+  ACCEPT_ORDER_ROOM,
 } from './../actions/types';
 const InitialState = {
   rooms: [],
@@ -36,7 +38,20 @@ const room = (state = InitialState, action) => {
       return {
         ...state,
         room: payload,
-        loading: false
+        loading: false,
+      };
+    case GET_ROOM_RENTED:
+      return {
+        ...state,
+        roomrented: payload,
+        loading: false,
+      };
+    case ACCEPT_ORDER_ROOM:
+      return {
+        ...state,
+        roomrented: state.roomrented.map(
+          (val) => (val.status = val._id === payload ? 'Đã duyệt' : val.status)
+        ),
       };
     default:
       return state;

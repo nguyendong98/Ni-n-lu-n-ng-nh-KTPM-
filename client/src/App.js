@@ -22,6 +22,7 @@ import Rooms from './pages/Rooms/Rooms';
 import RoomDetail from './pages/RoomDetail/RoomDetail';
 import CustomerManage from './pages/Admin/CustomerManage/CustomerManage';
 import Notify from './components/Notify/Notify';
+import OrderRooms from './pages/Admin/Order/OrderRooms';
 const App = () => {
   useEffect(() => {
     if (localStorage.token) {
@@ -52,6 +53,8 @@ const App = () => {
               component={CustomerManage}
             />
             <PrivateRoute exact path='/admin' component={Admin} />
+            <PrivateRoute path='/roomrented' exact component={OrderRooms} />
+            <PrivateRoute />
             <Route path='' exact component={NotFound} />
           </Switch>
           <Footer />

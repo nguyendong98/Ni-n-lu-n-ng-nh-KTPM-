@@ -1,0 +1,139 @@
+@import './../../../App.scss';
+
+
+
+
+.customermnm{
+    padding-bottom: 8rem;
+    &__title{
+        text-align: center;
+        font-size: 4.4rem;
+        color:#19191a;
+        font-family: 'Lora', serif;
+        margin-top: 6rem;
+    }
+    &__menu{
+        text-align: center;
+        margin-top: 1.8rem;
+        margin-bottom: 8rem;
+        font: {
+            family: 'Lora', serif;
+            size: 1.8rem;
+        }
+        span:nth-child(1){
+            margin-right: 1rem;
+        }
+        i{
+            font-size: 1.5rem;
+            color: #aaaab3;
+        }
+        &-home{
+            margin-left: 1rem;
+            color: #aaaab3;
+        }
+        
+        
+    }
+    &__header{
+        
+        
+        width: 100%;
+        margin-bottom: 3rem;
+        
+        &-total{
+            font-size: 2.5rem;
+            color:#19191a;
+            font-family: 'Yanone Kaffeesatz', sans-serif;
+
+        }
+        .input-search{
+            height: 3.7rem !important;
+            width: 20rem;
+            font-size: $font-secondary;
+        }
+        .btn-search{
+            @include btn-search;
+        }
+    }
+    .customer-td{
+        font-family: 'Spicy Rice', cursive;
+        color:  #aaaab3;
+        
+    }
+    .customer-th{
+        
+        font: {
+            family: 'Yanone Kaffeesatz', sans-serif;
+            size: 2rem;
+        }
+    }
+    .btn-handle{
+        @include btn-handle;
+        background: $danger-color;
+        color: $myWhite;
+    }
+    .btn-delete{
+        background: #000;
+        color: white;
+        width: 10rem;
+    }
+}
+
+
+//checkbox
+.option-input:checked::after{
+    animation: click-ware 0.75s;
+    background-color: #40e0d0;
+    content: '';
+    display: block;
+    position: relative;
+    z-index: 100;
+  }
+  
+  @keyframes click-ware{
+    0%{
+      height: 40px;
+      width: 40px;
+      opacity: 0.35;
+      position: relative;
+    }
+    100%{
+      height: 20rem;
+      width: 20rem;
+      margin-left: -8rem;
+      margin-top: -8rem;
+      opacity: 0;
+    }
+  }
+  .option-input{
+    appearance: none;
+    position: relative;
+    top: 0.3rem;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1.5rem;
+    width: 1.5rem;
+    transition: all 0.15s ease-out 0s;
+    background: rgb(62, 91, 100);
+    border: none;
+    color: $myWhite;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 0.5rem;
+    outline: none;
+    position: relative;
+    z-index: 1000;
+  
+  }
+  .option-input:checked::before{
+    content: '✓';
+    height: 1.5rem;
+    width: 1.5rem;
+    position: absolute;
+    display: inline-block;
+    font-size: 1.333rem;
+    text-align: center;
+    line-height: 1.5rem;
+  
+  }
