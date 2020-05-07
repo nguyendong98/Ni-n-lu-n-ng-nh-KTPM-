@@ -79,10 +79,11 @@ export const getAllRoomRent = () => async (dispatch) => {
 
 export const acceptOrderRoom = (id) => async (dispatch) => {
   try {
-   await axios.put(`api/admin/${id}`);
+    await axios.put(`api/admin/${id}`);
+    const res1 = await axios.get('/api/roomrented');
     dispatch({
       type: ACCEPT_ORDER_ROOM,
-      payload: id,
+      payload: res1.data,
     });
     dispatch();
   } catch (error) {}

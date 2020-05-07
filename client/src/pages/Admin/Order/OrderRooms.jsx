@@ -12,6 +12,11 @@ const OrderRooms = ({ room: { roomrented, loading }, getAllRoomRent }) => {
     getAllRoomRent();
   }, [getAllRoomRent]);
 
+  var input = document.getElementById('search');
+  const show = () => {
+    console.log(input);
+  };
+
   return loading ? (
     <Spinner />
   ) : (
@@ -42,8 +47,13 @@ const OrderRooms = ({ room: { roomrented, loading }, getAllRoomRent }) => {
                 className='form-control mr-lg-2 input-search'
                 type='search'
                 placeholder='Search'
+                id='search'
               />
-              <button className='btn-search my-2 my-sm-0' type='submit'>
+              <button
+                className='btn-search my-2 my-sm-0'
+                type='submit'
+                onClick={(e) => show()}
+              >
                 Search
               </button>
             </form>
@@ -78,9 +88,13 @@ const OrderRooms = ({ room: { roomrented, loading }, getAllRoomRent }) => {
               </tr>
             </thead>
             <tbody>
-              {roomrented ? roomrented.map((val, key) => {
-                return <OrderRoomItem key={key} index={key} roomrented={val} />;
-              }): null}
+              {roomrented
+                ? roomrented.map((val, key) => {
+                    return (
+                      <OrderRoomItem key={key} index={key} roomrented={val} />
+                    );
+                  })
+                : null}
             </tbody>
           </table>
         </div>
