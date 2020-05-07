@@ -137,11 +137,13 @@ router.delete('/', admin, async (req, res) => {
     try {
         await RoomRented.deleteMany()
         const room = await Room.find({status: "Đã đặt"})
-        room.map(val => {
+        
+        room.map( async val => {
             val.status = "Còn trống"
-            
-        });
-        await room.save()
+            await val.save()
+           
+        });        
+        return res.status(200).send('Delete Success')
     } catch (error) {
         console.error(error.message)
         res.status(500).send('Server Error!')
