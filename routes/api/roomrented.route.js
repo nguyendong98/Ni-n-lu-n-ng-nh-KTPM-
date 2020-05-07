@@ -102,14 +102,14 @@ router.get('/', async (req, res) => {
         return res.json(allrooms)
 
     } catch (error) {
-        console.log(error)
+        console.error(error)
         res.status(500).send('Server Error');
     }
 })
 
-// @route    DELETE api/roomrents/:id_roomrented
-// @desc     GET all roomrented
-// @access   Public
+// @route    DELETE api/roomrented/:id_roomrented
+// @desc     Delete roomrented by id
+// @access   Private
 // Xóa phòng thuê theo id
 router.delete('/:id_roomrented', auth , async (req, res) => {
     try {
@@ -120,13 +120,31 @@ router.delete('/:id_roomrented', auth , async (req, res) => {
 
         const room = await Room.findById({_id: roomrented.room})
         await roomrented.remove()
-        room.status = false;
+        room.status = "Chưa đặt";
         await room.save()
         return res.status(200).json({msg : 'Roomrented removed!'})
     } catch (error) {
-        console.log(error.message)
+        console.error(error.message)
         res.status(500).send('Server Error')
     }
 } )
 
+// @route    DELETE api/roomrented/
+// @desc     Delete all roomrented
+// @access   Public
+// Xóa all phòng thuê
+router.delete('/', admin, async (req, res) => {
+    try {
+        await RoomRented.deleteMany()
+        const room = await Room.find({status: "Đã đặt"})
+        room.map(val => {
+            val.status = "Còn trống"
+            
+        });
+        await room.save()
+    } catch (error) {
+        console.error(error.message)
+        res.status(500).send('Server Error!')
+    }
+})
 module.exports =  router
