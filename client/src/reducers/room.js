@@ -49,9 +49,7 @@ const room = (state = InitialState, action) => {
     case ACCEPT_ORDER_ROOM:
       return {
         ...state,
-        roomrented: state.roomrented.map(
-          (val) => (val.status = val._id === payload ? 'Đã duyệt' : val.status)
-        ),
+        roomrented: payload,
       };
     default:
       return state;

@@ -56,10 +56,16 @@ const OrderRoomItem = ({
         <td className='customer-td '>
           <button
             disabled={roomrented.status === 'Đã duyệt' ? 'disabled' : ''}
-            className='btn-handle btn '
+            className='btn-handle btn mr-2'
             onClick={(e) => acceptOrderRoom(roomrented._id)}
           >
             Accept
+          </button>
+          <button
+            className='btn-delete btn'
+            onClick={(e) => acceptOrderRoom(roomrented._id)}
+          >
+            Delete
           </button>
         </td>
       </tr>
