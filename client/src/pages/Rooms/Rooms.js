@@ -12,7 +12,7 @@ const Rooms = ({getAllKindOfRoom, room: {rooms, loading}}) => {
     }, [getAllKindOfRoom])
     return loading ? (<Spinner/>) : (
         <section className="rooms">
-            <h2 className="rooms__title">Our Rooms</h2>
+            <h2 className="rooms__title animate__animated animate__flip">Our Rooms</h2>
             <div className="rooms__menu">
                 <span><Link to="/" exact="true" style={{color: "black"}}>Home</Link></span>
                 <i className="fa fa-chevron-right" ></i>

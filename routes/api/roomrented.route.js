@@ -107,46 +107,5 @@ router.get('/', async (req, res) => {
     }
 })
 
-// @route    DELETE api/roomrented/:id_roomrented
-// @desc     Delete roomrented by id
-// @access   Private
-// Xóa phòng thuê theo id
-router.delete('/:id_roomrented', auth , async (req, res) => {
-    try {
-        const roomrented = await RoomRented.findById(req.params.id_roomrented);
-        if (!req.params.id_roomrented.match(/^[0-9a-fA-F]{24}$/) || !roomrented){
-            return res.status(404).json('Roomrented not found!')
-        }
 
-        const room = await Room.findById({_id: roomrented.room})
-        await roomrented.remove()
-        room.status = "Chưa đặt";
-        await room.save()
-        return res.status(200).json({msg : 'Roomrented removed!'})
-    } catch (error) {
-        console.error(error.message)
-        res.status(500).send('Server Error')
-    }
-} )
-
-// @route    DELETE api/roomrented/
-// @desc     Delete all roomrented
-// @access   Public
-// Xóa all phòng thuê
-router.delete('/', admin, async (req, res) => {
-    try {
-        await RoomRented.deleteMany()
-        const room = await Room.find({status: "Đã đặt"})
-        
-        room.map( async val => {
-            val.status = "Còn trống"
-            await val.save()
-           
-        });        
-        return res.status(200).send('Delete Success')
-    } catch (error) {
-        console.error(error.message)
-        res.status(500).send('Server Error!')
-    }
-})
 module.exports =  router

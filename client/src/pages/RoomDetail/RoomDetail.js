@@ -18,7 +18,7 @@ const RoomDetail = ({
     <Spinner />
   ) : (
     <section className='rooms'>
-      <h2 className='rooms__title'>Room Detail</h2>
+      <h2 className='rooms__title animate__animated animate__flip'>Room Detail</h2>
       <div className='rooms__menu'>
         <span>
           <link to='/' exact='true' style={{ color: 'black' }} />
@@ -109,7 +109,7 @@ const RoomDetail = ({
           <div className='room_info'>
             <div className='row'>
               <div className='col-8'>
-                <h3>Premium King Room</h3>
+                <h3>{ room ? room.name : '' }</h3>
               </div>
               <div className='col-4 rating-right'>
                 <button

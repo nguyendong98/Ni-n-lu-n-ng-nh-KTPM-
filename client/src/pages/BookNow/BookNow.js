@@ -65,7 +65,7 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, lo
     (
         
         <section className="Booknow">            
-            <h2 className="Booknow__title">Book now</h2>
+            <h2 className="Booknow__title animate animate__animated animate__flip">Book now</h2>
             <div className="Booknow__menu">
                 <span><Link to="/" exact="true" style={{color: "black"}}>Home</Link></span>
                 <i className="fa fa-chevron-right" ></i>
