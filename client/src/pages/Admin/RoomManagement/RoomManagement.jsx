@@ -31,15 +31,20 @@ const RoomManagement = ({
       <div className='container'>
         {roomcategory.map((category) => {
           return (
-            <div className='row'>
-              <div className='col-6 col-lg-2 px-4 pt-2'>
-                <div className='category_name p-2 px-3'>
-                  <div className='line-top' />
-                  <div className='line-bot' />
-                  {category.name}
+            <div className='row mt-5'>
+              <div className='col-12 px-4 mb-2'>
+                <div className='d-flex justify-content-between'>
+                  <div className='col-4 col-lg-3 category_name p-2 px-3'>
+                    <div className='line-top' />
+                    <div className='line-bot' />
+                    {category.name}
+                  </div>
+                  <div className='drop'>
+                    <i class='fa fa-angle-down' aria-hidden='true'></i>
+                  </div>
                 </div>
               </div>
-              <div className='col-12 col-lg-10 row room'>
+              <div className='col-12 col-lg-12 row room'>
                 {allroom.map((room) => {
                   if (room.kind === category._id) {
                     if (room.status === 'Đã đặt') {
