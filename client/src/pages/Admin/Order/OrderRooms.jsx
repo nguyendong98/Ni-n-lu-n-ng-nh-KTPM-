@@ -6,8 +6,8 @@ import Spinner from '../../../components/Spinner/Spinner';
 import { Link } from 'react-router-dom';
 import OrderRoomItem from './OrderRoomItem';
 import { getAllRoomRent } from '../../../actions/room';
-
-const OrderRooms = ({ room: { roomrented, loading }, getAllRoomRent }) => {
+import { deleteAllRoomRented } from "../../../actions/room";
+const OrderRooms = ({ room: { roomrented, loading }, getAllRoomRent, deleteAllRoomRented  }) => {
   useEffect(() => {
     getAllRoomRent();
   }, [getAllRoomRent]);
@@ -37,7 +37,10 @@ const OrderRooms = ({ room: { roomrented, loading }, getAllRoomRent }) => {
             <div className='customermnm__header-total '>
               <span>$Total:</span>
 
-              <button className='btn-handle btn-delete ml-5 '>
+              <button className='btn-handle btn-delete ml-5' onClick={e => {
+                e.preventDefault();
+                deleteAllRoomRented()
+              }}>
                 Delete All
               </button>
             </div>
@@ -109,6 +112,7 @@ const mapStateToProps = (state) => {
 };
 OrderRooms.propTypes = {
   room: PropTypes.object.isRequired,
+  deleteAllRoomRented: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps, { getAllRoomRent })(OrderRooms);
+export default connect(mapStateToProps, { getAllRoomRent, deleteAllRoomRented })(OrderRooms);
