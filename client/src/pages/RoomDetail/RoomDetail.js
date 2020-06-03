@@ -13,7 +13,6 @@ const RoomDetail = ({
   useEffect(() => {
     getKindOfRoomDetail(match.params.id);
   }, [getKindOfRoomDetail, match.params.id]);
-  console.log(room);
   return loading ? (
     <Spinner />
   ) : (
@@ -96,7 +95,7 @@ const RoomDetail = ({
               <div className='col-12 '>
                 <button
                   type='button'
-                  className='btn btn-outline-primary'
+                  className='btn btn-success mt-5 py-4'
                   style={{ width: '100%' }}
                 >
                   Book Now
@@ -111,17 +110,9 @@ const RoomDetail = ({
               <div className='col-8'>
                 <h3>{ room ? room.name : '' }</h3>
               </div>
-              <div className='col-4 rating-right'>
-                <button
-                  type='button'
-                  className='btn btn-warning'
-                  style={{ width: '100%' }}
-                >
-                  Booking Now
-                </button>
-              </div>
+              <div className='col-4 rating-right d-flex justify-content-end align-items-center px-5'>{ showRating(4) }</div>
             </div>
-            <div className='col-12' style={{ padding: '0' }}>
+            <div  className='col-12' style={{ padding: '0' }}>
               <table className='tb_detail'>
                 {room ? (
                   <tbody>
@@ -167,7 +158,16 @@ const RoomDetail = ({
     </section>
   );
 };
-
+const showRating = (rating) => {
+  var result = [];
+  for(var i = 1; i<=rating;i++){
+    result.push(<i key={Math.random()} className="fa fa-star" style={{fontSize: '25px', color: 'yellow'}}></i>);
+  }
+  for(var j = 1; j <= (5 - rating); j++){
+    result.push(<i key={Math.random()} className="fa fa-star-o" style={{fontSize: '25px', color: 'yellow'}} ></i>)
+  }
+  return result;
+}
 RoomDetail.propTypes = {
   getKindOfRoomDetail: PropTypes.func.isRequired,
 };

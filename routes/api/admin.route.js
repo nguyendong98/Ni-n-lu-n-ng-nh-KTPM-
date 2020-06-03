@@ -7,19 +7,34 @@ const auth = require('./../../middleware/auth');
 // @route   GET api/admin/:id
 // @access  Private/admin
 
-router.put('/:id', admin, async (req, res) => {
+router.put('/roomrented/:id', admin, async (req, res) => {
   try {
     const id = req.params.id;
-    
     const roomRent = await RoomRented.findById(id);
-    const room = await Room.findOne(roomRent.room);
-    if (!room || !roomRent) {
-      return res.status(404).json('Room not found');
-    }
-    roomRent.status = 'Đã duyệt';
-    room.status = 'Đã đặt';
-    await roomRent.save();
-    await room.save();
+    roomRent.roomrents.map( async val => {
+        const roomEmpty = await Room.find({status: 'Empty', kind: val.id_kindOfRoom})
+        if(roomEmpty.length < val.length) {
+            return res.status(400).json({ errors: [{ msg:'Available rooms are no longer sufficient' }] })
+        }
+        await roomEmpty.splice(0,roomEmpty.length - val.quantity)
+        roomEmpty.map(async val => {
+            try {
+                val.status = 'Has Placed'
+                roomRent.roomrent_detail.push(val);
+                const roomChangeStatus = await Room.findById(val._id);
+                roomChangeStatus.status = 'Has Placed'
+                await roomChangeStatus.save()
+                roomRent.status = 'approve';
+                await roomRent.save();
+            } catch (e) {
+                console.log(e)
+            }
+        })
+
+    })
+
+
+
     return res.status(200).json(roomRent);
   } catch (error) {
     console.log(error.message);
@@ -41,7 +56,7 @@ router.delete('/roomrented/:id_roomrented', auth , async (req, res) => {
 
       const room = await Room.findById({_id: roomrented.room})
       await roomrented.remove()
-      room.status = "Chưa đặt";
+      room.status = "Empty";
       await room.save()
       return res.status(200).json({msg : 'Roomrented removed!'})
   } catch (error) {
@@ -57,14 +72,14 @@ router.delete('/roomrented/:id_roomrented', auth , async (req, res) => {
 router.delete('/roomrented', admin, async (req, res) => {
   try {
       await RoomRented.deleteMany()
-      const room = await Room.find({status: "Đã đặt"})
+      const room = await Room.find({status: "Has Placed"})
       console.log(room)
       room.map( async val => {
-          val.status = "Còn trống"
+          val.status = "Empty"
           await val.save()
-         
-      });        
-      return res.status(200).send('Delete Success')
+
+      });
+      return res.status(200).json('Delete success')
   } catch (error) {
       console.error(error.message)
       res.status(500).send('Server Error!')

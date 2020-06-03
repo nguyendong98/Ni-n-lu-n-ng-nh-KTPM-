@@ -15,7 +15,7 @@ const CustomerItem = ({customer, index, deleteCustomer}) => {
                 <td className="customer-td">{customer.email}</td>
                 <td className="customer-td "><img src={customer.avatar} alt="img" style={{width:"7rem", height: "7rem", borderRadius: '50%'}}/></td>
                 <td className="customer-td"><Moment format="MM/DD/YYYY">{customer.date}</Moment></td>
-                <td className="customer-td "><button className="btn-handle btn"  onClick={() => deleteCustomer(customer._id)}>Delete</button></td>
+                <td className="customer-td "><button className="btn-delete btn"  onClick={() => deleteCustomer(customer._id)}>Delete</button></td>
             </tr>
         </Fragment>
     )

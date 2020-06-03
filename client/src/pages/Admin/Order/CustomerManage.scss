@@ -59,7 +59,7 @@
   }
   .btn-handle {
     @include btn-handle;
-    background: $primary-color;
+    background-image: $warning-color;
     color: $myWhite;
   }
   .btn-delete {
