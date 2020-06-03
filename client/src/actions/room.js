@@ -7,6 +7,8 @@ import {
   GET_ROOM_DETAIL,
   GET_ROOM_RENTED,
   ACCEPT_ORDER_ROOM,
+  DELETE_ROOMRENTED_BY_ID,
+  DELETE_ALL_ROOMRENTED
 } from './types';
 import { setAlert } from './alert';
 import { setNotify } from './notify';
@@ -42,6 +44,7 @@ export const getKindOfRoomDetail = (id) => async (dispatch) => {
 };
 
 export const bookRoom = (formData) => async (dispatch) => {
+
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -79,12 +82,36 @@ export const getAllRoomRent = () => async (dispatch) => {
 
 export const acceptOrderRoom = (id) => async (dispatch) => {
   try {
-    await axios.put(`api/admin/${id}`);
+    await axios.put(`api/admin/roomrented/${id}`);
     const res1 = await axios.get('/api/roomrented');
     dispatch({
       type: ACCEPT_ORDER_ROOM,
-      payload: res1.data,
-    });
-    dispatch();
+      payload: res1.data,    });
+    
+
   } catch (error) {}
 };
+
+export const deleteRoomRentedById = id => async dispatch => {
+  try {
+    await axios.delete(`/api/admin/roomrented/${id}`)
+    dispatch({
+      type: DELETE_ROOMRENTED_BY_ID,
+      payload: id
+    })
+  } catch (e) {
+    console.log(e)
+  }
+}
+export const deleteAllRoomRented = () => async  dispatch => {
+  if (window.confirm('Are you sure? This can NOT be undone!')) {
+    try {
+      await axios.delete('/api/admin/roomrented')
+      dispatch({
+        type: DELETE_ALL_ROOMRENTED
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+}

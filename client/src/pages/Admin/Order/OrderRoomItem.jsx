@@ -4,12 +4,17 @@ import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import { getAllUser } from '../../../actions/auth';
 import { acceptOrderRoom } from '../../../actions/room';
+import { deleteRoomRentedById} from "../../../actions/room";
+
+
 const OrderRoomItem = ({
   roomrented,
   index,
   auth: { users },
   getAllUser,
   acceptOrderRoom,
+  deleteRoomRentedById,
+
 }) => {
   useEffect(() => {
     getAllUser();
@@ -26,7 +31,6 @@ const OrderRoomItem = ({
     });
     return name;
   };
-
   return (
     <Fragment>
       <tr style={{ height: '10rem', lineHeight: '10rem' }}>
@@ -45,7 +49,7 @@ const OrderRoomItem = ({
         <td className='customer-td'>
           <span
             className={
-              roomrented.status === 'Đã duyệt'
+              roomrented.status === 'approve'
                 ? 'badge badge-primary'
                 : 'badge badge-warning'
             }
@@ -55,7 +59,7 @@ const OrderRoomItem = ({
         </td>
         <td className='customer-td '>
           <button
-            disabled={roomrented.status === 'Đã duyệt' ? 'disabled' : ''}
+            disabled={roomrented.status === 'approve' ? 'disabled' : ''}
             className='btn-handle btn mr-2'
             onClick={(e) => acceptOrderRoom(roomrented._id)}
           >
@@ -63,7 +67,7 @@ const OrderRoomItem = ({
           </button>
           <button
             className='btn-delete btn'
-            onClick={(e) => acceptOrderRoom(roomrented._id)}
+            onClick={(e) => deleteRoomRentedById(roomrented._id)}
           >
             Delete
           </button>
@@ -82,8 +86,9 @@ OrderRoomItem.propTypes = {
   roomrented: PropTypes.object.isRequired,
   getAllUser: PropTypes.func.isRequired,
   acceptOrderRoom: PropTypes.func.isRequired,
+  deleteRoomRentedById: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps, { getAllUser, acceptOrderRoom })(
+export default connect(mapStateToProps, { getAllUser, acceptOrderRoom, deleteRoomRentedById })(
   OrderRoomItem
 );

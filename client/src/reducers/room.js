@@ -5,6 +5,8 @@ import {
   GET_ROOM_DETAIL,
   GET_ROOM_RENTED,
   ACCEPT_ORDER_ROOM,
+  DELETE_ROOMRENTED_BY_ID,
+  DELETE_ALL_ROOMRENTED
 } from './../actions/types';
 const InitialState = {
   rooms: [],
@@ -51,6 +53,17 @@ const room = (state = InitialState, action) => {
         ...state,
         roomrented: payload,
       };
+    case DELETE_ROOMRENTED_BY_ID:
+      return {
+        ...state,
+        roomrented: state.roomrented.filter(val => val._id !== payload)
+      }
+    case DELETE_ALL_ROOMRENTED:
+      return {
+        ...state,
+        roomrented: []
+      }
+
     default:
       return state;
   }

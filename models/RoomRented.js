@@ -1,8 +1,21 @@
 const mongoose = require('mongoose');
 const RoomRentedSchema = new mongoose.Schema({
-  room: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'room',
+  roomrents: [
+    {
+      id_kindOfRoom: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'kindofroom'
+      },
+      price: {
+        type: Number
+      },
+      quantity: {
+        type: Number
+      }
+    }
+  ],
+  roomrent_detail: {
+    type: Array
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -26,7 +39,7 @@ const RoomRentedSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    default: 'Chưa duyệt',
+    default: 'not_approve',
   },
   nationality: {
     type: String,

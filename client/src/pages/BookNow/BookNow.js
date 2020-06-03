@@ -1,6 +1,5 @@
 import React, {useState, useEffect, Fragment} from 'react'
 import PropTypes from 'prop-types'
-
 import {connect} from 'react-redux'
 import {getAllKindOfRoom, bookRoom} from './../../actions/room'
 import Alert from './../../components/Alert/Alert'
@@ -10,62 +9,87 @@ import {Link} from 'react-router-dom'
 import './BookNow.scss'
 
 
-const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, loading}, bookRoom}) => {
+const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, loading}, bookRoom}) => {
     
     useEffect(() => {
         getAllKindOfRoom();
         
     }, [getAllKindOfRoom, getAllRoom])
     
-    // console.log(auth);
+
     const [formData, setFormData] = useState({
-        roomname: '',
         datecheckin: '',
         datecheckout: '',       
         identitycard: '',
         phone: '',
-        nationality: ''
+        nationality: '',
+        roomrents: []
        
 
     })
-    const {roomname, datecheckin, datecheckout, identitycard, phone, nationality} = formData
+    const { datecheckin, datecheckout, identitycard, phone, nationality } = formData
     const showSelectRoomItem = () => {
       return rooms ?  rooms.map((room, index) => {
-            const roombykind = allroom.filter(val => val.kind === room._id && val.status === 'Còn trống')
+            var roomRented = {};
+            roomRented.id_kindOfRoom = room._id;
+            roomRented.price = room.price;
+            const onChangeStep3 = e => {
+                roomRented.quantity = e.target.value;
+            }
             return (
                 <Fragment key={index}>
                     <tr>
                         <td>{room.name.toUpperCase()}</td>
                         <td>{room.price} $</td>
                         <td>
-                            <select name="roomname" value={roomname} onChange={e => onChange(e)} className="form-control font-secondary">
-                                <option  ></option>
-                                {roombykind.map((val, index) => {
-                                return (
-                                    <option key={index} value={val.name}>{val.name}</option>
-                                )
-                                })}
-                            </select>
+                            <input className="form-control font-secondary" type="number" min={0} max={3} name="quantity"
+                                   onChange={e => onChangeStep3(e)}/>
                         </td>
-                        
+                        <td className="d-flex justify-content-center align-items-center">
+                            <input type="checkbox" className="option-input checkbox" onClick={() => pushItem(roomRented)}/>
+                        </td>
+
                     </tr>
                 </Fragment>
             )
         }) : null
     }
-    const onChange = (e) => {
+    const onChangeStep1_2 =  e => {
         setFormData({...formData, [e.target.name]: e.target.value})
     }
     const onSubmit = (e) => {
         e.preventDefault()
         bookRoom(formData)
     }
-    
+    const findItem = (arr, e) => {
+        var i = -1
+        arr.map((val, index) => {
+            if(e.id_kindOfRoom === val.id_kindOfRoom){
+                i = index
+            }
+            return i
+        })
+        return i
+    }
+    const pushItem = (e) => {
+
+        const formdata = {...formData}
+        const i = findItem(formdata.roomrents, e)
+
+        if(i === -1) {
+            formdata.roomrents.push(e)
+            setFormData(formdata)
+        }
+        else {
+            formdata.roomrents.splice(i, 1)
+            setFormData(formData)
+        }
+    }
     return loading ? (<Spinner/>) :
     (
         
         <section className="Booknow">            
-            <h2 className="Booknow__title animate animate__animated animate__flip">Book now</h2>
+            <h2 className="Booknow__title  animate__animated animate__flip">Book now</h2>
             <div className="Booknow__menu">
                 <span><Link to="/" exact="true" style={{color: "black"}}>Home</Link></span>
                 <i className="fa fa-chevron-right" ></i>
@@ -92,9 +116,8 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, lo
                                                     </div>
                                                     <input type='date' className='form-control font-secondary'
                                                         value={datecheckin}
-                                                        onChange={e => onChange(e)}
+                                                        onChange={e => onChangeStep1_2(e)}
                                                         name="datecheckin"
-                                                        // style={{width: '100%'}}
                                                     />
                                                 </div>
                                             </div>
@@ -108,9 +131,8 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, lo
                                                     </div>
                                                     <input type='date' className='form-control font-secondary'
                                                         value={datecheckout}
-                                                        onChange={e => onChange(e)}
+                                                        onChange={e => onChangeStep1_2(e)}
                                                         name="datecheckout"
-                                                        // style={{width: '100%'}}
                                                     />
                                                 </div>
                                             </div>
@@ -132,19 +154,19 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, lo
                                             <div className="col-lg-6 col-md-12">
                                                 <b><i><p className="px-1 py-1 mt-1">Phone*</p></i></b>
                                                 <input type="text" name="phone" className='form-control font-secondary' 
-                                                value={phone} onChange={e => onChange(e)} 
+                                                value={phone} onChange={e => onChangeStep1_2(e)}
                                                 placeholder="Fill your phone"/>
                                             </div>
                                             <div className="col-lg-6 col-md-12">
                                                 <b><i><p className="mt-2">Nationality*</p></i></b>
                                                 <input type="text" name="nationality" className='form-control font-secondary' 
-                                                value={nationality} onChange={e => onChange(e)} 
+                                                value={nationality} onChange={e => onChangeStep1_2(e)}
                                                 placeholder="Fill your nationality"/>
                                             </div>
                                             <div className="col-lg-6 col-md-12">
                                                 <b><i><p className="mt-2">Identity card*</p></i></b>
                                                 <input type="text" name="identitycard" className='form-control font-secondary' 
-                                                value={identitycard} onChange={e => onChange(e)} 
+                                                value={identitycard} onChange={e => onChangeStep1_2(e)}
                                                 placeholder="Fill your Identity card"/>
                                             </div>
                                         </div>
@@ -165,8 +187,8 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, lo
                                                         <tr>
                                                             <th>Kind of Room</th>
                                                             <th>Price</th>
-                                                            <th>Room name</th>
-                                                            
+                                                            <th>Quantity</th>
+                                                            <th>Choose</th>
                                                         </tr>
                                                         {
                                                             showSelectRoomItem()
@@ -177,8 +199,8 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, allroom, lo
                                                 </table>
                                                 <div className="d-flex justify-content-center mt-4 w-100" style={{margin: '0 auto'}}>
                                                     <span className="d-inline-block w-100" data-toggle="tooltip" title="submit now">
-                                                        <button type="submit" className=" d-flex justify-content-center align-items-center btn-submit py-3 px-3 " 
-                                                             onClick={e => onSubmit(e)} 
+                                                        <button type="submit" onClick={e => onSubmit(e)} className=" d-flex justify-content-center align-items-center btn-submit py-3 px-3 "
+
                                                             
                                                         ><span className="spinner-grow spinner-grow-lg"></span>Submit</button>
                                                     </span>    

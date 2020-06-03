@@ -25,23 +25,6 @@
         border-right:1.5rem solid transparent;
         border-bottom:2rem solid #fafaf9;
     }
-    animation: fadeIn 1s linear;
+
 }
-@keyframes fadeIn{
-    0%{
-        top: -2rem;
-        opacity: 0;
-    }
-    25%{
-        top: 0rem;
-        opacity: 0.25;
-    }
-    75%{
-        top: 2rem;
-        opacity: 0.6;
-    }
-    100%{
-        top: 4rem;
-        opacity: 1;
-    }
-}
+

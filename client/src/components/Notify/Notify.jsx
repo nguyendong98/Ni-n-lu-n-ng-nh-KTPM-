@@ -4,7 +4,7 @@ import './Notify.scss'
 import {connect} from 'react-redux'
 const Notify = ({notify}) => (
     notify !== null && notify.length > 0 && notify.map(val => (
-        <div key={val.id} className="notify">
+        <div key={val.id} className="notify animate__animated animate__wobble">
             {val.msg}
         </div>
         
