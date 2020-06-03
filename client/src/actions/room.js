@@ -7,6 +7,7 @@ import {
   GET_ROOM_DETAIL,
   GET_ROOM_RENTED,
   ACCEPT_ORDER_ROOM,
+  GET_ALL_ROOM,
 } from './types';
 import { setAlert } from './alert';
 import { setNotify } from './notify';
@@ -17,6 +18,22 @@ export const getAllKindOfRoom = () => async (dispatch) => {
     dispatch({
       type: ROOM_LOADED,
       payload: { rooms: res.data, allroom: res1.data },
+    });
+  } catch (error) {
+    dispatch({
+      type: ROOM_ERROR,
+      payload: error.data,
+    });
+  }
+};
+
+export const getAllRoom = () => async (dispatch) => {
+  try {
+    const res = await axios.get('/api/kindofrooms');
+    const res1 = await axios.get('/api/rooms');
+    dispatch({
+      type: GET_ALL_ROOM,
+      payload: { category: res.data, allroom: res1.data }
     });
   } catch (error) {
     dispatch({

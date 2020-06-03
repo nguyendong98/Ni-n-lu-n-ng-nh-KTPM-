@@ -5,12 +5,14 @@ import {
   GET_ROOM_DETAIL,
   GET_ROOM_RENTED,
   ACCEPT_ORDER_ROOM,
+  GET_ALL_ROOM,
 } from './../actions/types';
 const InitialState = {
   rooms: [],
   room: null,
   allroom: [],
   loading: true,
+  roomcategory: [],
   error: {},
   roomrented: null,
 };
@@ -38,6 +40,13 @@ const room = (state = InitialState, action) => {
       return {
         ...state,
         room: payload,
+        loading: false,
+      };
+    case GET_ALL_ROOM:
+      return {
+        ...state,
+        roomcategory: payload.category,
+        allroom: payload.allroom,
         loading: false,
       };
     case GET_ROOM_RENTED:

@@ -1,0 +1,67 @@
+.category_name {
+  position: relative;
+  text-shadow: 2px 2px #4c4c4c;
+  text-align: center;
+}
+.line-top {
+  width: 30%;
+  height: 10px;
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  background: #6d6271;
+  z-index: -1;
+}
+.line-bot {
+  width: 30%;
+  height: 10px;
+  position: absolute;
+  bottom: -3px;
+  right: -3px;
+  background: #6d6271;
+  z-index: -1;
+}
+
+.category_name {
+  font-size: 1.2rem;
+  color: white;
+  font-weight: 500;
+  text-transform: uppercase;
+  background: #8b6b43;
+}
+
+.room {
+  text-align: center;
+}
+.room .room_name {
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.room .room_state {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+.enable {
+  background-image: url(../img/enable.jpg);
+}
+.enable .icon {
+  font-size: 30px;
+  color: yellow;
+}
+.enable .sign {
+  color: yellowgreen;
+}
+
+.disable {
+  background-image: url(../img/disable.jpg);
+}
+.disable .icon {
+  font-size: 30px;
+  color: #4c4c4c;
+}
+
+/*# sourceMappingURL=roommanage.css.map */
