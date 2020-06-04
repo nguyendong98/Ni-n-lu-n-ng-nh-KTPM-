@@ -29,7 +29,7 @@ const RoomManagement = ({
         <span className='customermnm__menu-home'>Rooms</span>
       </div>
       <div className='container'>
-        {roomcategory.map((category) => {
+        {roomcategory.map((category, key) => {
           return (
             <div className='row mt-5'>
               <div className='col-12 px-4 mb-2'>
@@ -40,14 +40,23 @@ const RoomManagement = ({
                     {category.name}
                   </div>
                   <div className='drop'>
-                    <i class='fa fa-angle-down' aria-hidden='true'></i>
+                    <i
+                      class={`fa fa-angle-down down-${key}`}
+                      aria-hidden='true'
+                      onClick={() => hideFunc(key)}
+                    ></i>
+                    <i
+                      class={`fa fa-angle-right right-${key} hide`}
+                      aria-hidden='true'
+                      onClick={() => showFunc(key)}
+                    ></i>
                   </div>
                 </div>
               </div>
-              <div className='col-12 col-lg-12 row room'>
-                {allroom.map((room) => {
+              <div className={`col-12 col-lg-12 row room toggle-${key}`}>
+                {allroom.map((room, key) => {
                   if (room.kind === category._id) {
-                    if (room.status === 'Đã đặt') {
+                    if (room.status === 'Empty') {
                       return (
                         <div className='col-3 col-lg-2 p-2'>
                           <div className='py-2 px-3 enable room d-flex flex-column justify-content-between'>
@@ -93,6 +102,28 @@ const RoomManagement = ({
       </div>
     </section>
   );
+};
+
+const hideFunc = (e) => {
+  const element = document.querySelector('.toggle-' + e);
+  const right = document.querySelector('.right-' + e);
+  const down = document.querySelector('.down-' + e);
+  element.classList.add('hide');
+  right.classList.add('show');
+  right.classList.remove('hide');
+  down.classList.add('hide');
+  down.classList.remove('show');
+};
+
+const showFunc = (e) => {
+  const element = document.querySelector('.toggle-' + e);
+  const down = document.querySelector('.down-' + e);
+  const right = document.querySelector('.right-' + e);
+  element.classList.remove('hide');
+  down.classList.add('show');
+  down.classList.remove('hide');
+  right.classList.add('hide');
+  right.classList.remove('show');
 };
 
 const mapStateToProps = (state) => {
