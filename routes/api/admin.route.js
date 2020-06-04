@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Room = require('./../../models/Room');
 const RoomRented = require('./../../models/RoomRented');
+const Customer = require('./../../models/Customer')
 const admin = require('./../../middleware/admin');
 const auth = require('./../../middleware/auth');
 // @route   GET api/admin/:id
@@ -30,12 +31,24 @@ router.put('/roomrented/:id', admin, async (req, res) => {
                 console.log(e)
             }
         })
-
     })
+  var customer = await Customer.findOne({user: roomRent.user});
+  if(customer){
+      customer.count += 1;
+      await customer.save()
+  }
+  else{
+      customer = new Customer({
+          user: roomRent.user,
+          phone: roomRent.phone,
+          identitycard: roomRent.identitycard,
+          nationality: roomRent.nationality,
+          count: 1
+      })
+      await customer.save()
 
-
-
-    return res.status(200).json(roomRent);
+  }
+  return res.status(200).json(roomRent);
   } catch (error) {
     console.log(error.message);
     res.status(500).send('Server Error');
@@ -73,7 +86,6 @@ router.delete('/roomrented', admin, async (req, res) => {
   try {
       await RoomRented.deleteMany()
       const room = await Room.find({status: "Has Placed"})
-      console.log(room)
       room.map( async val => {
           val.status = "Empty"
           await val.save()

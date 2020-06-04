@@ -1,15 +1,17 @@
-# Niên luận ngành kĩ thuật phần mềm
-Công nghệ sử dụng: Reactjs, ExpressJs, MongoDB, Redux
+Niên luận ngành Kỹ thuật phần mềm
 
-Basic set up instructions
-git clone https://github.com/nguyendong98/Nien-luan-nganh-KTPM.git
-cd your-name-project
-npm install -g nodemon concurrently
-npm install
-cd client
-npm install
-cd ..
-npm run dev
+ReactJS + Express + MongoDB + Redux
 
-Nguyễn Hoàng Duy + Nguyễn Hồ Phú Đông
+Các bước cài đặt:
+1. git clone https://github.com/nguyendong98/Nien-luan-nganh-KTPM.git
+2. cd Nien-luan-nganh-KTPM
+3. npm install -g concurrently nodemon
+4. npm install 
+5. cd client
+6. npm install
+7. cd ..
+8. npm run dev
 
+Tài khoản admin: admin@gmail.com  -- pwadmin
+Tài khoản user: user1@gmail.com -- pwuser1
+Các user khác format tương tự

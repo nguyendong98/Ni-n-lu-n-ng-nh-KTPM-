@@ -21,7 +21,7 @@ const OrderRooms = ({ room: { roomrented, loading }, getAllRoomRent, deleteAllRo
     <Spinner />
   ) : (
     <section className='customermnm'>
-      <h2 className='customermnm__title'>Orders Room</h2>
+      <h2 className='customermnm__title animate__animated animate__flip'>Orders Room</h2>
       <div className='customermnm__menu'>
         <span>
           <Link to='/admin' exact='true' style={{ color: 'black' }}>
@@ -85,7 +85,7 @@ const OrderRooms = ({ room: { roomrented, loading }, getAllRoomRent, deleteAllRo
                 <th className='customer-th' scope='col'>
                   Status
                 </th>
-                <th className='customer-th' scope='col'>
+                <th className='customer-th text-center' scope='col'>
                   Action
                 </th>
               </tr>

@@ -129,37 +129,18 @@ router.post('/',
             if(datecheckout <= datecheckin){
                 return res.status(400).json({ errors: [{ msg: 'Day checkout can not be less than Day check in' }] });
             }
-            var customer = await Customer.findOne({user: req.user.id});
-            if(customer){
-                customer.count += 1;
-                await customer.save()
-            }
-            else{
-                 customer = new Customer({
-                    user,
-                    phone,
-                    identitycard,
-                    nationality,
-                    count: 1
-                })
-                await customer.save()
-
-            }
             let roomrented = new RoomRented({
                 roomrents: roomrents,
                 user,
                 datecheckin,
                 datecheckout,
-
                 identitycard,
                 phone,
-
                 nationality
-
             })
             await roomrented.save()
 
-            return res.json({data: {roomrented, customer}})
+            return res.json({data: {roomrented}})
         } catch (error) {
             console.error(error.message);
             res.status(500).send('Server error');

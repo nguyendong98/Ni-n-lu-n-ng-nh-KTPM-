@@ -2,8 +2,8 @@ import React, {useState, useEffect, Fragment} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {getAllKindOfRoom, bookRoom} from './../../actions/room'
-import Alert from './../../components/Alert/Alert'
-import Spinner from './../../components/Spinner/Spinner'
+import Alert from '../../components/Alert/Alert'
+import Spinner from '../../components/Spinner/Spinner'
 import {Link} from 'react-router-dom'
 
 import './BookNow.scss'
@@ -24,9 +24,8 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, loading}, b
         phone: '',
         nationality: '',
         roomrents: []
-       
-
     })
+    const [isDisableCheckBox, setIsDisableCheckBox] = useState(true)
     const { datecheckin, datecheckout, identitycard, phone, nationality } = formData
     const showSelectRoomItem = () => {
       return rooms ?  rooms.map((room, index) => {
@@ -34,6 +33,10 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, loading}, b
             roomRented.id_kindOfRoom = room._id;
             roomRented.price = room.price;
             const onChangeStep3 = e => {
+
+                if(e.target.value > 0 && e.target.value <= 3) {
+                    setIsDisableCheckBox(false)
+                } else setIsDisableCheckBox(true) // --> set state cho checkbox theo số lượng phòng
                 roomRented.quantity = e.target.value;
             }
             return (
@@ -42,11 +45,11 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, loading}, b
                         <td>{room.name.toUpperCase()}</td>
                         <td>{room.price} $</td>
                         <td>
-                            <input className="form-control font-secondary" type="number" min={0} max={3} name="quantity"
-                                   onChange={e => onChangeStep3(e)}/>
+                            <input className="form-control font-secondary"  type="number" min={0} max={3} name="quantity"
+                                   onChange={e => onChangeStep3(e)} value={roomRented.quantity}/>
                         </td>
                         <td className="d-flex justify-content-center align-items-center">
-                            <input type="checkbox" className="option-input checkbox" onClick={() => pushItem(roomRented)}/>
+                            <input type="checkbox" disabled={isDisableCheckBox ? 'disabled' : '' } className="option-input checkbox" onClick={() => pushItem(roomRented)}/>
                         </td>
 
                     </tr>
@@ -159,9 +162,13 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, loading}, b
                                             </div>
                                             <div className="col-lg-6 col-md-12">
                                                 <b><i><p className="mt-2">Nationality*</p></i></b>
-                                                <input type="text" name="nationality" className='form-control font-secondary' 
-                                                value={nationality} onChange={e => onChangeStep1_2(e)}
-                                                placeholder="Fill your nationality"/>
+                                                <select className="form-control font-secondary"  name="nationality" value={nationality}
+                                                    onChange={e => onChangeStep1_2(e)}>
+                                                    <option value="vietnamese">vietnamese</option>
+                                                    <option value="england">england</option>
+                                                    <option value="france">france</option>
+                                                    <option value="american">american</option>
+                                                </select>
                                             </div>
                                             <div className="col-lg-6 col-md-12">
                                                 <b><i><p className="mt-2">Identity card*</p></i></b>

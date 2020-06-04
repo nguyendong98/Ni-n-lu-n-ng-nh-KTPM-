@@ -24,7 +24,7 @@ const CustomerManage = ({getAllUser, auth:{loading, users}}) => {
     return  (loading || users === []) ? (<Spinner />) :
     (
         <section className="customermnm">
-            <h2 className="customermnm__title">Customer Management</h2>
+            <h2 className="customermnm__title animate__animated animate__flip">Customer Management</h2>
             <div className="customermnm__menu">
                 <span><Link to="/admin" exact="true" style={{color: "black"}}>Admin</Link></span>
                 <i className="fa fa-chevron-right" ></i>

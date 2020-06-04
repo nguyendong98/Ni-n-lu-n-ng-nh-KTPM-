@@ -57,20 +57,25 @@ const OrderRoomItem = ({
             {roomrented.status}
           </span>
         </td>
-        <td className='customer-td '>
+        <td className='customer-td text-center'>
           <button
-            disabled={roomrented.status === 'approve' ? 'disabled' : ''}
-            className='btn-handle btn mr-2'
+              className={roomrented.status === 'approve' ? 'btn btn-view d-inline-block mr-2' : 'd-none'}>
+            View
+          </button>
+          <button
+
+            className={roomrented.status === 'approve' ? 'd-none' : 'd-inline-block btn btn-handle mr-2'}
             onClick={(e) => acceptOrderRoom(roomrented._id)}
           >
             Accept
           </button>
           <button
-            className='btn-delete btn'
+            className='btn-delete btn mr-2'
             onClick={(e) => deleteRoomRentedById(roomrented._id)}
           >
             Delete
           </button>
+
         </td>
       </tr>
     </Fragment>
