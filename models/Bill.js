@@ -4,12 +4,13 @@ const BillSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectID,
         ref: 'customer'
     },
-    roomrented: [],
+    roomrents: [],
     total_price: {
         type: Number,
         required: true
     },
     date: {
+        type: Date,
         default: Date.now()
     }
 })

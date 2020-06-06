@@ -117,7 +117,7 @@ export const logout = () => dispatch => {
     dispatch({
         type: LOGOUT
     })
-    dispatch(setNotify('Bye mày and see mày again!!'))
+    dispatch(setNotify('Bye and see you next time!!'))
 }
 
 //get all user

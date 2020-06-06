@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Room = require('./../../models/Room');
 const RoomRented = require('./../../models/RoomRented');
-const Customer = require('./../../models/Customer')
+const Customer = require('./../../models/Customer');
+const Bill = require('./../../models/Bill');
 const admin = require('./../../middleware/admin');
 const auth = require('./../../middleware/auth');
 // @route   GET api/admin/:id
@@ -18,6 +19,7 @@ router.put('/roomrented/:id', admin, async (req, res) => {
             return res.status(400).json({ errors: [{ msg:'Available rooms are no longer sufficient' }] })
         }
         await roomEmpty.splice(0,roomEmpty.length - val.quantity)
+        console.log(roomEmpty)
         roomEmpty.map(async val => {
             try {
                 val.status = 'Has Placed'
@@ -48,6 +50,17 @@ router.put('/roomrented/:id', admin, async (req, res) => {
       await customer.save()
 
   }
+  const numberOfDayBook = roomRent.datecheckout.getDate() - roomRent.datecheckin.getDate();
+  var total_price = 0;
+  roomRent.roomrents.map(val => {
+      total_price += val.quantity * val.price * numberOfDayBook;
+  })
+  const newBill = new Bill({
+    customer: roomRent.user,
+    roomrents: roomRent.roomrents,
+    total_price
+  })
+  await newBill.save()
   return res.status(200).json(roomRent);
   } catch (error) {
     console.log(error.message);
@@ -66,11 +79,7 @@ router.delete('/roomrented/:id_roomrented', auth , async (req, res) => {
       if (!req.params.id_roomrented.match(/^[0-9a-fA-F]{24}$/) || !roomrented){
           return res.status(404).json('Roomrented not found!')
       }
-
-      const room = await Room.findById({_id: roomrented.room})
-      await roomrented.remove()
-      room.status = "Empty";
-      await room.save()
+      await roomrented.remove();
       return res.status(200).json({msg : 'Roomrented removed!'})
   } catch (error) {
       console.error(error.message)
