@@ -104,20 +104,22 @@ export const acceptOrderRoom = (id) => async (dispatch) => {
     dispatch({
       type: ACCEPT_ORDER_ROOM,
       payload: res1.data,    });
-
-
+    dispatch(setNotify('Success'))
   } catch (error) {}
 };
 
 export const deleteRoomRentedById = id => async dispatch => {
-  try {
-    await axios.delete(`/api/admin/roomrented/${id}`)
-    dispatch({
-      type: DELETE_ROOMRENTED_BY_ID,
-      payload: id
-    })
-  } catch (e) {
-    console.log(e)
+  if (window.confirm('Are you sure? This can NOT be undone!')) {
+    try {
+      await axios.delete(`/api/admin/roomrented/${id}`)
+      dispatch({
+        type: DELETE_ROOMRENTED_BY_ID,
+        payload: id
+      })
+      dispatch(setNotify('Delete success'));
+    } catch (e) {
+      console.log(e)
+    }
   }
 }
 export const deleteAllRoomRented = () => async  dispatch => {

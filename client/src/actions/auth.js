@@ -69,7 +69,7 @@ export const register = ({name, email, password, history}) => async dispatch => 
         })
         dispatch(setAlert('Register Success', 'success'))
         history.push('/login')
-        // window.history.go(-1)
+        dispatch(setNotify('Register Success'))
     } catch (error) {
         const errors = error.response.data.errors
         if(errors){
@@ -113,12 +113,11 @@ export const login = ({email, password}) => async dispatch => {
 }
 
 //Logout
-
 export const logout = () => dispatch => {
     dispatch({
         type: LOGOUT
     })
-    dispatch(setNotify('Bye mày and see mày again!!'))
+    dispatch(setNotify('Bye and see you next time!!'))
 }
 
 //get all user

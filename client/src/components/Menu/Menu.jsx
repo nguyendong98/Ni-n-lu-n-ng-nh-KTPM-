@@ -74,10 +74,6 @@ const Menu = ({setNotify, isAuthenticated}) => {
                     data-toggle='dropdown'
                     aria-haspopup='true'
                     aria-expanded='false'
-                    activeStyle={{
-                      fontWeight: "bold",
-                      color: "#6b6b6b"
-                    }}
                   >
                     <i className='fa fa-glass' aria-hidden='true' />
                     Service
@@ -92,25 +88,16 @@ const Menu = ({setNotify, isAuthenticated}) => {
                       exact={true}
                       className='dropdown-item'
                       
-                      activeStyle={{
-                        fontWeight: "bold",
-                        color: "#6b6b6b"
-                      }}
+
                     >
                       Tours info
                     </NavLink>
                     <NavLink exact={true} to='/spa' className='dropdown-item' href='/'
-                    activeStyle={{
-                      fontWeight: "bold",
-                      color: "#6b6b6b"
-                    }}>
+                    >
                       Spa
                     </NavLink>
                     <NavLink exact={true} to='/restaurant' className='dropdown-item' href='/'
-                    activeStyle={{
-                      fontWeight: "bold",
-                      color: "#6b6b6b"
-                    }}>
+                    >
                       Restaurant
                     </NavLink>
                   </div>

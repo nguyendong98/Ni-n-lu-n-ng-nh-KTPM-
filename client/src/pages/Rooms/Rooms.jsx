@@ -4,7 +4,7 @@ import './Rooms.scss'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {getAllKindOfRoom} from './../../actions/room'
-import Spinner from './../../components/Spinner/Spinner'
+import Spinner from '../../components/Spinner/Spinner'
 import Room from './Room'
 const Rooms = ({getAllKindOfRoom, room: {rooms, loading}}) => {
     useEffect(() => {

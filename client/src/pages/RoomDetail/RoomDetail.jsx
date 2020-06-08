@@ -13,7 +13,7 @@ const RoomDetail = ({
   useEffect(() => {
     getKindOfRoomDetail(match.params.id);
   }, [getKindOfRoomDetail, match.params.id]);
-  return loading ? (
+  return loading  ? (
     <Spinner />
   ) : (
     <section className='rooms'>

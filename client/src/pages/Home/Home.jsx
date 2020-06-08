@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { getAllKindOfRoom } from './../../actions/room';
 import PropTypes from 'prop-types';
 import RoomItem from './RoomItem';
-import Spinner from './../../components/Spinner/Spinner'
+import Spinner from '../../components/Spinner/Spinner'
 import {Link} from 'react-router-dom'
 
 const Home = ({ getAllKindOfRoom, room: { rooms, loading } }) => {
