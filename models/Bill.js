@@ -6,8 +6,7 @@ const BillSchema = new mongoose.Schema({
     },
     roomrents: [],
     total_price: {
-        type: Number,
-        required: true
+        type: Number
     },
     date: {
         type: Date,

@@ -254,7 +254,7 @@ const Home = ({ getAllKindOfRoom, room: { rooms, loading } }) => {
         </div>
       </section>
       {/* partner */}
-      <section className='feedback my-5 pb-5'>
+      <section className='feedback  pb-5'>
         <div className='feedback__title'>
           <h5>TESTIMONIALS</h5>
           <h2>What Customers Say?</h2>
