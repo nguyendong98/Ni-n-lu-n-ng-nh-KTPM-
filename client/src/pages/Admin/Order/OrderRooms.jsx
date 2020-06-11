@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import './CustomerManage.scss';
 import { connect } from 'react-redux';
@@ -7,7 +7,8 @@ import { Link } from 'react-router-dom';
 import OrderRoomItem from './OrderRoomItem';
 import { getAllRoomRent } from '../../../actions/room';
 import { deleteAllRoomRented } from "../../../actions/room";
-const OrderRooms = ({ room: { roomrented, loading }, getAllRoomRent, deleteAllRoomRented  }) => {
+import Model from "./Modal";
+const OrderRooms = ({ room: { roomrented, loading, roomrentDetail }, getAllRoomRent, deleteAllRoomRented  }) => {
   useEffect(() => {
     getAllRoomRent();
   }, [getAllRoomRent]);
@@ -16,7 +17,6 @@ const OrderRooms = ({ room: { roomrented, loading }, getAllRoomRent, deleteAllRo
   const show = () => {
     console.log(input);
   };
-
   return loading ? (
     <Spinner />
   ) : (
@@ -102,6 +102,7 @@ const OrderRooms = ({ room: { roomrented, loading }, getAllRoomRent, deleteAllRo
           </table>
         </div>
       </div>
+      <Model roomrentDetail={roomrentDetail}/>
     </section>
   );
 };
@@ -112,7 +113,8 @@ const mapStateToProps = (state) => {
 };
 OrderRooms.propTypes = {
   room: PropTypes.object.isRequired,
-  deleteAllRoomRented: PropTypes.func.isRequired
+  deleteAllRoomRented: PropTypes.func.isRequired,
+
 };
 
 export default connect(mapStateToProps, { getAllRoomRent, deleteAllRoomRented })(OrderRooms);

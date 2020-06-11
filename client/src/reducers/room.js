@@ -7,7 +7,8 @@ import {
   ACCEPT_ORDER_ROOM,
   GET_ALL_ROOM,
   DELETE_ROOMRENTED_BY_ID,
-  DELETE_ALL_ROOMRENTED
+  DELETE_ALL_ROOMRENTED,
+  GET_ROOMRENTED_BYID
 } from './../actions/types';
 const InitialState = {
   rooms: [],
@@ -17,6 +18,7 @@ const InitialState = {
   roomcategory: [],
   error: {},
   roomrented: null,
+  roomrentDetail: null
 };
 const room = (state = InitialState, action) => {
   const { type, payload } = action;
@@ -57,6 +59,11 @@ const room = (state = InitialState, action) => {
         roomrented: payload,
         loading: false,
       };
+    case GET_ROOMRENTED_BYID:
+      return {
+        ...state,
+        roomrentDetail: payload
+      }
     case ACCEPT_ORDER_ROOM:
       return {
         ...state,

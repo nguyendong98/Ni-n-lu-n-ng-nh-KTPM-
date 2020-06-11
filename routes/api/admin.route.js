@@ -11,6 +11,7 @@ const auth = require('./../../middleware/auth');
 
 router.put('/roomrented/:id', admin, async (req, res) => {
   try {
+    // Xử lí chọn phòng cho người dùng theo số lượng phòng người dùng đã đặt
     const id = req.params.id;
     const roomRent = await RoomRented.findById(id);
     roomRent.roomrents.map( async val => {
@@ -19,7 +20,7 @@ router.put('/roomrented/:id', admin, async (req, res) => {
             return res.status(400).json({ errors: [{ msg:'Available rooms are no longer sufficient' }] })
         }
         await roomEmpty.splice(0,roomEmpty.length - val.quantity)
-        console.log(roomEmpty)
+        // console.log(roomEmpty)
         roomEmpty.map(async val => {
             try {
                 val.status = 'Has Placed'
@@ -34,7 +35,40 @@ router.put('/roomrented/:id', admin, async (req, res) => {
             }
         })
     })
+  // Tạo mới Bill, xử lí discount
+  const numberOfDayBook = roomRent.datecheckout.getDate() - roomRent.datecheckin.getDate();
+
+  var total_price = 0;
+  // Xử lý giảm giá
+
+  roomRent.roomrents.map(val => {
+      total_price += val.quantity * val.price * numberOfDayBook;
+  })
   var customer = await Customer.findOne({user: roomRent.user});
+  console.log(customer.count);
+  if(customer) {
+      if(customer.count >=3 && customer.count <6) {
+          total_price = total_price * 0.95;
+      }
+      else if(customer.count >=6 && customer.count < 9) {
+          total_price = total_price * 0.9;
+      }
+      else if(customer.count >=9 && customer.count <15) {
+          total_price = total_price * 0.85;
+      }
+      else if(customer.count >= 15) {
+          total_price = total_price * 0.75;
+      } else total_price = total_price * 1;
+  }
+  const newBill = new Bill({
+    customer: roomRent.user,
+    roomrents: roomRent.roomrents,
+    total_price
+  })
+
+  await newBill.save()
+  // Xử lí ở bảng Customer
+
   if(customer){
       customer.count += 1;
       await customer.save()
@@ -50,17 +84,6 @@ router.put('/roomrented/:id', admin, async (req, res) => {
       await customer.save()
 
   }
-  const numberOfDayBook = roomRent.datecheckout.getDate() - roomRent.datecheckin.getDate();
-  var total_price = 0;
-  roomRent.roomrents.map(val => {
-      total_price += val.quantity * val.price * numberOfDayBook;
-  })
-  const newBill = new Bill({
-    customer: roomRent.user,
-    roomrents: roomRent.roomrents,
-    total_price
-  })
-  await newBill.save()
   return res.status(200).json(roomRent);
   } catch (error) {
     console.log(error.message);

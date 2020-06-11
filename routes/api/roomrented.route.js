@@ -73,12 +73,23 @@ router.get('/', async (req, res) => {
     try {
         const allrooms = await RoomRented.find().sort({ date: -1 });
         return res.json(allrooms)
-
     } catch (error) {
         console.error(error)
         res.status(500).send('Server Error');
     }
 })
-
+// @route    GET api/roomrents
+// @desc     GET all roomrented
+// @access   Private
+// Lấy toàn bộ danh sách phòng đã được đặt
+router.get('/:id', auth, async (req, res) => {
+    try {
+       const roomRentDetail = await  RoomRented.findById(req.params.id)
+        return res.status(200).json(roomRentDetail);
+    } catch (e) {
+        console.error(error)
+        res.status(500).send('Server Error');
+    }
+})
 
 module.exports =  router

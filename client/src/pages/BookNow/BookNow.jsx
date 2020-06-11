@@ -25,19 +25,19 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, loading}, b
         nationality: '',
         roomrents: []
     })
-    const [isDisableCheckBox, setIsDisableCheckBox] = useState(true)
+    // const [isDisableCheckBox, setIsDisableCheckBox] = useState(true)
     const { datecheckin, datecheckout, identitycard, phone, nationality } = formData
     const showSelectRoomItem = () => {
       return rooms ?  rooms.map((room, index) => {
             var roomRented = {};
             roomRented.id_kindOfRoom = room._id;
             roomRented.price = room.price;
-            const onChangeStep3 = e => {
-
-                if(e.target.value > 0 && e.target.value <= 3) {
-                    setIsDisableCheckBox(false)
-                } else setIsDisableCheckBox(true) // --> set state cho checkbox theo số lượng phòng
+            const onChangeStep3 =  e => {
                 roomRented.quantity = e.target.value;
+                // if(e.target.value > 0 && e.target.value <= 3) {
+                //     setIsDisableCheckBox(false)
+                // } else setIsDisableCheckBox(true) // --> set state cho checkbox theo số lượng phòng
+
             }
             return (
                 <Fragment key={index}>
@@ -49,7 +49,7 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, loading}, b
                                    onChange={e => onChangeStep3(e)} value={roomRented.quantity}/>
                         </td>
                         <td className="d-flex justify-content-center align-items-center">
-                            <input type="checkbox" disabled={isDisableCheckBox ? 'disabled' : '' } className="option-input checkbox" onClick={() => pushItem(roomRented)}/>
+                            <input type="checkbox"  className="option-input checkbox" onClick={() => pushItem(roomRented)}/>
                         </td>
 
                     </tr>
@@ -57,6 +57,7 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, loading}, b
             )
         }) : null
     }
+
     const onChangeStep1_2 =  e => {
         setFormData({...formData, [e.target.name]: e.target.value})
     }
@@ -88,6 +89,7 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, loading}, b
             setFormData(formData)
         }
     }
+    console.log(formData)
     return loading ? (<Spinner/>) :
     (
         
@@ -151,7 +153,7 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, loading}, b
                                             <div className="col-lg-6 col-md-12">
                                                 <b><i><p className="px-1 py-1 mt-1">Full name*</p></i></b>
                                                 <input type="text" name="customername" 
-                                                 className='form-control font-secondary' value={auth.user.name} disabled
+                                                 className='form-control font-secondary' value={auth.user ? auth.user.name: null} disabled
                                                  placeholder="Fill your fullname" />
                                             </div>
                                             <div className="col-lg-6 col-md-12">
@@ -162,9 +164,9 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, loading}, b
                                             </div>
                                             <div className="col-lg-6 col-md-12">
                                                 <b><i><p className="mt-2">Nationality*</p></i></b>
-                                                <select className="form-control font-secondary"  name="nationality" value={nationality}
+                                                <select className="form-control font-secondary"   name="nationality" value={nationality}
                                                     onChange={e => onChangeStep1_2(e)}>
-                                                    <option value="vietnamese">vietnamese</option>
+                                                    <option value="vietnamese" >vietnamese</option>
                                                     <option value="england">england</option>
                                                     <option value="france">france</option>
                                                     <option value="american">american</option>

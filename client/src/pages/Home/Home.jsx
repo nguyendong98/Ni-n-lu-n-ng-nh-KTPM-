@@ -7,18 +7,28 @@ import { connect } from 'react-redux';
 import { getAllKindOfRoom } from './../../actions/room';
 import PropTypes from 'prop-types';
 import RoomItem from './RoomItem';
+import {setNotify} from './../../actions/notify'
 import Spinner from '../../components/Spinner/Spinner'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 
-const Home = ({ getAllKindOfRoom, room: { rooms, loading } }) => {
+
+const Home = ({isAuthenticated, getAllKindOfRoom, room: { rooms, loading }, setNotify }) => {
   useEffect(() => {
     getAllKindOfRoom();
   }, [getAllKindOfRoom]);
-  
+  const checkAuth = (e) => {
+    if(!isAuthenticated){
+      e.preventDefault();
+      setNotify('Please login if you want to book now !!!', 1500)
+    }
+    else{
+      return <Redirect to="/booknow" exact />
+
+    }
+  }
   return loading  ? (<Spinner/>) : (
     
     <Fragment>
-      
       <section className='slide-bar'>
         <div
           id='carouselExampleIndicators'
@@ -142,7 +152,7 @@ const Home = ({ getAllKindOfRoom, room: { rooms, loading } }) => {
                   <h6 className=' check-title' style={{ visibility: 'hidden' }}>
                     .
                   </h6>
-                  <Link to="/booknow" exact="true" className='btn btn-success' >Book Now</Link>
+                  <Link to="/booknow" exact="true" ><button className='btn btn-success' onClick={(e) => checkAuth(e)}>Book Now</button> </Link>
                    
                 </div>
               </div>
@@ -254,7 +264,7 @@ const Home = ({ getAllKindOfRoom, room: { rooms, loading } }) => {
         </div>
       </section>
       {/* partner */}
-      <section className='feedback my-5 pb-5'>
+      <section className='feedback  pb-5'>
         <div className='feedback__title'>
           <h5>TESTIMONIALS</h5>
           <h2>What Customers Say?</h2>
@@ -335,10 +345,11 @@ const Home = ({ getAllKindOfRoom, room: { rooms, loading } }) => {
 };
 const mapStateToProps = state => {
   return {
-    room: state.room
+    room: state.room,
+    isAuthenticated: state.auth.isAuthenticated
   };
 };
 Home.propTypes = {
   getAllKindOfRoom: PropTypes.func.isRequired
 };
-export default connect(mapStateToProps, { getAllKindOfRoom })(Home);
+export default connect(mapStateToProps, { getAllKindOfRoom, setNotify })(Home);

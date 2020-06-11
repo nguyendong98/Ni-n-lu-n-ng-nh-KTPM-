@@ -9,7 +9,8 @@ import {
   ACCEPT_ORDER_ROOM,
   GET_ALL_ROOM,
   DELETE_ROOMRENTED_BY_ID,
-  DELETE_ALL_ROOMRENTED
+  DELETE_ALL_ROOMRENTED,
+  GET_ROOMRENTED_BYID
 } from './types';
 import { setAlert } from './alert';
 import { setNotify } from './notify';
@@ -92,11 +93,21 @@ export const getAllRoomRent = () => async (dispatch) => {
     const res = await axios.get('/api/roomrented');
     dispatch({
       type: GET_ROOM_RENTED,
-      payload: res.data,
+      payload: res.data
     });
   } catch (error) {}
 };
-
+export const getRoomRentById = id => async dispatch => {
+  try {
+    const res = await axios.get(`/api/roomrented/${id}`);
+    dispatch({
+      type: GET_ROOMRENTED_BYID,
+      payload: res.data
+    })
+  } catch (e) {
+    console.log(e)
+  }
+}
 export const acceptOrderRoom = (id) => async (dispatch) => {
   try {
     await axios.put(`api/admin/roomrented/${id}`);

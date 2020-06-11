@@ -55,8 +55,8 @@ const App = () => {
             />
             <PrivateRoute exact path='/admin' component={Admin} />
             <PrivateRoute path='/roomrented' exact component={OrderRooms} />
-            <PrivateRoute path='/roommanage' exact component={RoomManagement}/>
-            <Route path='' exact component={NotFound} />
+            <PrivateRoute path='/roommanage'  component={RoomManagement}/>
+            <PrivateRoute path='' exact component={NotFound} />
           </Switch>
           <Footer />
         </Fragment>
