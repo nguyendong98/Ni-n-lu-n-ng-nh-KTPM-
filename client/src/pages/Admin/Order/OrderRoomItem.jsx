@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import { getAllUser } from '../../../actions/auth';
 import { acceptOrderRoom } from '../../../actions/room';
-import { deleteRoomRentedById} from "../../../actions/room";
+import { deleteRoomRentedById } from "../../../actions/room";
+import { getRoomRentById } from "../../../actions/room";
 
 
 const OrderRoomItem = ({
@@ -14,6 +15,7 @@ const OrderRoomItem = ({
   getAllUser,
   acceptOrderRoom,
   deleteRoomRentedById,
+  getRoomRentById
 
 }) => {
   useEffect(() => {
@@ -59,7 +61,8 @@ const OrderRoomItem = ({
         </td>
         <td className='customer-td text-center'>
           <button
-              className={roomrented.status === 'approve' ? 'btn btn-view d-inline-block mr-2' : 'd-none'}>
+              className={roomrented.status === 'approve' ? 'btn btn-view d-inline-block mr-2' : 'd-none'}
+              data-toggle="modal" data-target="#exampleModal" onClick={() => getRoomRentById(roomrented._id)}>
             View
           </button>
           <button
@@ -84,7 +87,7 @@ const OrderRoomItem = ({
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth,
+    auth: state.auth
   };
 };
 OrderRoomItem.propTypes = {
@@ -94,6 +97,6 @@ OrderRoomItem.propTypes = {
   deleteRoomRentedById: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps, { getAllUser, acceptOrderRoom, deleteRoomRentedById })(
+export default connect(mapStateToProps, { getAllUser, acceptOrderRoom, deleteRoomRentedById, getRoomRentById })(
   OrderRoomItem
 );

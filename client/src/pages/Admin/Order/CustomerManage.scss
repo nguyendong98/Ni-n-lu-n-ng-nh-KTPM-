@@ -1,5 +1,4 @@
 @import './../../../App.scss';
-
 .customermnm {
   padding-bottom: 8rem;
   &__title {
@@ -128,4 +127,12 @@
   font-size: 1.333rem;
   text-align: center;
   line-height: 1.5rem;
+}
+
+
+//Modal
+
+.modal-body {
+  font-family: 'Annie Use Your Telescope', cursive !important;
+  font-size: 2rem !important;
 }

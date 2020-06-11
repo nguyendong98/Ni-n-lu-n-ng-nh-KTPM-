@@ -44,14 +44,31 @@ router.put('/roomrented/:id', admin, async (req, res) => {
   roomRent.roomrents.map(val => {
       total_price += val.quantity * val.price * numberOfDayBook;
   })
+  var customer = await Customer.findOne({user: roomRent.user});
+  console.log(customer.count);
+  if(customer) {
+      if(customer.count >=3 && customer.count <6) {
+          total_price = total_price * 0.95;
+      }
+      else if(customer.count >=6 && customer.count < 9) {
+          total_price = total_price * 0.9;
+      }
+      else if(customer.count >=9 && customer.count <15) {
+          total_price = total_price * 0.85;
+      }
+      else if(customer.count >= 15) {
+          total_price = total_price * 0.75;
+      } else total_price = total_price * 1;
+  }
   const newBill = new Bill({
     customer: roomRent.user,
     roomrents: roomRent.roomrents,
     total_price
   })
+
   await newBill.save()
   // Xử lí ở bảng Customer
-  var customer = await Customer.findOne({user: roomRent.user});
+
   if(customer){
       customer.count += 1;
       await customer.save()
