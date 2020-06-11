@@ -3,21 +3,42 @@ import PropTypes from 'prop-types';
 import './roomdetail.scss';
 import { connect } from 'react-redux';
 import { getKindOfRoomDetail } from './../../actions/room';
+import { createComment, getAllComment } from './../../actions/feedback';
 import Spinner from '../../components/Spinner/Spinner';
+import { getAllUser } from '../../actions/auth';
 
 const RoomDetail = ({
+  getAllUser,
   getKindOfRoomDetail,
+  createComment,
+  getAllComment,
   match,
   room: { room, loading },
+  auth: { user, users },
+  feedback: { feedbacks },
 }) => {
   useEffect(() => {
     getKindOfRoomDetail(match.params.id);
-  }, [getKindOfRoomDetail, match.params.id]);
-  return loading  ? (
+    getAllUser();
+    getAllComment();
+  }, [getKindOfRoomDetail, match.params.id, getAllComment, getAllUser]);
+
+  const data = {};
+  const onChange = (e) => {
+    console.log(e.target.value);
+    data.comment = e.target.value;
+    console.log(user.name);
+  };
+  const onClick = () => {
+    createComment(data, match.params.id);
+  };
+  return loading ? (
     <Spinner />
   ) : (
     <section className='rooms'>
-      <h2 className='rooms__title animate__animated animate__flip'>Room Detail</h2>
+      <h2 className='rooms__title animate__animated animate__flip'>
+        Room Detail
+      </h2>
       <div className='rooms__menu'>
         <span>
           <link to='/' exact='true' style={{ color: 'black' }} />
@@ -108,11 +129,13 @@ const RoomDetail = ({
           <div className='room_info'>
             <div className='row'>
               <div className='col-8'>
-                <h3>{ room ? room.name : '' }</h3>
+                <h3>{room ? room.name : ''}</h3>
               </div>
-              <div className='col-4 rating-right d-flex justify-content-end align-items-center px-5'>{ showRating(4) }</div>
+              <div className='col-4 rating-right d-flex justify-content-end align-items-center px-5'>
+                {showRating(4)}
+              </div>
             </div>
-            <div  className='col-12' style={{ padding: '0' }}>
+            <div className='col-12' style={{ padding: '0' }}>
               <table className='tb_detail'>
                 {room ? (
                   <tbody>
@@ -154,27 +177,128 @@ const RoomDetail = ({
         <div className='col-12 col-lg-8 info_detail'>
           {room ? <p>{room.text}</p> : null}
         </div>
+
+        <div className='fedback col-12 col-lg-6 mt-3'>
+          <div className='header d-flex justify-content-between align-items-center py-1'>
+            <div className='title'>Customer reviews</div>
+            <div className='count-comment'>Comment (10)</div>
+          </div>
+          <div className='comment col-12'>
+            {/* customer comment in here */}
+            {user ? (
+              <div className='d-flex my-2 my-lg-4 '>
+                <div className='avatar'>
+                  <img
+                    className='rounded-circle mr-4 mt-3 mb-2'
+                    src={user.avatar}
+                    alt=''
+                  />
+                </div>
+                <div className='user w-100'>
+                  <div className='name'>{user.name}</div>
+                  <div className='content'>
+                    <form className='input-group mb-3'>
+                      <input
+                        type='text'
+                        className='form-control'
+                        aria-describedby='basic-addon2'
+                        name='comment'
+                        placeholder='Enter your comment'
+                        onChange={(e) => onChange(e)}
+                      />
+                      <div className='input-group-append'>
+                        <button
+                          type='reset'
+                          className='fa fa-paper-plane-o text-primary ml-3'
+                          id='basic-addon2'
+                          aria-hidden='true'
+                          onClick={() => onClick()}
+                        ></button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            ) : null}
+            {/* customer reviews */}
+            {feedbacks
+              ? feedbacks.map((value, key) => {
+                  return (
+                    <div key={key} className='d-flex my-3'>
+                      <div className='avatar'>
+                        {users
+                          ? users.map((user, key) => {
+                              if (user._id === value.user) {
+                                return (
+                                  <img
+                                    className='rounded-circle mr-4 mt-3 mb-2'
+                                    src={user.avatar}
+                                    alt=''
+                                  />
+                                );
+                              }
+                            })
+                          : null}
+                      </div>
+                      <div className='user bg-gray w-100 d-flex flex-column justify-content-center px-3'>
+                        {users
+                          ? users.map((user, key) => {
+                              if (user._id === value.user) {
+                                return <div className='name'>{user.name}</div>;
+                              }
+                            })
+                          : null}
+                        <div className='content'>{value.comment}</div>
+                      </div>
+                    </div>
+                  );
+                })
+              : null}
+          </div>
+        </div>
       </div>
     </section>
   );
 };
 const showRating = (rating) => {
   var result = [];
-  for(var i = 1; i<=rating;i++){
-    result.push(<i key={Math.random()} className="fa fa-star" style={{fontSize: '25px', color: 'yellow'}}></i>);
+  for (var i = 1; i <= rating; i++) {
+    result.push(
+      <i
+        key={Math.random()}
+        className='fa fa-star'
+        style={{ fontSize: '25px', color: 'yellow' }}
+      ></i>
+    );
   }
-  for(var j = 1; j <= (5 - rating); j++){
-    result.push(<i key={Math.random()} className="fa fa-star-o" style={{fontSize: '25px', color: 'yellow'}} ></i>)
+  for (var j = 1; j <= 5 - rating; j++) {
+    result.push(
+      <i
+        key={Math.random()}
+        className='fa fa-star-o'
+        style={{ fontSize: '25px', color: 'yellow' }}
+      ></i>
+    );
   }
   return result;
-}
+};
 RoomDetail.propTypes = {
   getKindOfRoomDetail: PropTypes.func.isRequired,
+  createComment: PropTypes.func.isRequired,
+  getAllComment: PropTypes.func.isRequired,
+  getAllUser: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => {
   return {
     room: state.room,
+    auth: state.auth,
+    feedback: state.feedback,
   };
 };
 
-export default connect(mapStateToProps, { getKindOfRoomDetail })(RoomDetail);
+export default connect(mapStateToProps, {
+  getAllUser,
+  getKindOfRoomDetail,
+  createComment,
+  getAllComment,
+})(RoomDetail);

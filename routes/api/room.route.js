@@ -33,8 +33,7 @@ router.post('/',
         const {kindofroom, name} = req.body
         try {
             const nameroom = await Room.findOne({name})
-            
-        
+
             if(nameroom){
                 return res.status(400).json({ errors: [{ msg: 'Room already exists' }] });
             }

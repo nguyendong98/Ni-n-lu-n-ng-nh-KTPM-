@@ -125,4 +125,47 @@
       }
     }
   }
+  .header {
+    background: whitesmoke;
+    .title {
+      font-size: 30px;
+      font-family: 'Lora', serif;
+    }
+    .count-comment {
+      font-size: 20px;
+      font-family: 'Lora', serif;
+      align-items: center;
+    }
+  }
+  .comment {
+    .user {
+      .name {
+        color: #19191a;
+        font-family: 'cabin', sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        padding: 1px;
+      }
+    }
+    .avatar{
+      img{
+        width: 50px;
+      }
+    }
+    .content{
+      button{
+        font-size: 2rem;
+        border: none;
+        background: white;
+      }
+    }
+    .hr{
+      height: 1px;
+      background: #aaaab3;
+    }
+    .bg-gray{
+      background: #e5e5e5;
+      border-radius: 15px;
+    }
+  }
 }
