@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const FeedbackSchema = new mongoose.Schema({
   user: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Object,
     ref: 'users',
   },
   kindofroom: {
