@@ -34,7 +34,7 @@ const RoomDetail = ({
   const onClick = () => {
     createComment(data, match.params.id);
   };
-  return loading ? (
+  return loading && !room ? (
     <Spinner />
   ) : (
     <section className='rooms'>
@@ -183,7 +183,7 @@ const RoomDetail = ({
         <div className='fedback col-12 col-lg-6 mt-3'>
           <div className='header d-flex justify-content-between align-items-center py-1'>
             <div className='title'>Customer reviews</div>
-            <div className='count-comment'>Comment (10)</div>
+            <div className='count-comment'>Comment ({feedbacks.length})</div>
           </div>
           <div className='comment col-12'>
             {/* customer comment in here */}
