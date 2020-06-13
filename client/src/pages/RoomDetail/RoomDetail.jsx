@@ -3,25 +3,27 @@ import PropTypes from 'prop-types';
 import './roomdetail.scss';
 import { connect } from 'react-redux';
 import { getKindOfRoomDetail } from './../../actions/room';
-import { createComment, getAllComment } from './../../actions/feedback';
+import {
+  createComment,
+  getAllComment,
+  deleteComment,
+} from './../../actions/feedback';
 import Spinner from '../../components/Spinner/Spinner';
-import { getAllUser } from '../../actions/auth';
 
 const RoomDetail = ({
-  getAllUser,
   getKindOfRoomDetail,
   createComment,
   getAllComment,
+  deleteComment,
   match,
   room: { room, loading },
-  auth: { user, users },
+  auth: { user },
   feedback: { feedbacks },
 }) => {
   useEffect(() => {
     getKindOfRoomDetail(match.params.id);
-    getAllUser();
     getAllComment();
-  }, [getKindOfRoomDetail, match.params.id, getAllComment, getAllUser]);
+  }, [getKindOfRoomDetail, match.params.id, getAllComment]);
 
   const data = {};
   const onChange = (e) => {
@@ -223,31 +225,36 @@ const RoomDetail = ({
             {/* customer reviews */}
             {feedbacks
               ? feedbacks.map((value, key) => {
+                  if (user) {
+                    if (value.user._id === user._id) {
+                      var istrue = true;
+                    }
+                  }
                   return (
                     <div key={key} className='d-flex my-3'>
                       <div className='avatar'>
-                        {users
-                          ? users.map((user, key) => {
-                              if (user._id === value.user) {
-                                return (
-                                  <img
-                                    className='rounded-circle mr-4 mt-3 mb-2'
-                                    src={user.avatar}
-                                    alt=''
-                                  />
-                                );
-                              }
-                            })
-                          : null}
+                        <img
+                          className='rounded-circle mr-4 mt-3 mb-2'
+                          src={value.user.avatar}
+                          alt=''
+                        />
                       </div>
                       <div className='user bg-gray w-100 d-flex flex-column justify-content-center px-3'>
-                        {users
-                          ? users.map((user, key) => {
-                              if (user._id === value.user) {
-                                return <div className='name'>{user.name}</div>;
-                              }
-                            })
-                          : null}
+                        <div className='d-flex justify-content-between'>
+                          <div className='name'>{value.user.name}</div>
+                          {istrue ? (
+                            <i
+                              className='fa fa-trash-o btn-delete'
+                              aria-hidden='true'
+                              onClick={() => deleteComment(value._id)}
+                            ></i>
+                          ) : (
+                            <i
+                              className='fa fa-trash-o btn-delete-close'
+                              aria-hidden='true'
+                            ></i>
+                          )}
+                        </div>
                         <div className='content'>{value.comment}</div>
                       </div>
                     </div>
@@ -286,7 +293,7 @@ RoomDetail.propTypes = {
   getKindOfRoomDetail: PropTypes.func.isRequired,
   createComment: PropTypes.func.isRequired,
   getAllComment: PropTypes.func.isRequired,
-  getAllUser: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => {
   return {
@@ -297,8 +304,8 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  getAllUser,
   getKindOfRoomDetail,
   createComment,
   getAllComment,
+  deleteComment,
 })(RoomDetail);

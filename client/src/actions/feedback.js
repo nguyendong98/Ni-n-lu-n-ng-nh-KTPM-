@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { CREATE_COMMENT, GET_ALL_COMMENT } from './types';
+import { CREATE_COMMENT, GET_ALL_COMMENT, DELETE_COMMENT } from './types';
 
 export const createComment = (data, id) => async (dispatch) => {
   const config = {
@@ -24,7 +24,7 @@ export const createComment = (data, id) => async (dispatch) => {
   }
 };
 
-export const getAllComment = () => async (dispatch) =>{
+export const getAllComment = () => async (dispatch) => {
   try {
     const res = await axios.get('/api/feedback');
     dispatch({
@@ -32,4 +32,14 @@ export const getAllComment = () => async (dispatch) =>{
       payload: res.data,
     });
   } catch (error) {}
-}
+};
+
+export const deleteComment = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`/api/feedback/${id}`);
+    dispatch({
+      type: DELETE_COMMENT,
+      payload: id,
+    });
+  } catch (error) {}
+};

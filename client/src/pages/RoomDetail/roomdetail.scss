@@ -146,24 +146,34 @@
         font-weight: 500;
         padding: 1px;
       }
+      .btn-delete-close {
+        color: #b2b2b2;
+      }
+      .btn-delete {
+        color: #666666;
+      }
+      .btn-delete:hover {
+        color: #ffaa56;
+        cursor: pointer;
+      }
     }
-    .avatar{
-      img{
+    .avatar {
+      img {
         width: 50px;
       }
     }
-    .content{
-      button{
+    .content {
+      button {
         font-size: 2rem;
         border: none;
         background: white;
       }
     }
-    .hr{
+    .hr {
       height: 1px;
       background: #aaaab3;
     }
-    .bg-gray{
+    .bg-gray {
       background: #e5e5e5;
       border-radius: 15px;
     }

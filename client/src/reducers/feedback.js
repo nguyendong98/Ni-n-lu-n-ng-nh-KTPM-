@@ -1,4 +1,8 @@
-import { CREATE_COMMENT, GET_ALL_COMMENT } from './../actions/types';
+import {
+  CREATE_COMMENT,
+  GET_ALL_COMMENT,
+  DELETE_COMMENT,
+} from './../actions/types';
 
 const InitialState = {
   feedbacks: [],
@@ -20,6 +24,12 @@ const feedback = (state = InitialState, action) => {
       return {
         ...state,
         feedbacks: payload,
+      };
+    }
+    case DELETE_COMMENT: {
+      return {
+        ...state,
+        feedbacks: state.feedbacks.filter(val => val._id !== payload),
       };
     }
     default:
