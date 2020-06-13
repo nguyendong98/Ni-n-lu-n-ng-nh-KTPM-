@@ -1,5 +1,5 @@
 var express = require('express');
-const connectDB = require('./config/dblocal');
+const connectDB = require('./config/db');
 const bodyParser = require('body-parser');
 var app = express();
 
@@ -19,5 +19,6 @@ app.use('/api/roomrented', require('./routes/api/roomrented.route'));
 app.use('/api/rooms', require('./routes/api/room.route'));
 app.use('/api/admin', require('./routes/api/admin.route'));
 app.use('/api/feedback', require('./routes/api/feedback.route'));
+app.use('/api/bill', require('./routes/api/bill.route'));
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

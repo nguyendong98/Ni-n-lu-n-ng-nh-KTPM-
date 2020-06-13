@@ -1,7 +1,8 @@
-import React, {useEffect} from "react";
+import React  from "react";
 import { connect } from "react-redux";
-import Monment from 'react-moment';
-import { getAllKindOfRoom } from './../../../actions/room';
+import Moment from 'react-moment';
+
+import { getBillById } from './../../../actions/bill'
 const getName = (arr ,id) => {
     let name = null;
     arr.map(val => {
@@ -12,10 +13,8 @@ const getName = (arr ,id) => {
     })
     return name
 }
-const Model = ({roomrentDetail, users, rooms, getAllKindOfRoom, allroom}) => {
-    useEffect(() => {
-        getAllKindOfRoom();
-    }, [getAllKindOfRoom]);
+const Model = ({roomrentDetail, users, rooms,  billDetail}) => {
+
     const showRoomRent = () => {
        return  roomrentDetail ? roomrentDetail.roomrents.map((val, i) => {
             return (
@@ -50,11 +49,11 @@ const Model = ({roomrentDetail, users, rooms, getAllKindOfRoom, allroom}) => {
                                 </tr>
                                 <tr>
                                     <th>Date check in*: </th>
-                                    <th><span className="badge badge-success"> { roomrentDetail ? <Monment format="MM/DD/YYYY">{roomrentDetail.datecheckin}</Monment> : '' }</span></th>
+                                    <th><span className="badge badge-success"> { roomrentDetail ? <Moment format="MM/DD/YYYY">{roomrentDetail.datecheckin}</Moment> : '' }</span></th>
                                 </tr>
                                 <tr>
                                     <th>Date check out*: </th>
-                                    <th><span className="badge badge-danger">{ roomrentDetail ? <Monment format="MM/DD/YYYY">{roomrentDetail.datecheckout}</Monment> : '' }</span></th>
+                                    <th><span className="badge badge-danger">{ roomrentDetail ? <Moment format="MM/DD/YYYY">{roomrentDetail.datecheckout}</Moment> : '' }</span></th>
                                 </tr>
                                 <tr>
                                     <th>Status*: </th>
@@ -76,6 +75,22 @@ const Model = ({roomrentDetail, users, rooms, getAllKindOfRoom, allroom}) => {
                                     <th>Room rented details*:</th>
                                     <th> { showRoomDetail() } </th>
                                 </tr>
+                                <tr>
+                                    <th>Total_price*: </th>
+                                    <th>{billDetail ? billDetail.totalPriceNotDisCount : ''} $ </th>
+                                </tr>
+                                <tr>
+                                    <th>Number of times book*:</th>
+                                    <th>{billDetail ? billDetail.discount : ''} times</th>
+                                </tr>
+                                <tr>
+                                    <th>Discount*: </th>
+                                    <th>{billDetail ? showDisCount(billDetail.discount) : ''} </th>
+                                </tr>
+                                <tr>
+                                    <th>Last price*: </th>
+                                    <th><span className="badge badge-success">{billDetail ? billDetail.total_price : ''} $</span></th>
+                                </tr>
                             </tbody>
 
                         </table>
@@ -88,10 +103,20 @@ const Model = ({roomrentDetail, users, rooms, getAllKindOfRoom, allroom}) => {
         </div>
     )
 }
+const showDisCount = (i) => {
+    if(i) {
+        if(i >= 3 && i < 6) return '5%'
+        if(i >= 6 && i < 9) return '10%'
+        if(i >=9 && i <15) return '15%'
+        if(i>=15) return '25%'
+        else return 'No discount'
+    }
+}
 const mapStateToProps = state => {
     return {
         rooms: state.room.rooms,
-        users: state.auth.users
+        users: state.auth.users,
+        billDetail: state.bill.billDetail
     }
 }
-export default connect(mapStateToProps, {getAllKindOfRoom})(Model);
+export default connect(mapStateToProps, { getBillById })(Model);

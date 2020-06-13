@@ -6,8 +6,18 @@ import { getAllUser } from '../../../actions/auth';
 import { acceptOrderRoom } from '../../../actions/room';
 import { deleteRoomRentedById } from "../../../actions/room";
 import { getRoomRentById } from "../../../actions/room";
+import {getBillById} from "../../../actions/bill";
 
-
+const getName = (arr ,id) => {
+  let name = null;
+  arr.map(val => {
+    if(val._id === id) {
+      name = val.name
+    }
+    return name
+  })
+  return name
+}
 const OrderRoomItem = ({
   roomrented,
   index,
@@ -15,8 +25,9 @@ const OrderRoomItem = ({
   getAllUser,
   acceptOrderRoom,
   deleteRoomRentedById,
-  getRoomRentById
-
+  getRoomRentById,
+  rooms,
+  getBillById,
 }) => {
   useEffect(() => {
     getAllUser();
@@ -33,6 +44,13 @@ const OrderRoomItem = ({
     });
     return name;
   };
+  const showRoomRent = () => {
+    return  roomrented ? roomrented.roomrents.map((val, i) => {
+      return (
+          <div style={{height: '20px'}} key={i}> <span className="badge badge-success">{getName(rooms, val.id_kindOfRoom)}</span> <span className="badge badge-success">{val.quantity}</span></div>
+      )
+    }) : null
+  }
   return (
     <Fragment>
       <tr style={{ height: '10rem', lineHeight: '10rem' }}>
@@ -44,10 +62,7 @@ const OrderRoomItem = ({
         <td className='customer-td'>
           <Moment format='MM/DD/YYYY'>{roomrented.datecheckout}</Moment>
         </td>
-        <td className='customer-td'>{roomrented.phone}</td>
-        <td className='customer-td'>
-          <Moment format='MM/DD/YYYY'>{roomrented.date}</Moment>
-        </td>
+        <td height="50px">{showRoomRent()}</td>
         <td className='customer-td'>
           <span
             className={
@@ -62,7 +77,10 @@ const OrderRoomItem = ({
         <td className='customer-td text-center'>
           <button
               className={roomrented.status === 'approve' ? 'btn btn-view d-inline-block mr-2' : 'd-none'}
-              data-toggle="modal" data-target="#exampleModal" onClick={() => getRoomRentById(roomrented._id)}>
+              data-toggle="modal" data-target="#exampleModal" onClick={() =>  {
+                getRoomRentById(roomrented._id);
+                getBillById(roomrented._id);
+          }}>
             View
           </button>
           <button
@@ -97,6 +115,6 @@ OrderRoomItem.propTypes = {
   deleteRoomRentedById: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps, { getAllUser, acceptOrderRoom, deleteRoomRentedById, getRoomRentById })(
+export default connect(mapStateToProps, { getAllUser, acceptOrderRoom, deleteRoomRentedById, getRoomRentById, getBillById })(
   OrderRoomItem
 );
