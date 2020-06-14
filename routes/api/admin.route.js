@@ -17,8 +17,8 @@ router.put('/roomrented/:id', admin, async (req, res) => {
     const roomRent = await RoomRented.findById(id);
     roomRent.roomrents.map( async val => {
         const roomEmpty = await Room.find({status: 'Empty', kind: val.id_kindOfRoom})
-        if(roomEmpty.length < val.length) {
-            return res.status(400).json({ errors: [{ msg:'Available rooms are no longer sufficient' }] })
+        if(roomEmpty.length < val.quantity) {
+            return res.status(404).json({ errors: [{ msg:'Available rooms are no longer sufficient' }] })
         }
         await roomEmpty.splice(0,roomEmpty.length - val.quantity)
         roomEmpty.map(async val => {

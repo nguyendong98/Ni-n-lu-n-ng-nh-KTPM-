@@ -20,7 +20,7 @@ const OrderRooms = ({ room: { roomrented, loading, roomrentDetail, rooms }, getA
   const show = () => {
     console.log(input);
   };
-  return loading ? (
+  return loading || !roomrented ? (
     <Spinner />
   ) : (
     <section className='customermnm'>

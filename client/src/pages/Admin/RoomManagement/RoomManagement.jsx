@@ -13,8 +13,7 @@ const RoomManagement = ({
   useEffect(() => {
     getAllRoom();
   }, [getAllRoom]);
-  console.log(roomcategory);
-  return loading ? (
+  return loading || !allroom || !roomcategory ? (
     <Spinner />
   ) : (
     <section className='customermnm'>

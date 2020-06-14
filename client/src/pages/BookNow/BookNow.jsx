@@ -39,7 +39,7 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, loading}, b
                 // } else setIsDisableCheckBox(true) // --> set state cho checkbox theo số lượng phòng
 
             }
-            return (
+            return  (
                 <Fragment key={index}>
                     <tr>
                         <td>{room.name.toUpperCase()}</td>
@@ -90,7 +90,7 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, loading}, b
         }
     }
     console.log(formData)
-    return loading ? (<Spinner/>) :
+    return loading || !rooms ? (<Spinner/>) :
     (
         
         <section className="Booknow">            
