@@ -24,6 +24,7 @@ import CustomerManage from './pages/Admin/CustomerManage/CustomerManage';
 import Notify from './components/Notify/Notify';
 import OrderRooms from './pages/Admin/Order/OrderRooms';
 import RoomManagement from './pages/Admin/RoomManagement/RoomManagement';
+import Statistical from "./pages/Admin/Statistical/Statistical";
 const App = () => {
   useEffect(() => {
     if (localStorage.token) {
@@ -48,15 +49,13 @@ const App = () => {
             <Route path='/booknow' exact component={BookNow} />
             <Route path='/rooms' exact component={Rooms} />
             <Route path='/roomdetail/:id' exact component={RoomDetail} />
-            <PrivateRoute
-              path='/customermanagement'
-              exact
-              component={CustomerManage}
-            />
+            <PrivateRoute path='/customermanagement' exact component={CustomerManage} />
             <PrivateRoute exact path='/admin' component={Admin} />
             <PrivateRoute path='/roomrented' exact component={OrderRooms} />
             <PrivateRoute path='/roommanage'  component={RoomManagement}/>
+            <PrivateRoute path='/statistical' exact component={Statistical} />
             <PrivateRoute path='' exact component={NotFound} />
+
           </Switch>
           <Footer />
         </Fragment>

@@ -2,7 +2,7 @@ import React from 'react'
 import './Footer.scss'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
- function Footer({auth, room}) {
+ function Footer({auth, room, statistical }) {
     return  room.loading ? null :  (
         <footer className="container-fluid footer">
             <h3 className="footer__title">SPRING HOTEL</h3>
@@ -38,7 +38,8 @@ Footer.propTypes = {
 const mapStateToProps = state => {
     return {
         auth: state.auth,
-        room: state.room
+        room: state.room,
+        statistical: state.statistical
     }
 }
 export default connect(mapStateToProps, null)(Footer)

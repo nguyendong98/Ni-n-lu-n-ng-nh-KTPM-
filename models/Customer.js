@@ -13,6 +13,7 @@ const CustomerSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    nationality: String,
     count: {
         type: Number
     },

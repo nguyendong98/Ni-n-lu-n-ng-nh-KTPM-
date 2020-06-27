@@ -77,16 +77,16 @@ const Admin = ({ loadUser, auth: { loading, user } }) => {
               </Link>
             </div>
             <div className='col-lg-4 col-md-6 col-12 pb-5'>
-              <Link to='/tours' exact='true'>
+              <Link to='/statistical' exact='true'>
                 <div className='card'>
                   <img
                     className='card-img-top'
                     style={{ height: '15rem' }}
-                    src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRbTTM-xBrbLwzWgDBpBzrKet5tF4FiB8ONss0LIZhX9NrYFSuD'
+                    src='https://png.pngtree.com/png-clipart/20190630/original/pngtree-vector-bar-chart-icon-png-image_4165593.jpg'
                     alt='Cardimagecap'
                   />
                   <div className='card-body'>
-                    <h2>Galery Management</h2>
+                    <h2>Statistical</h2>
                   </div>
                 </div>
               </Link>

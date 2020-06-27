@@ -7,6 +7,7 @@ const Customer = require('./../../models/Customer');
 let Bill = require('./../../models/Bill');
 const admin = require('./../../middleware/admin');
 const auth = require('./../../middleware/auth');
+const moment = require('moment');
 // @route   GET api/admin/:id
 // @access  Private/admin
 
@@ -154,4 +155,56 @@ router.delete('/roomrented', admin, async (req, res) => {
       console.error(error.message)
       res.status(500).send('Server Error!')
   }
+})
+// @route    GET api/admin/statistical/
+// @desc     GET Statistical
+// @access   Private
+// Lấy all số liệu thống kê quốc gia
+router.get('/statistical/nationality', admin, async (req, res) => {
+   try {
+       const vietnamese = await Customer.find({nationality: 'vietnamese'})
+       const england = await Customer.find({nationality: 'england'})
+       const france = await Customer.find({nationality: 'france'})
+       const american = await Customer.find({nationality: 'american'})
+       const data = {
+           nationality: ['vietnamese', 'england', 'france', 'american'],
+           mainData: [vietnamese.length, england.length, france.length, american.length]
+       }
+       return res.status(200).json(data)
+   } catch (e) {
+       console.error(e.message)
+       return res.status(500).send('Server Error!')
+   }
+
+})
+
+// @route    GET api/admin/statistical/:year
+// @desc     GET Statistical/:year
+// @access   Private
+// Lấy số liệu thống kê quốc gia theo năm
+router.get('/statistical/nationality/:year', admin, async (req, res) => {
+    try {
+        const customer = await Customer.find()
+        const customer_filter = customer.filter(val => moment(val.date).format('YYYY') === req.params.year)
+        var data = []
+        for(let i = 1; i <= 12; i++) {
+            const statisticalMonth = customer_filter.filter(val => parseInt(moment(val.date).format('MM')) === i)
+            const vietnamese = statisticalMonth.filter(val => val.nationality === 'vietnamese')
+            const england = statisticalMonth.filter(val => val.nationality === 'england')
+            const france = statisticalMonth.filter(val => val.nationality === 'france')
+            const american = statisticalMonth.filter(val => val.nationality === 'american')
+            const dataMonth = {
+                month: i,
+                vietnamese: vietnamese.length,
+                england: england.length,
+                france: france.length,
+                american: american.length
+            }
+            data.push(dataMonth)
+        }
+        return res.json(data)
+    } catch (e) {
+        console.error(e.message)
+        res.status(500).send('Server Error!!')
+    }
 })
