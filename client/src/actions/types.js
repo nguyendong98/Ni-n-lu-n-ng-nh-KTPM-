@@ -24,4 +24,5 @@ export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const GET_ALL_COMMENT = 'GET_ALL_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const GET_ROOMRENTED_BYID = 'GET_ROOMRENTED_BYID';
-
+export const GET_ALL_BILLS = 'GET_ALL_BILLS';
+export const CHECK_OUT = 'CHECK_OUT';

@@ -62,7 +62,7 @@ const Admin = ({ loadUser, auth: { loading, user } }) => {
               </Link>
             </div>
             <div className='col-lg-4 col-md-6 col-12 pb-5'>
-              <Link to='/tours' exact='true'>
+              <Link to='/checkout' exact='true'>
                 <div className='card'>
                   <img
                     className='card-img-top'
@@ -71,7 +71,7 @@ const Admin = ({ loadUser, auth: { loading, user } }) => {
                     alt='Cardimagecap'
                   />
                   <div className='card-body'>
-                    <h2>Service Management</h2>
+                    <h2>Check Out</h2>
                   </div>
                 </div>
               </Link>

@@ -51,6 +51,20 @@ router.post('/checkout/:id', admin, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+// @route    PUT api/bill/checkout/id
+// Cập nhật trạng thái bill
+router.put('/checkout/:id', admin, async (req, res) => {
+  try {
+    const billCheckout = await Bill.findById(req.params.id);
+    billCheckout.status = 'checked_out';
+    await billCheckout.save();
+    return res.status(200).json(billCheckout);
+  } catch (e) {
+    console.error(error);
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route    GET api/bill/checkout
 // @desc     Get all bill checked out
 // @access   Private
