@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const BillSchema = new mongoose.Schema({
-    roomrent_id: String,
+    roomrent_id:  String,
     customer: {
         type: mongoose.Schema.Types.ObjectID,
         ref: 'customers'
@@ -13,6 +13,7 @@ const BillSchema = new mongoose.Schema({
         type: Number
     },
     discount: Number,
+    status: String,
     date: {
         type: Date,
         default: Date.now()
