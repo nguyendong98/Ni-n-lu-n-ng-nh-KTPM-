@@ -99,6 +99,7 @@ const CheckOut = ({
                               </td>
                             );
                           }
+                          return 0
                         })}
                         <td className='customer-td'>{val.total_price} $</td>
                         <td className='customer-td'>{val.date}</td>

@@ -14,14 +14,19 @@ const Statistical = ({ statisticalNationality, statistical: {nationality, nation
     useEffect(() => {
         statisticalNationality()
     },[statisticalNationality])
+    const [category, setCategory] = useState('1')
     const [year, setYear] = useState('0')
-    console.log(nationality_detail)
+    // console.log(nationality_detail)
     const  onChangeYear = e => {
         setYear(e.target.value)
         if(e.target.value !== '0') {
             statisticalNationalityDetail(e.target.value)
         }
-        console.log(year)
+        // console.log(year)
+    }
+    const onChangeCategory = e => {
+        setCategory(e.target.value)
+        console.log(category)
     }
     const lineChart = nationality_detail ? (
         <Line
@@ -104,6 +109,13 @@ const Statistical = ({ statisticalNationality, statistical: {nationality, nation
             <div className="selectOption container">
                 <div className="row">
                     <div className="col-lg-4 col-12">
+                        <h3>Select category statistical</h3>
+                        <select className="form-control font-secondary" value={category} onChange={e => onChangeCategory(e)}>
+                            <option value="1">Statistical Nationality</option>
+                            <option value="2">Statistical Revenue</option>
+                        </select>
+                    </div>
+                    <div className="col-lg-3 col-12">
                         <h3>Select Year</h3>
                         <select className="form-control font-secondary" value={year} onChange={e => onChangeYear(e)}>
                             <option value='0'></option>

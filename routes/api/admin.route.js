@@ -1,4 +1,3 @@
-
 const express = require('express');
 const router = express.Router();
 const Room = require('./../../models/Room');
@@ -7,6 +6,7 @@ const Customer = require('./../../models/Customer');
 let Bill = require('./../../models/Bill');
 const admin = require('./../../middleware/admin');
 const auth = require('./../../middleware/auth');
+const Checkout = require('./../../models/Checkout')
 const moment = require('moment');
 // @route   GET api/admin/:id
 // @access  Private/admin
@@ -108,7 +108,7 @@ router.put('/roomrented/:id', admin, async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
-module.exports = router;
+
 
 // @route    DELETE api/admin/roomrented/:id_roomrented
 // @desc     Delete roomrented by id
@@ -184,8 +184,8 @@ router.get('/statistical/nationality', admin, async (req, res) => {
 
 })
 
-// @route    GET api/admin/statistical/:year
-// @desc     GET Statistical/:year
+// @route    GET api/admin/statistical/nationality/:year
+// @desc     GET Statistical/nationality/:year
 // @access   Private
 // Lấy số liệu thống kê quốc gia theo năm
 router.get('/statistical/nationality/:year', admin, async (req, res) => {
@@ -214,3 +214,32 @@ router.get('/statistical/nationality/:year', admin, async (req, res) => {
         res.status(500).send('Server Error!!')
     }
 })
+// @route    GET api/admin/revenue/:year
+// @desc     GET Statistical/:year
+// @access   Private
+// Lấy số liệu thống kê quốc gia theo năm
+router.get('/statistical/revenue/:year', admin, async (req, res) => {
+   try {
+       const revenue = await Checkout.find()
+       const revenue_year = revenue.filter(val => moment(val.date).format('YYYY') === req.params.year)
+       var data = []
+       for(let i = 1; i <= 12; i++) {
+           const revenue_month = revenue_year.filter(val => parseInt(moment(val.date).format('MM')) === i)
+           // console.log(revenue_month)
+           var value = 0;
+           revenue_month.map(val => {
+               value += val.totalprice
+           })
+           const dataMonth = {
+               month: i,
+               value: value
+           }
+           data.push(dataMonth)
+       }
+       return res.status(200).json(data)
+   } catch (e) {
+       console.error(e.message)
+       return res.status(500).send('Server Error!')
+   }
+})
+module.exports = router;
