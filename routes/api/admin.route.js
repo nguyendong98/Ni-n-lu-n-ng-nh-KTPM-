@@ -16,6 +16,12 @@ router.put('/roomrented/:id', admin, async (req, res) => {
     // Xử lí chọn phòng cho người dùng theo số lượng phòng người dùng đã đặt
     const id = req.params.id;
     const roomRent = await RoomRented.findById(id);
+    for (let i = 0; i < roomRent.roomrents.length - 1; i++) {
+        let roomEmpty = await Room.find({status: 'Empty', kind: roomRent.roomrents[i].id_kindOfRoom})
+        if(roomEmpty.length < roomRent.roomrents[i].quantity) {
+            return res.status(404).json({ errors: [{ msg:'Available rooms are no longer sufficient' }] })
+        }
+    }
     roomRent.roomrents.map( async val => {
         const roomEmpty = await Room.find({status: 'Empty', kind: val.id_kindOfRoom})
         if(roomEmpty.length < val.quantity) {
@@ -96,7 +102,7 @@ router.put('/roomrented/:id', admin, async (req, res) => {
 
 
 
-  return res.status(200).json(roomRent);
+    return res.status(200).json(roomRent);
   } catch (error) {
     console.log(error.message);
     res.status(500).send('Server Error');
