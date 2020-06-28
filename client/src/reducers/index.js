@@ -6,6 +6,7 @@ import room from './room';
 import notify from './notify';
 import feedback from './feedback';
 import bill from './bill';
+import statistical from './statistical';
 export default combineReducers({
   alert,
   auth,
@@ -13,4 +14,5 @@ export default combineReducers({
   notify,
   feedback,
   bill,
+  statistical,
 });

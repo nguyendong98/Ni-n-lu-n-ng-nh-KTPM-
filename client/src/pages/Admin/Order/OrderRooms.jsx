@@ -7,17 +7,20 @@ import { Link } from 'react-router-dom';
 import OrderRoomItem from './OrderRoomItem';
 import { getAllRoomRent } from '../../../actions/room';
 import { deleteAllRoomRented } from "../../../actions/room";
+import { getAllKindOfRoom } from "../../../actions/room";
 import Model from "./Modal";
-const OrderRooms = ({ room: { roomrented, loading, roomrentDetail }, getAllRoomRent, deleteAllRoomRented  }) => {
+const OrderRooms = ({ room: { roomrented, loading, roomrentDetail, rooms }, getAllRoomRent, deleteAllRoomRented, getAllKindOfRoom  }) => {
   useEffect(() => {
     getAllRoomRent();
   }, [getAllRoomRent]);
-
+  useEffect(() => {
+    getAllKindOfRoom();
+  }, [getAllKindOfRoom]);
   var input = document.getElementById('search');
   const show = () => {
     console.log(input);
   };
-  return loading ? (
+  return loading || !roomrented ? (
     <Spinner />
   ) : (
     <section className='customermnm'>
@@ -77,10 +80,7 @@ const OrderRooms = ({ room: { roomrented, loading, roomrentDetail }, getAllRoomR
                   Check-out
                 </th>
                 <th className='customer-th' scope='col'>
-                  Phone number
-                </th>
-                <th className='customer-th' scope='col'>
-                  Date book
+                  Room rent
                 </th>
                 <th className='customer-th' scope='col'>
                   Status
@@ -94,7 +94,7 @@ const OrderRooms = ({ room: { roomrented, loading, roomrentDetail }, getAllRoomR
               {roomrented
                 ? roomrented.map((val, key) => {
                     return (
-                      <OrderRoomItem key={key} index={key} roomrented={val} />
+                      <OrderRoomItem key={key} index={key} roomrented={val} rooms={rooms} />
                     );
                   })
                 : null}
@@ -102,7 +102,7 @@ const OrderRooms = ({ room: { roomrented, loading, roomrentDetail }, getAllRoomR
           </table>
         </div>
       </div>
-      <Model roomrentDetail={roomrentDetail}/>
+      <Model roomrentDetail={roomrentDetail} rooms={rooms}/>
     </section>
   );
 };
@@ -114,7 +114,7 @@ const mapStateToProps = (state) => {
 OrderRooms.propTypes = {
   room: PropTypes.object.isRequired,
   deleteAllRoomRented: PropTypes.func.isRequired,
-
+  getAllKindOfRoom: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps, { getAllRoomRent, deleteAllRoomRented })(OrderRooms);
+export default connect(mapStateToProps, { getAllRoomRent, deleteAllRoomRented, getAllKindOfRoom })(OrderRooms);

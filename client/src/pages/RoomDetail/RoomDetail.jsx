@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import './roomdetail.scss';
 import { connect } from 'react-redux';
 import { getKindOfRoomDetail } from './../../actions/room';
+import {setNotify} from "../../actions/notify";
+import {Link, Redirect} from 'react-router-dom'
 import {
   createComment,
   getAllComment,
@@ -10,21 +12,32 @@ import {
 } from './../../actions/feedback';
 import Spinner from '../../components/Spinner/Spinner';
 
+
 const RoomDetail = ({
   getKindOfRoomDetail,
   createComment,
   getAllComment,
   deleteComment,
   match,
+  setNotify,
   room: { room, loading },
-  auth: { user },
+  auth: { user, isAuthenticated },
   feedback: { feedbacks },
 }) => {
   useEffect(() => {
     getKindOfRoomDetail(match.params.id);
     getAllComment();
   }, [getKindOfRoomDetail, match.params.id, getAllComment]);
+  const checkAuth = (e) => {
+    if(!isAuthenticated){
+      e.preventDefault();
+      setNotify('Please login if you want to book now !!!', 1500)
+    }
+    else{
+      return <Redirect to="/booknow" exact />
 
+    }
+  }
   const data = {};
   const onChange = (e) => {
     console.log(e.target.value);
@@ -34,7 +47,7 @@ const RoomDetail = ({
   const onClick = () => {
     createComment(data, match.params.id);
   };
-  return loading ? (
+  return loading || !feedbacks ? (
     <Spinner />
   ) : (
     <section className='rooms'>
@@ -116,13 +129,16 @@ const RoomDetail = ({
                 </div>
               </div>
               <div className='col-12 '>
-                <button
-                  type='button'
-                  className='btn btn-success mt-5 py-4'
-                  style={{ width: '100%' }}
-                >
-                  Book Now
-                </button>
+                <Link to="/booknow" exact="true" >
+                  <button
+                    type='button'
+                    className='btn btn-success mt-5 py-4'
+                    style={{ width: '100%' }}
+                    onClick={(e) => checkAuth(e)}
+                  >
+                    Book Now
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -183,7 +199,7 @@ const RoomDetail = ({
         <div className='fedback col-12 col-lg-6 mt-3'>
           <div className='header d-flex justify-content-between align-items-center py-1'>
             <div className='title'>Customer reviews</div>
-            <div className='count-comment'>Comment (10)</div>
+            <div className='count-comment'>Comment ({feedbacks.length})</div>
           </div>
           <div className='comment col-12'>
             {/* customer comment in here */}
@@ -308,4 +324,5 @@ export default connect(mapStateToProps, {
   createComment,
   getAllComment,
   deleteComment,
+  setNotify
 })(RoomDetail);

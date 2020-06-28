@@ -13,8 +13,7 @@ const RoomManagement = ({
   useEffect(() => {
     getAllRoom();
   }, [getAllRoom]);
-  console.log(roomcategory);
-  return loading ? (
+  return loading || !allroom || !roomcategory ? (
     <Spinner />
   ) : (
     <section className='customermnm'>
@@ -31,7 +30,7 @@ const RoomManagement = ({
       <div className='container'>
         {roomcategory.map((category, key) => {
           return (
-            <div className='row mt-5'>
+            <div key={key} className='row mt-5'>
               <div className='col-12 px-4 mb-2'>
                 <div className='d-flex justify-content-between'>
                   <div className='col-4 col-lg-3 category_name p-2 px-3'>
@@ -41,12 +40,12 @@ const RoomManagement = ({
                   </div>
                   <div className='drop'>
                     <i
-                      class={`fa fa-angle-down down-${key}`}
+                      className={`fa fa-angle-down down-${key}`}
                       aria-hidden='true'
                       onClick={() => hideFunc(key)}
                     ></i>
                     <i
-                      class={`fa fa-angle-right right-${key} hide`}
+                      className={`fa fa-angle-right right-${key} hide`}
                       aria-hidden='true'
                       onClick={() => showFunc(key)}
                     ></i>
@@ -58,7 +57,7 @@ const RoomManagement = ({
                   if (room.kind === category._id) {
                     if (room.status === 'Empty') {
                       return (
-                        <div className='col-3 col-lg-2 p-2'>
+                        <div key={key} className='col-3 col-lg-2 p-2'>
                           <div className='py-2 px-3 enable room d-flex flex-column justify-content-between'>
                             <i className='fa fa-bed icon' aria-hidden='true' />
                             <div className='room_name py-1'>{room.name}</div>
@@ -74,9 +73,11 @@ const RoomManagement = ({
                           </div>
                         </div>
                       );
+
+
                     } else {
                       return (
-                        <div className='col-3 col-lg-2 p-2'>
+                        <div key={key} className='col-3 col-lg-2 p-2'>
                           <div className='py-2 px-3 disable room d-flex flex-column justify-content-between'>
                             <i className='fa fa-bed icon' aria-hidden='true' />
                             <div className='room_name py-1'>{room.name}</div>
@@ -94,6 +95,7 @@ const RoomManagement = ({
                       );
                     }
                   }
+                  return ''
                 })}
               </div>
             </div>

@@ -85,7 +85,7 @@ router.post(
 // @desc     GET all user
 // @access   Private
 //Lấy toàn bộ danh sách user
-router.get('/', auth, async (req, res) => {
+router.get('/', auth, admin, async (req, res) => {
   try {
     const users = await User.find().select('-password');
 

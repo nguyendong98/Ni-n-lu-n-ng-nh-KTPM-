@@ -45,7 +45,8 @@ router.post('/checkout/:id', admin, async (req, res) => {
       totalprice: billCheckout.total_price,
     });
     await checkout.save();
-    return res.status(200).json(checkout);
+    const allbill = await Bill.find();
+    return res.status(200).json(allbill);
   } catch (e) {
     console.error(error);
     res.status(500).send('Server Error');
@@ -58,7 +59,8 @@ router.put('/checkout/:id', admin, async (req, res) => {
     const billCheckout = await Bill.findById(req.params.id);
     billCheckout.status = 'checked_out';
     await billCheckout.save();
-    return res.status(200).json(billCheckout);
+    const allbill = await Bill.find();
+    return res.status(200).json(allbill);
   } catch (e) {
     console.error(error);
     res.status(500).send('Server Error');
@@ -77,6 +79,20 @@ router.get('/checkout', admin, async (req, res) => {
   } catch (e) {
     console.error(error);
     res.status(500).send('Server Error');
+  }
+});
+// @route    POST api/bill/:id
+// @desc     post comment by id roomcategory
+// @access   private
+// get bill by id
+router.get('/:id', auth, async (req, res) => {
+  try {
+    var bill = await Bill.find({ roomrent_id: req.params.id });
+    bill = bill[0];
+    return res.json(bill);
+  } catch (e) {
+    console.error(e.errors);
+    return res.status(500).send('Server errors');
   }
 });
 

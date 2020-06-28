@@ -39,7 +39,7 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, loading}, b
                 // } else setIsDisableCheckBox(true) // --> set state cho checkbox theo số lượng phòng
 
             }
-            return (
+            return  (
                 <Fragment key={index}>
                     <tr>
                         <td>{room.name.toUpperCase()}</td>
@@ -90,7 +90,7 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, loading}, b
         }
     }
     console.log(formData)
-    return loading ? (<Spinner/>) :
+    return loading || !rooms ? (<Spinner/>) :
     (
         
         <section className="Booknow">            
@@ -166,6 +166,7 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, loading}, b
                                                 <b><i><p className="mt-2">Nationality*</p></i></b>
                                                 <select className="form-control font-secondary"   name="nationality" value={nationality}
                                                     onChange={e => onChangeStep1_2(e)}>
+                                                    <option value="">Select your Nationality</option>
                                                     <option value="vietnamese" >vietnamese</option>
                                                     <option value="england">england</option>
                                                     <option value="france">france</option>

@@ -1,11 +1,13 @@
+
 const express = require('express');
 const router = express.Router();
 const Room = require('./../../models/Room');
 const RoomRented = require('./../../models/RoomRented');
 const Customer = require('./../../models/Customer');
-const Bill = require('./../../models/Bill');
+let Bill = require('./../../models/Bill');
 const admin = require('./../../middleware/admin');
 const auth = require('./../../middleware/auth');
+const moment = require('moment');
 // @route   GET api/admin/:id
 // @access  Private/admin
 
@@ -16,11 +18,10 @@ router.put('/roomrented/:id', admin, async (req, res) => {
     const roomRent = await RoomRented.findById(id);
     roomRent.roomrents.map( async val => {
         const roomEmpty = await Room.find({status: 'Empty', kind: val.id_kindOfRoom})
-        if(roomEmpty.length < val.length) {
-            return res.status(400).json({ errors: [{ msg:'Available rooms are no longer sufficient' }] })
+        if(roomEmpty.length < val.quantity) {
+            return res.status(404).json({ errors: [{ msg:'Available rooms are no longer sufficient' }] })
         }
         await roomEmpty.splice(0,roomEmpty.length - val.quantity)
-        // console.log(roomEmpty)
         roomEmpty.map(async val => {
             try {
                 val.status = 'Has Placed'
@@ -40,13 +41,16 @@ router.put('/roomrented/:id', admin, async (req, res) => {
 
   var total_price = 0;
   // Xử lý giảm giá
-
+  var totalPriceNotDisCount = 0;
   roomRent.roomrents.map(val => {
       total_price += val.quantity * val.price * numberOfDayBook;
+      totalPriceNotDisCount = total_price;
   })
+  // Xử lí ở bảng Customer
   var customer = await Customer.findOne({user: roomRent.user});
-  console.log(customer.count);
   if(customer) {
+      customer.count += 1;
+      await customer.save()
       if(customer.count >=3 && customer.count <6) {
           total_price = total_price * 0.95;
       }
@@ -59,19 +63,15 @@ router.put('/roomrented/:id', admin, async (req, res) => {
       else if(customer.count >= 15) {
           total_price = total_price * 0.75;
       } else total_price = total_price * 1;
-  }
-  const newBill = new Bill({
-    customer: roomRent.user,
-    roomrents: roomRent.roomrents,
-    total_price
-  })
-
-  await newBill.save()
-  // Xử lí ở bảng Customer
-
-  if(customer){
-      customer.count += 1;
-      await customer.save()
+      const newBill = new Bill({
+          roomrent_id: roomRent._id,
+          customer: roomRent.user,
+          roomrents: roomRent.roomrents,
+          totalPriceNotDisCount,
+          discount: customer.count,
+          total_price
+      })
+      await newBill.save()
   }
   else{
       customer = new Customer({
@@ -82,8 +82,20 @@ router.put('/roomrented/:id', admin, async (req, res) => {
           count: 1
       })
       await customer.save()
+      const newBill = new Bill({
+          roomrent_id: roomRent._id,
+          customer: roomRent.user,
+          roomrents: roomRent.roomrents,
+          totalPriceNotDisCount,
+          discount: 1,
+          total_price
+      })
+      await newBill.save()
 
   }
+
+
+
   return res.status(200).json(roomRent);
   } catch (error) {
     console.log(error.message);
@@ -102,7 +114,22 @@ router.delete('/roomrented/:id_roomrented', auth , async (req, res) => {
       if (!req.params.id_roomrented.match(/^[0-9a-fA-F]{24}$/) || !roomrented){
           return res.status(404).json('Roomrented not found!')
       }
-      await roomrented.remove();
+      if(roomrented.roomrent_detail === undefined || roomrented.roomrent_detail.length === 0) {
+          await roomrented.remove()
+
+
+      } else {
+          roomrented.roomrent_detail.map( async val => {
+              const room = await Room.findOne({name: val.name})
+              room.status = 'Empty'
+
+              await room.save()
+          })
+          await roomrented.remove()
+
+      }
+
+
       return res.status(200).json({msg : 'Roomrented removed!'})
   } catch (error) {
       console.error(error.message)
@@ -128,4 +155,56 @@ router.delete('/roomrented', admin, async (req, res) => {
       console.error(error.message)
       res.status(500).send('Server Error!')
   }
+})
+// @route    GET api/admin/statistical/
+// @desc     GET Statistical
+// @access   Private
+// Lấy all số liệu thống kê quốc gia
+router.get('/statistical/nationality', admin, async (req, res) => {
+   try {
+       const vietnamese = await Customer.find({nationality: 'vietnamese'})
+       const england = await Customer.find({nationality: 'england'})
+       const france = await Customer.find({nationality: 'france'})
+       const american = await Customer.find({nationality: 'american'})
+       const data = {
+           nationality: ['vietnamese', 'england', 'france', 'american'],
+           mainData: [vietnamese.length, england.length, france.length, american.length]
+       }
+       return res.status(200).json(data)
+   } catch (e) {
+       console.error(e.message)
+       return res.status(500).send('Server Error!')
+   }
+
+})
+
+// @route    GET api/admin/statistical/:year
+// @desc     GET Statistical/:year
+// @access   Private
+// Lấy số liệu thống kê quốc gia theo năm
+router.get('/statistical/nationality/:year', admin, async (req, res) => {
+    try {
+        const customer = await Customer.find()
+        const customer_filter = customer.filter(val => moment(val.date).format('YYYY') === req.params.year)
+        var data = []
+        for(let i = 1; i <= 12; i++) {
+            const statisticalMonth = customer_filter.filter(val => parseInt(moment(val.date).format('MM')) === i)
+            const vietnamese = statisticalMonth.filter(val => val.nationality === 'vietnamese')
+            const england = statisticalMonth.filter(val => val.nationality === 'england')
+            const france = statisticalMonth.filter(val => val.nationality === 'france')
+            const american = statisticalMonth.filter(val => val.nationality === 'american')
+            const dataMonth = {
+                month: i,
+                vietnamese: vietnamese.length,
+                england: england.length,
+                france: france.length,
+                american: american.length
+            }
+            data.push(dataMonth)
+        }
+        return res.json(data)
+    } catch (e) {
+        console.error(e.message)
+        res.status(500).send('Server Error!!')
+    }
 })

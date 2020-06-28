@@ -116,7 +116,12 @@ export const acceptOrderRoom = (id) => async (dispatch) => {
       type: ACCEPT_ORDER_ROOM,
       payload: res1.data,    });
     dispatch(setNotify('Success'))
-  } catch (error) {}
+  } catch (error) {
+    const errors = error.response.data.errors
+    if(errors){
+      errors.forEach(error => dispatch(setNotify(error.msg)));
+    }
+  }
 };
 
 export const deleteRoomRentedById = id => async dispatch => {

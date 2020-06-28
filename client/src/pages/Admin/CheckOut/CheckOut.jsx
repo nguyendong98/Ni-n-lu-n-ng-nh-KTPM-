@@ -4,17 +4,27 @@ import '../CustomerManage/CustomerManage.scss';
 import { connect } from 'react-redux';
 import Spinner from '../../../components/Spinner/Spinner';
 import { Link } from 'react-router-dom';
+import { getAllBill, checkOut } from '../../../actions/bill';
+import { getAllUser } from '../../../actions/auth';
 
-const CheckOut = () => {
-  useEffect(() => {}, []);
+const CheckOut = ({
+  getAllBill,
+  getAllUser,
+  checkOut,
+  bill: { bills, loading },
+  auth: { users },
+}) => {
+  useEffect(() => {
+    getAllBill();
+    getAllUser();
+  }, [getAllBill, getAllUser]);
   var input = document.getElementById('search');
   const show = () => {
     console.log(input);
   };
-//   return loading ? (
-//     <Spinner />
-//   ) : (
-    return(
+  return loading ? (
+    <Spinner />
+  ) : (
     <section className='customermnm'>
       <h2 className='customermnm__title animate__animated animate__flip'>
         Check Out
@@ -58,22 +68,16 @@ const CheckOut = () => {
                   #
                 </th>
                 <th className='customer-th' scope='col'>
-                  Customer
+                  Id Bill
                 </th>
                 <th className='customer-th' scope='col'>
-                  Check-in
+                  Customer Name
                 </th>
                 <th className='customer-th' scope='col'>
-                  Check-out
-                </th>
-                <th className='customer-th' scope='col'>
-                  Phone number
+                  Total Price
                 </th>
                 <th className='customer-th' scope='col'>
                   Date book
-                </th>
-                <th className='customer-th' scope='col'>
-                  Status
                 </th>
                 <th className='customer-th text-center' scope='col'>
                   Action
@@ -81,13 +85,40 @@ const CheckOut = () => {
               </tr>
             </thead>
             <tbody>
-              {/* {roomrented
-                ? roomrented.map((val, key) => {
+              {bills
+                ? bills.map((val, key) => {
                     return (
-                      <OrderRoomItem key={key} index={key} roomrented={val} />
+                      <tr key={key}>
+                        <td className='customer-td'>{key + 1}</td>
+                        <td className='customer-td'>{val._id}</td>
+                        {users.map((user, index) => {
+                          if (val.customer === user._id) {
+                            return (
+                              <td key={index} className='customer-td'>
+                                {user.name}
+                              </td>
+                            );
+                          }
+                        })}
+                        <td className='customer-td'>{val.total_price} $</td>
+                        <td className='customer-td'>{val.date}</td>
+                        <td className='customer-td'>
+                          {val.status ? (
+                            <div>Checked out</div>
+                          ) : (
+                            <button
+                              className='btn-warning w-100'
+                              onClick={() => checkOut(val._id)}
+                            >
+                              Check out
+                              <i class="fa fa-calendar-check-o pl-4" aria-hidden="true"></i>
+                            </button>
+                          )}
+                        </td>
+                      </tr>
                     );
                   })
-                : null} */}
+                : null}
             </tbody>
           </table>
         </div>
@@ -96,8 +127,18 @@ const CheckOut = () => {
   );
 };
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    bill: state.bill,
+    auth: state.auth,
+  };
 };
-CheckOut.propTypes = {};
+CheckOut.propTypes = {
+  bill: PropTypes.object.isRequired,
+  getAllBill: PropTypes.func.isRequired,
+  getAllUser: PropTypes.func.isRequired,
+  checkOut: PropTypes.func.isRequired,
+};
 
-export default connect(mapStateToProps, {})(CheckOut);
+export default connect(mapStateToProps, { getAllBill, getAllUser, checkOut })(
+  CheckOut
+);
