@@ -44,7 +44,9 @@ router.post('/checkout/:id', admin, async (req, res) => {
       bill: billCheckout,
       totalprice: billCheckout.total_price,
     });
-    await checkout.save();
+    console.log(checkout)
+    console.log(billCheckout)
+    // await checkout.save();
     const allbill = await Bill.find();
     return res.status(200).json(allbill);
   } catch (e) {

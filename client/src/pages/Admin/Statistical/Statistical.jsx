@@ -41,7 +41,7 @@ const Statistical = ({ statisticalNationality, statisticalRevenue, statistical: 
                 data={{
                     labels: ['Junuary', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                     datasets: [{
-                        label: 'January',
+                        label: 'Junuary',
                         backgroundColor: [
                             'rgba(0, 0, 255, 0.5)',
                             'rgba(0, 255, 0, 0.5)',

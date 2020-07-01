@@ -5,17 +5,19 @@ import {getAllKindOfRoom, bookRoom} from './../../actions/room'
 import Alert from '../../components/Alert/Alert'
 import Spinner from '../../components/Spinner/Spinner'
 import {Link} from 'react-router-dom'
-
+// import { getAllRoom1 } from "./../../actions/room";
 import './BookNow.scss'
 
 
-const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, loading}, bookRoom}) => {
+const BookNow = ({ auth, getAllKindOfRoom, getAllRoom1, getAllRoom, room: {rooms, loading, allroom, allroom1}, bookRoom}) => {
     
     useEffect(() => {
         getAllKindOfRoom();
         
     }, [getAllKindOfRoom, getAllRoom])
-    
+    // useEffect(() => {
+    //     getAllRoom1()
+    // },[getAllRoom1])
 
     const [formData, setFormData] = useState({
         datecheckin: '',
@@ -25,10 +27,14 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, loading}, b
         nationality: '',
         roomrents: []
     })
+    // console.log(allroom)
     // const [isDisableCheckBox, setIsDisableCheckBox] = useState(true)
     const { datecheckin, datecheckout, identitycard, phone, nationality } = formData
     const showSelectRoomItem = () => {
+
       return rooms ?  rooms.map((room, index) => {
+            const roomfilter = allroom.filter(val => room._id === val.kind)
+            const room1 = roomfilter.filter(val=> val.status === "Empty")
             var roomRented = {};
             roomRented.id_kindOfRoom = room._id;
             roomRented.price = room.price;
@@ -39,7 +45,7 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, loading}, b
                 // } else setIsDisableCheckBox(true) // --> set state cho checkbox theo số lượng phòng
 
             }
-            return  (
+            return  room1.length !== 0  ? (
                 <Fragment key={index}>
                     <tr>
                         <td>{room.name.toUpperCase()}</td>
@@ -54,7 +60,7 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, loading}, b
 
                     </tr>
                 </Fragment>
-            )
+            ) : null
         }) : null
     }
 
@@ -89,7 +95,7 @@ const BookNow = ({ auth, getAllKindOfRoom, getAllRoom, room: {rooms, loading}, b
             setFormData(formData)
         }
     }
-    console.log(formData)
+
     return loading || !rooms ? (<Spinner/>) :
     (
         
