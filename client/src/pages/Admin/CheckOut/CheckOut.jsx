@@ -6,14 +6,14 @@ import Spinner from '../../../components/Spinner/Spinner';
 import { Link } from 'react-router-dom';
 import { getAllBill, checkOut } from '../../../actions/bill';
 import { getAllUser } from '../../../actions/auth';
-
+import Moment from "react-moment";
 const CheckOut = ({
-  getAllBill,
-  getAllUser,
-  checkOut,
-  bill: { bills, loading },
-  auth: { users },
-}) => {
+                    getAllBill,
+                    getAllUser,
+                    checkOut,
+                    bill: { bills, loading },
+                    auth: { users },
+                  }) => {
   useEffect(() => {
     getAllBill();
     getAllUser();
@@ -23,46 +23,46 @@ const CheckOut = ({
     console.log(input);
   };
   return loading ? (
-    <Spinner />
+      <Spinner />
   ) : (
-    <section className='customermnm'>
-      <h2 className='customermnm__title animate__animated animate__flip'>
-        Check Out
-      </h2>
-      <div className='customermnm__menu'>
+      <section className='customermnm'>
+        <h2 className='customermnm__title animate__animated animate__flip'>
+          Check Out
+        </h2>
+        <div className='customermnm__menu'>
         <span>
           <Link to='/admin' exact='true' style={{ color: 'black' }}>
             Admin
           </Link>
         </span>
-        <i className='fa fa-chevron-right'></i>
-        <span className='customermnm__menu-home'>Customers</span>
-      </div>
-      <div className='container'>
-        <div className='row'>
-          <div className='customermnm__header d-flex justify-content-between align-items-center'>
-            <div className='customermnm__header-total '>
-              <span>$Total:</span>
-            </div>
+          <i className='fa fa-chevron-right'></i>
+          <span className='customermnm__menu-home'>Customers</span>
+        </div>
+        <div className='container'>
+          <div className='row'>
+            <div className='customermnm__header d-flex justify-content-between align-items-center'>
+              <div className='customermnm__header-total '>
+                <span>$Total:</span>
+              </div>
 
-            <form className='form-inline my-2 my-lg-0'>
-              <input
-                className='form-control mr-lg-2 input-search'
-                type='search'
-                placeholder='Search'
-                id='search'
-              />
-              <button
-                className='btn-search my-2 my-sm-0'
-                type='submit'
-                onClick={(e) => show()}
-              >
-                Search
-              </button>
-            </form>
-          </div>
-          <table className='table'>
-            <thead className='thead-dark'>
+              <form className='form-inline my-2 my-lg-0'>
+                <input
+                    className='form-control mr-lg-2 input-search'
+                    type='search'
+                    placeholder='Search'
+                    id='search'
+                />
+                <button
+                    className='btn-search my-2 my-sm-0'
+                    type='submit'
+                    onClick={(e) => show()}
+                >
+                  Search
+                </button>
+              </form>
+            </div>
+            <table className='table'>
+              <thead className='thead-dark'>
               <tr>
                 <th className='customer-th' scope='col'>
                   #
@@ -83,48 +83,48 @@ const CheckOut = ({
                   Action
                 </th>
               </tr>
-            </thead>
-            <tbody>
+              </thead>
+              <tbody>
               {bills
-                ? bills.map((val, key) => {
+                  ? bills.map((val, key) => {
                     return (
-                      <tr key={key}>
-                        <td className='customer-td'>{key + 1}</td>
-                        <td className='customer-td'>{val._id}</td>
-                        {users.map((user, index) => {
-                          if (val.customer === user._id) {
-                            return (
-                              <td key={index} className='customer-td'>
-                                {user.name}
-                              </td>
-                            );
-                          }
-                          return 0
-                        })}
-                        <td className='customer-td'>{val.total_price} $</td>
-                        <td className='customer-td'>{val.date}</td>
-                        <td className='customer-td'>
-                          {val.status ? (
-                            <div>Checked out</div>
-                          ) : (
-                            <button
-                              className='btn-warning w-100'
-                              onClick={() => checkOut(val._id)}
-                            >
-                              Check out
-                              <i class="fa fa-calendar-check-o pl-4" aria-hidden="true"></i>
-                            </button>
-                          )}
-                        </td>
-                      </tr>
+                        <tr key={key}>
+                          <td className='customer-td'>{key + 1}</td>
+                          <td className='customer-td'>{val._id}</td>
+                          {users.map((user, index) => {
+                            if (val.customer === user._id) {
+                              return (
+                                  <td key={index} className='customer-td'>
+                                    {user.name}
+                                  </td>
+                              );
+                            }
+
+                          })}
+                          <td className='customer-td'>{val.total_price} $</td>
+                          <td className='customer-td'><Moment format="YYYY/MM/DD">{val.date}</Moment> </td>
+                          <td className='customer-td'>
+                            {val.status ? (
+                                <div>Checked out</div>
+                            ) : (
+                                <button
+                                    className='btn-warning w-100'
+                                    onClick={() => checkOut(val._id)}
+                                >
+                                  Check out
+                                  <i class="fa fa-calendar-check-o pl-4" aria-hidden="true"></i>
+                                </button>
+                            )}
+                          </td>
+                        </tr>
                     );
                   })
-                : null}
-            </tbody>
-          </table>
+                  : null}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
   );
 };
 const mapStateToProps = (state) => {
@@ -141,5 +141,5 @@ CheckOut.propTypes = {
 };
 
 export default connect(mapStateToProps, { getAllBill, getAllUser, checkOut })(
-  CheckOut
+    CheckOut
 );

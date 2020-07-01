@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Pie, Line } from "react-chartjs-2";
+import { Pie, Line, Bar } from "react-chartjs-2";
 import PropTypes from 'prop-types';
 import './../CustomerManage/CustomerManage.scss'
 import './Statistical.scss'
@@ -7,10 +7,12 @@ import {Link} from "react-router-dom";
 import { connect } from 'react-redux'
 import { statisticalNationality } from "../../../actions/statistical";
 import { statisticalNationalityDetail } from "../../../actions/statistical";
+import { statisticalRevenue } from "../../../actions/statistical";
 import Spinner from "../../../components/Spinner/Spinner";
 
 
-const Statistical = ({ statisticalNationality, statistical: {nationality, nationality_detail}, statisticalNationalityDetail }) => {
+
+const Statistical = ({ statisticalNationality, statisticalRevenue, statistical: {nationality, nationality_detail, revenue}, statisticalNationalityDetail }) => {
     useEffect(() => {
         statisticalNationality()
     },[statisticalNationality])
@@ -21,13 +23,41 @@ const Statistical = ({ statisticalNationality, statistical: {nationality, nation
         setYear(e.target.value)
         if(e.target.value !== '0') {
             statisticalNationalityDetail(e.target.value)
+            statisticalRevenue(e.target.value)
         }
         // console.log(year)
     }
     const onChangeCategory = e => {
         setCategory(e.target.value)
-        console.log(category)
+        if(year !== '0') {
+            statisticalRevenue(year)
+        }
+
+
     }
+    const barChartRevenue = (
+        revenue ? (
+            <Bar
+                data={{
+                    labels: ['Junuary', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                    datasets: [{
+                        label: 'January',
+                        backgroundColor: [
+                            'rgba(0, 0, 255, 0.5)',
+                            'rgba(0, 255, 0, 0.5)',
+                            'rgba(255, 0, 0, 0.5)',
+                        ],
+
+                        data:  [revenue[0].value, revenue[1].value, revenue[2].value, revenue[3].value, revenue[4].value, revenue[5].value,
+                            revenue[6].value, revenue[7].value, revenue[8].value, revenue[9].value, revenue[10].value]
+                    }]
+                }}
+                options={{
+                    legend: { display: false },
+                    title: { display: true, text: `Biểu đồ thống kê doanh thu năm ${year}`}
+                }}
+            />)  : null
+    )
     const lineChart = nationality_detail ? (
         <Line
             data={{
@@ -59,12 +89,12 @@ const Statistical = ({ statisticalNationality, statistical: {nationality, nation
             }}
             options={{
                 legend: { display: true },
-                title: { display: true, text: `Số liệu thống kê quốc tịch khách cư trú năm ${year}`}
+                title: { display: true, text: `Biểu đồ thống kê khách cư trú năm ${year}`}
             }}
 
         />
     ) : null
-    const barChart =  nationality ? (
+    const pieChart =  nationality ? (
         <Pie
             data={{
                 labels: nationality.nationality,
@@ -75,7 +105,7 @@ const Statistical = ({ statisticalNationality, statistical: {nationality, nation
             }}
             options={{
                 legend: { display: true },
-                title: { display: true, text: `Số liệu thống kê quốc tịch khách cư trú`}
+                title: { display: true, text: `Biểu đồ thống kê tổng lượng khách cư trú`}
             }}
         />
     ) : null
@@ -93,7 +123,8 @@ const Statistical = ({ statisticalNationality, statistical: {nationality, nation
         })
 
     }
-
+    console.log(year)
+    console.log(category)
     return !nationality ? <Spinner /> :(
         <section className='customermnm'>
             <h2 className='customermnm__title animate__animated animate__flip'>Statistical</h2>
@@ -126,9 +157,12 @@ const Statistical = ({ statisticalNationality, statistical: {nationality, nation
                 </div>
             </div>
 
-            <div style={{width: '80%', margin: '5rem auto'}}>
-                { year !== '0' ? lineChart : barChart }
+            <div style={{ margin: '5rem auto'}} className="container text-center font-weight-bold">
+                { category === '1' ? (year !== '0'  ? lineChart : pieChart) : (year !== '0' ? barChartRevenue : 'You must choose year to statistic') }
             </div>
+            {/*<div className="container">*/}
+            {/*    { year !== '0' && category === "2" ?  barChartRevenue : ''}*/}
+            {/*</div>*/}
         </section>
     )
 }
@@ -141,4 +175,4 @@ const mapStateToProps = (state) => {
         statistical: state.statistical
     };
 };
-export default connect(mapStateToProps, { statisticalNationality, statisticalNationalityDetail })(Statistical)
+export default connect(mapStateToProps, { statisticalNationality, statisticalNationalityDetail, statisticalRevenue })(Statistical)
